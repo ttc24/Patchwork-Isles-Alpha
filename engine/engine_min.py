@@ -10,7 +10,7 @@ Usage: python3 engine_min.py [world.json]
 
 import json, os, sys
 
-DEFAULT_WORLD_PATH = "world.json"
+DEFAULT_WORLD_PATH = "world/world.json"
 
 class GameState:
     def __init__(self, world):

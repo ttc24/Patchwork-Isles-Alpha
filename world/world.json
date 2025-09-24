@@ -1,0 +1,503 @@
+{
+    "title": "Patchwork Isles \u2014 Guest-Law Prelude",
+    "factions": [
+        "Wind Choirs",
+        "Root Court",
+        "Prism Guild",
+        "Freehands"
+    ],
+    "starts": [
+        {
+            "title": "Wind Choir Envoy",
+            "node": "sky_docks",
+            "tags": [
+                "Diplomat",
+                "Resonant"
+            ]
+        },
+        {
+            "title": "Freehands Skyrunner",
+            "node": "sky_docks",
+            "tags": [
+                "Sneaky",
+                "Scout"
+            ]
+        },
+        {
+            "title": "Root Court Scribe",
+            "node": "sky_docks",
+            "tags": [
+                "Archivist",
+                "Weaver"
+            ]
+        }
+    ],
+    "endings": {
+        "ending_escape": "Slip away through the hidden canal network.",
+        "ending_guestlaw": "Guest-law precedent codified across the hubs."
+    },
+    "nodes": {
+        "sky_docks": {
+            "title": "Sky-Spliced Docks",
+            "text": "Stormglass piers sway above the mist; signal-kites rattle as customs officers chant the day's winds. Cargo cranes screech while travelers queue behind glowing lattice gates.",
+            "choices": [
+                {
+                    "text": "(Diplomat) Flash envoy seals to the warden for priority clearance.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Diplomat"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Wind Choirs",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "docks_clearance",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_tangle_market"
+                },
+                {
+                    "text": "(Sneaky) Ride a cargo hoist between patrol sweeps.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Sneaky"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cargo_entry",
+                            "value": true
+                        }
+                    ],
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "Volunteer as a docket runner until your name is called.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "runner_chit",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Court",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_tangle_market"
+                },
+                {
+                    "text": "(Light-Step) Skip along taut mooring cables to the maintenance lift.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "Light-Step"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "lightstep_docks",
+                            "value": true
+                        }
+                    ],
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "(People-Reader) Mirror the warden's gestures to slide ahead quietly.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "People-Reader"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "runner_chit",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_tangle_market"
+                }
+            ]
+        },
+        "root_tangle_market": {
+            "title": "Root Court Market",
+            "text": "Living terraces coil around the courthouse tree, thrumming with petitioners and spice-sellers. Songbirds carry summaries of new rulings from branch to branch.",
+            "choices": [
+                {
+                    "text": "(Judge) Audit the travel ledgers to secure a formal hearing slot.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Judge"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Court",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_docket",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "(Weaver) Braid stabilizing cords for the speaking dais, impressing the clerks.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Court",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "dais_stabilized",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "Compile testimony for the clerks, noting every tell in the crowd.",
+                    "effects": [
+                        {
+                            "type": "add_trait",
+                            "value": "People-Reader"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "compiled_testimony",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_tangle_market"
+                },
+                {
+                    "text": "Submit your compiled testimony for a guest-law docket.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "compiled_testimony",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_docket",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "(People-Reader) Whisper the judge's likely ruling to the crowd, earning a Freehands escort.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "People-Reader"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "freehands_lift",
+                            "value": true
+                        }
+                    ],
+                    "target": "prism_galleria"
+                }
+            ]
+        },
+        "prism_galleria": {
+            "title": "Prism Guild Galleria",
+            "text": "Mirrored arcades refract the afternoon into ribbons while guild stewards trade favors under crystal awnings. Hovering heliostats hum as apprentices tune their beams.",
+            "choices": [
+                {
+                    "text": "(Tinkerer) Resequence a cracked heliostat for guild credit.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Tinkerer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Guild",
+                            "value": 1
+                        },
+                        {
+                            "type": "add_item",
+                            "value": "prism shard"
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "(Cartographer) Plot the shifting aisles into a precise maintenance route.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Cartographer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "map_galleria",
+                            "value": true
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "Sign a guild marker pledging future service for elevator access.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Guild",
+                            "value": -1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "guild_marker",
+                            "value": true
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "(Light-Step) Balance along the suspension cables to the service lift.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "Light-Step"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "lightstep_galleria",
+                            "value": true
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "(People-Reader) Read the steward's tells to secure a discreet escort.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "People-Reader"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Guild",
+                            "value": 1
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                }
+            ]
+        },
+        "guestlaw_chamber": {
+            "title": "Guest-Law Chamber",
+            "text": "Root-braided benches cradle envoys beneath a canopy of verdict sigils. Voices resonate through living wood as the court convenes a pivotal hearing.",
+            "choices": [
+                {
+                    "text": "(Judge) Ratify the guest-law compact for all hubs.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Judge"
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Guest-Law Compact"
+                        }
+                    ],
+                    "target": "ending_guestlaw"
+                },
+                {
+                    "text": "Spend a prism shard to flood the dais with undeniable proof.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "prism shard"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "prism shard"
+                        },
+                        {
+                            "type": "end_game",
+                            "value": "Prismatic Proof"
+                        }
+                    ],
+                    "target": "ending_guestlaw"
+                },
+                {
+                    "text": "Defer the hearing to rally Prism Guild support.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Guild",
+                            "value": 1
+                        }
+                    ],
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "(People-Reader) Expose a hidden clause tying the Court to the Freehands.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "People-Reader"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Court",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "clause_exposed",
+                            "value": true
+                        },
+                        {
+                            "type": "end_game",
+                            "value": "Clause Exposed Compact"
+                        }
+                    ],
+                    "target": "ending_guestlaw"
+                },
+                {
+                    "text": "(Light-Step) Slip along the balcony to spy on the Prism delegation's exit route.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "Light-Step"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "balcony_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                }
+            ]
+        },
+        "luminous_grotto": {
+            "title": "Luminous Grotto",
+            "text": "Sunken prisms diffuse twilight into rippling curtains while Freehands skiffs bob in hidden coves. Bioluminescent roots mark half-forgotten escape canals.",
+            "choices": [
+                {
+                    "text": "(Lumenar) Bend the lightwells to reveal a hidden canal and sail free.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Canal Flight"
+                        }
+                    ],
+                    "target": "ending_escape"
+                },
+                {
+                    "text": "(Healer) Tend to the wounded Freehands and earn their pledged skiff.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "freehands_support",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "Cash in a favor to hire a pilot through the gloom.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "favor"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "favor"
+                        },
+                        {
+                            "type": "end_game",
+                            "value": "Chartered Escape"
+                        }
+                    ],
+                    "target": "ending_escape"
+                },
+                {
+                    "text": "Stash supplies among the phosphor roots for future runs.",
+                    "effects": [
+                        {
+                            "type": "add_trait",
+                            "value": "Well-Provisioned"
+                        },
+                        {
+                            "type": "add_item",
+                            "value": "favor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "grotto_scouted",
+                            "value": true
+                        }
+                    ],
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "(People-Reader) Sense the Freehands leader's worry and promise a future favor.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "People-Reader"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "add_item",
+                            "value": "favor"
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                }
+            ]
+        },
+        "ending_escape": {
+            "title": "Open Water",
+            "text": "Sails bloom as you cut into moonlit current; the isles shrink to a constellated rim."
+        },
+        "ending_guestlaw": {
+            "title": "Names Written in Wood",
+            "text": "Guest-law sigils pulse across the hubs as new accords take root."
+        }
+    }
+}
