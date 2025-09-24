@@ -1067,7 +1067,7 @@
         },
         "root_orrery_registry": {
             "title": "Root Registry Tiers",
-            "text": "Bronze scribes stamp living writs while roots weave into counting frames; petitions rustle like leaves awaiting signature.",
+            "text": "Brass-sheathed root clerks hum from loam-caked abaci, stamping living writs; one pulses through your palm, 'We feel urgency by soil-scent—steady yourself.'",
             "choices": [
                 {
                     "text": "(Archivist) Compile the seasonal casework into a formal root-writ.",
@@ -1175,7 +1175,15 @@
                     "target": "root_orrery_resonance"
                 },
                 {
-                    "text": "Ask for a caretaker introduction.",
+                    "text": "Sign for a caretaker introduction while voicing your case.",
+                    "target": "root_orrery_mentor"
+                },
+                {
+                    "text": "(Resonant) Sign root-chords requesting a caretaker introduction.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
                     "target": "root_orrery_mentor"
                 },
                 {
@@ -4577,7 +4585,7 @@
         },
         "cloud_burrow_loft": {
             "title": "Cloud-Burrow Loft",
-            "text": "A reclaimed glider loft cradles the burrow family, hammocks swaying beside windbone chimes tuned to the gale.",
+            "text": "Ozone tang frays the fluff-swaddled hammocks; a wind-mole steward sniffs, 'Updraft tastes wary,' while glider bones sing along the gale-tuned chimes.",
             "choices": [
                 {
                     "text": "Glide down to the inverted plaza.",
@@ -4599,7 +4607,7 @@
                     "target": "cloud_burrow_tunnel_survey"
                 },
                 {
-                    "text": "(Resonant) Practice harmonies with the wind-mole chorus.",
+                    "text": "(Resonant) Sign-chime harmonies with the wind-mole chorus.",
                     "condition": {
                         "type": "has_tag",
                         "value": "Resonant"
@@ -5542,10 +5550,30 @@
         },
         "amber_tides_memory_vigil": {
             "title": "Memory Vigil",
-            "text": "Amber-lit alcoves hold sleepers sharing borrowed memories, their breaths syncing with a soft tide hymn.",
+            "text": "Resin candles bead across salt-slick ledger stones cradling borrowed memories; one stone murmurs in tide-signs, 'Hold us gently while we recall you.'",
             "choices": [
                 {
                     "text": "Guide the vigil toward the Living Wake preparations.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_memory_vigil",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "(Resonant) Sign-sway the ledger stone lullaby toward the Living Wake.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
                     "effects": [
                         {
                             "type": "rep_delta",
