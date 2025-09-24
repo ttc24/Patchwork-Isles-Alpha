@@ -56,11 +56,23 @@
                 "Resonant"
             ],
             "locked": true
+        },
+        {
+            "id": "root_depths_staging",
+            "title": "Root Depths Staging Crew",
+            "locked_title": "Root Depths Staging Crew (Locked)",
+            "node": "root_orrery_concourse",
+            "tags": [
+                "Weaver",
+                "Healer"
+            ],
+            "locked": true
         }
     ],
     "endings": {
         "ending_escape": "Slip away through the hidden canal network.",
-        "ending_guestlaw": "Guest-law precedent codified across the hubs."
+        "ending_guestlaw": "Guest-law precedent codified across the hubs.",
+        "ending_correction": "You become the seasonal caretaker of the orrery."
     },
     "nodes": {
         "sky_docks": {
@@ -255,6 +267,10 @@
                         }
                     ],
                     "target": "prism_galleria"
+                },
+                {
+                    "text": "Descend toward the orrery-of-roots caretakers.",
+                    "target": "root_orrery_concourse"
                 }
             ]
         },
@@ -536,6 +552,854 @@
             "title": "Names Written in Wood",
             "text": "Guest-law sigils pulse across the hubs as new accords take root."
         },
+        "ending_correction": {
+            "title": "Tend the Correction",
+            "text": "You accept the season's schedule, tending root and bronze until each pulse aligns with the new cadence."
+        },
+        "root_orrery_concourse": {
+            "title": "Orrery-of-Roots Concourse",
+            "text": "Vast living galleries spiral around a bronze-hearted trunk; saplight drips across calculating roots while caretakers whisper seasonal sums.",
+            "choices": [
+                {
+                    "text": "(Weaver) Descend along braided harness to the Loom Gallery.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "target": "root_orrery_looms"
+                },
+                {
+                    "text": "Take the freight ladder down to the Loom Gallery.",
+                    "target": "root_orrery_looms"
+                },
+                {
+                    "text": "(Archivist) Follow ledger etchings toward the Memory Vault.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "target": "root_orrery_archives"
+                },
+                {
+                    "text": "Consult the posted indices and head for the Memory Vault.",
+                    "target": "root_orrery_archives"
+                },
+                {
+                    "text": "(Healer) Trace the sap-scented draft into the infirmary roots.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "Trail the warm sap breeze toward the infirmary roots.",
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "(Arbiter) Present your docket to the registry tiers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Request a visitor chit for the registry tiers.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_chit",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Step onto the caretaker dais at the orrery's heart.",
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Climb the service roots back to the Root Assembly Market.",
+                    "target": "root_tangle_market"
+                },
+                {
+                    "text": "Ride the tether back to the Startways Nexus.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "root_orrery_registry": {
+            "title": "Root Registry Tiers",
+            "text": "Bronze scribes stamp living writs while roots weave into counting frames; petitions rustle like leaves awaiting signature.",
+            "choices": [
+                {
+                    "text": "(Archivist) Compile the seasonal casework into a formal root-writ.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "writ_compiled",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Pledge a season of service to copy a root-writ.",
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": -1
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "(Arbiter) Argue for caretaker access, impressing the registrars.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "registry_favor",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Submit the root-writ to authorize a correction.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "root-writ"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "writ_bound",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_resonance"
+                },
+                {
+                    "text": "Ask for a caretaker introduction.",
+                    "target": "root_orrery_mentor"
+                },
+                {
+                    "text": "Return to the concourse tiers.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_looms": {
+            "title": "Bronze Loom Gallery",
+            "text": "Suspended walkways sway above root-driven gears as bronze filaments sing against living wood.",
+            "choices": [
+                {
+                    "text": "(Weaver) Align the loom-cantilever to draw out a bronze filament.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "bronze filament"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "filament_spun",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_looms"
+                },
+                {
+                    "text": "Offer to cover a loom shift for a bronze filament spool.",
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "bronze filament"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "loom_shift",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": -1
+                        }
+                    ],
+                    "target": "root_orrery_looms"
+                },
+                {
+                    "text": "Carry the bronze filament toward the correction gearroots.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "bronze filament"
+                    },
+                    "target": "root_orrery_threading"
+                },
+                {
+                    "text": "Ride the lift back to the concourse.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_archives": {
+            "title": "Memory Vault Galleries",
+            "text": "Shelves of resin tablets glow with captured seasons as quiet keepers tend to whispering root-scribes.",
+            "choices": [
+                {
+                    "text": "(Archivist) Sift seasonal ledgers for a root-writ template.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "archive_template",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_archives"
+                },
+                {
+                    "text": "Donate courier notes to earn a copied root-writ.",
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_archives"
+                },
+                {
+                    "text": "Descend to the lens cradle where sap memories refract.",
+                    "target": "root_orrery_lens_cradle"
+                },
+                {
+                    "text": "Return to the concourse tiers.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_lens_cradle": {
+            "title": "Sap Lens Cradle",
+            "text": "A suspended basin of luminous sap refracts predictions while bronze arms hold half-formed lenses in gentle tension.",
+            "choices": [
+                {
+                    "text": "(Healer) Sing the sap flows clear, shaping a lens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "sap lens"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_hummed",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_lens_cradle"
+                },
+                {
+                    "text": "(Archivist) Calibrate the recorded seasons for a stable lens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "sap lens"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_indexed",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_lens_cradle"
+                },
+                {
+                    "text": "Promise to report your findings to borrow a sap lens.",
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "sap lens"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_debt",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_lens_cradle"
+                },
+                {
+                    "text": "Carry the sap lens to the alignment platform.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "focus_access",
+                        "value": true
+                    },
+                    "target": "root_orrery_focus"
+                },
+                {
+                    "text": "Return to the memory vaults.",
+                    "target": "root_orrery_archives"
+                }
+            ]
+        },
+        "root_orrery_infirmary": {
+            "title": "Sap Infirmary Roots",
+            "text": "Caretakers soothe stressed roots in warm pools while bronze splints hum with quiet corrective tones.",
+            "choices": [
+                {
+                    "text": "(Healer) Massage the root knots, earning the caretakers' trust.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "sap_soothed",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "Apply bronze filament braces to stabilize fractures.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "bronze filament"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "bronze filament"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "brace_volunteered",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "Commit to stay the season tending the correction.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "writ_bound",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Tend the Correction"
+                        }
+                    ],
+                    "target": "ending_correction"
+                },
+                {
+                    "text": "Return to the concourse tiers.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_dais": {
+            "title": "Caretaker Dais",
+            "text": "Bronze gimbals rise from the living trunk, their roots thrumming with equations waiting to be sung back into season.",
+            "choices": [
+                {
+                    "text": "(Weaver) Listen for the chord of seasons within the gears.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dais_listened",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_resonance"
+                },
+                {
+                    "text": "(Archivist) Inspect the correction logs for missing entries.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "logs_reviewed",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_archives"
+                },
+                {
+                    "text": "(Healer) Warm the sap channels feeding the dais.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "sap_charged",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_resonance"
+                },
+                {
+                    "text": "(Arbiter) Evaluate the steward disputes over cadence.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "dais_juried",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Approach the resonance controls.",
+                    "target": "root_orrery_resonance"
+                },
+                {
+                    "text": "Return to the concourse tiers.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_resonance": {
+            "title": "Resonance Conduit",
+            "text": "Bronze veins glow with waiting power; every root beat expects sanction before the correction can resume.",
+            "choices": [
+                {
+                    "text": "Submit the root-writ to authorize a correction.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "root-writ"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "writ_bound",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_threading"
+                },
+                {
+                    "text": "(Arbiter) Cite precedent to fast-track the correction.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "writ_bound",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_threading"
+                },
+                {
+                    "text": "Step back to gather missing components.",
+                    "target": "root_orrery_dais"
+                }
+            ]
+        },
+        "root_orrery_threading": {
+            "title": "Gearroot Loom",
+            "text": "Living gears clack patiently, awaiting the conductive braid that will restart their seasonal song.",
+            "choices": [
+                {
+                    "text": "Seat the bronze filament through the gearroots.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "bronze filament"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "bronze filament"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "filament_seated",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "focus_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_focus"
+                },
+                {
+                    "text": "(Weaver) Hum the filament into sync with the roots.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "filament_seated",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "focus_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_focus"
+                },
+                {
+                    "text": "Admit you need a bronze filament and retreat to the loom.",
+                    "target": "root_orrery_looms"
+                }
+            ]
+        },
+        "root_orrery_focus": {
+            "title": "Lens Alignment Platform",
+            "text": "Bronze arms arc overhead, ready to cradle a sap lens that can read the tree-machine's upcoming tides.",
+            "choices": [
+                {
+                    "text": "Set the sap lens into the focusing cradle.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "sap lens"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "sap lens"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_focused",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_tuning"
+                },
+                {
+                    "text": "(Healer) Coax clarity from the sap lens before placement.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "lens_hummed",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "sap lens"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "lens_focused",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_tuning"
+                },
+                {
+                    "text": "Realize you still need the sap lens.",
+                    "target": "root_orrery_lens_cradle"
+                }
+            ]
+        },
+        "root_orrery_tuning": {
+            "title": "Tuning Gallery",
+            "text": "Root-crowns and bronze rings spin in cautious counterpoint, waiting for a guiding hand to set their season.",
+            "choices": [
+                {
+                    "text": "(Weaver) Weave the bronze and root pulses into a new cadence.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "(Archivist) Record the adjustments and signal the caretakers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "logs_amended",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "(Healer) Channel restorative sap to smooth the change.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "(Root-Speaker) Commune directly with the thinking tree.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "roots_attuned",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Hold the correction steady while the caretakers finish.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "filament_seated",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "hp_delta",
+                            "value": -1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Step away, leaving the correction incomplete.",
+                    "target": "root_orrery_dais"
+                }
+            ]
+        },
+        "root_orrery_mentor": {
+            "title": "Root-Speaker Mentor",
+            "text": "A Root-Speaker rests within a hollowed node, listening to sap-currents and translating them into hushed counsel.",
+            "on_enter": [
+                {
+                    "type": "add_tag",
+                    "value": "Root-Speaker"
+                }
+            ],
+            "choices": [
+                {
+                    "text": "Share a breath with the mentor and match their cadence.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Discuss the correction schedule in greater detail.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "mentor_guidance",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Return quietly to the concourse.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
         "startways_nexus": {
             "title": "Startways Nexus",
             "text": "Doorways bristle from a colossal seed-compass suspended over the void. Brass gimbals swivel as routes align, and distant hubs flicker within each arch.",
@@ -555,6 +1419,10 @@
                 {
                     "text": "Step through the Root Assembly promenade door.",
                     "target": "root_tangle_market"
+                },
+                {
+                    "text": "Descend the sap-lit stairs toward the orrery-of-roots.",
+                    "target": "root_orrery_concourse"
                 },
                 {
                     "text": "Follow the prism-lit corridor toward the Cartel galleria.",
