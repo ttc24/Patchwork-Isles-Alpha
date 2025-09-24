@@ -80,11 +80,13 @@
         {
             "id": "shade_walker_outpost",
             "title": "Shade-Walker Outpost",
+            "locked_title": "Shade-Walker Outpost (Locked)",
             "node": "saltglass_expanse",
             "tags": [
                 "Cartographer",
                 "Tinkerer"
-            ]
+            ],
+            "locked": true
         },
         {
             "id": "cloud_burrow_loft",
@@ -1853,152 +1855,148 @@
             "text": "Root-crowns and bronze rings spin in cautious counterpoint, waiting for a guiding hand to set their season.",
             "choices": [
                 {
-                    "text": "(Weaver) Weave the bronze and root pulses into a new cadence.",
-                    "condition": {
-                        "type": "has_tag",
-                        "value": "Weaver"
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "rep_delta",
-                            "faction": "Root Assembly",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+            "text": "(Weaver) Weave the bronze and root pulses into a new cadence.",
+            "condition": {
+                "type": "has_tag",
+                "value": "Weaver"
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
                 {
-                    "text": "(Archivist) Record the adjustments and signal the caretakers.",
-                    "condition": {
-                        "type": "has_tag",
-                        "value": "Archivist"
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "logs_amended",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+                    "type": "rep_delta",
+                    "faction": "Root Assembly",
+                    "value": 1
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
+        {
+            "text": "(Archivist) Record the adjustments and signal the caretakers.",
+            "condition": {
+                "type": "has_tag",
+                "value": "Archivist"
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
                 {
-                    "text": "(Healer) Channel restorative sap to smooth the change.",
-                    "condition": {
-                        "type": "has_tag",
-                        "value": "Healer"
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "rep_delta",
-                            "faction": "Root Assembly",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+                    "type": "set_flag",
+                    "flag": "logs_amended",
+                    "value": true
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
+        {
+            "text": "(Healer) Channel restorative sap to smooth the change.",
+            "condition": {
+                "type": "has_tag",
+                "value": "Healer"
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
                 {
-                    "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
-                    "condition": {
-                        "type": "has_tag",
-                        "value": "Arbiter"
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "rep_delta",
-                            "faction": "Root Assembly",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+                    "type": "rep_delta",
+                    "faction": "Root Assembly",
+                    "value": 1
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
+        {
+            "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
+            "condition": {
+                "type": "has_tag",
+                "value": "Arbiter"
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
                 {
-                    "text": "(Root-Speaker) Commune directly with the thinking tree.",
-                    "condition": {
-                        "type": "has_tag",
-                        "value": "Root-Speaker"
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "roots_attuned",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+                    "type": "rep_delta",
+                    "faction": "Root Assembly",
+                    "value": 1
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
+        {
+            "text": "(Root-Speaker) Commune directly with the thinking tree.",
+            "condition": {
+                "type": "has_tag",
+                "value": "Root-Speaker"
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
                 {
-                    "text": "Hold the correction steady while the caretakers finish.",
-                    "condition": {
-                        "type": "flag_eq",
-                        "flag": "filament_seated",
-                        "value": true
-                    },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "correction_tuned",
-                            "value": true
-                        },
-                        {
-                            "type": "unlock_start",
-                            "value": "root_depths_staging"
-                        },
-                        {
-                            "type": "hp_delta",
-                            "value": -1
-                        }
-                    ],
-                    "target": "root_orrery_dais"
+                    "type": "set_flag",
+                    "flag": "roots_attuned",
+                    "value": true
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
+        {
+            "text": "Hold the correction steady while the caretakers finish.",
+            "condition": {
+                "type": "flag_eq",
+                "flag": "filament_seated",
+                "value": true
+            },
+            "effects": [
+                {
+                    "type": "set_flag",
+                    "flag": "correction_tuned",
+                    "value": true
                 },
+                {
+                    "type": "hp_delta",
+                    "value": -1
+                }
+            ],
+            "target": "root_depths_staging_reward"
+        },
                 {
                     "text": "Step away, leaving the correction incomplete.",
                     "target": "root_orrery_dais"
+                }
+            ]
+        },
+        "root_depths_staging_reward": {
+            "title": "Root Depths Staging Ledger",
+            "text": "Caretakers log your correction and slide a lattice of staging quarters across the dais, inviting you to claim a berth among the crews.",
+            "on_enter": [
+                {
+                    "type": "unlock_start",
+                    "value": "root_depths_staging"
+                }
+            ],
+            "choices": [
+                {
+                    "text": "Accept the quarters and return to the caretaker dais.",
+                    "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Carry the roster back toward the concourse tiers.",
+                    "target": "root_orrery_concourse"
                 }
             ]
         },
@@ -3876,16 +3874,12 @@
                             "value": true
                         },
                         {
-                            "type": "unlock_start",
-                            "value": "cloud_burrow_loft"
-                        },
-                        {
                             "type": "rep_delta",
                             "faction": "Aeol Nests",
                             "value": 1
                         }
                     ],
-                    "target": "cloud_burrow_loft"
+                    "target": "cloud_burrow_guest_ledger"
                 },
                 {
                     "text": "(Resonant) Match the burrow songs until the elders gift you a whistle.",
@@ -3909,16 +3903,12 @@
                             "value": true
                         },
                         {
-                            "type": "unlock_start",
-                            "value": "cloud_burrow_loft"
-                        },
-                        {
                             "type": "rep_delta",
                             "faction": "Aeol Nests",
                             "value": 1
                         }
                     ],
-                    "target": "cloud_burrow_loft"
+                    "target": "cloud_burrow_guest_ledger"
                 },
                 {
                     "text": "Offer a favor chit to join the burrow's guest ledger.",
@@ -3946,15 +3936,31 @@
                             "value": true
                         },
                         {
-                            "type": "unlock_start",
-                            "value": "cloud_burrow_loft"
-                        },
-                        {
                             "type": "rep_delta",
                             "faction": "Aeol Nests",
                             "value": 1
                         }
                     ],
+                    "target": "cloud_burrow_guest_ledger"
+                },
+                {
+                    "text": "Thank the family and descend toward the threshold.",
+                    "target": "cloud_burrow_threshold"
+                }
+            ]
+        },
+        "cloud_burrow_guest_ledger": {
+            "title": "Guest Ledger Alcove",
+            "text": "The mole matriarch inks your name beside the guest whistles and gestures toward hammocks reserved for trusted allies.",
+            "on_enter": [
+                {
+                    "type": "unlock_start",
+                    "value": "cloud_burrow_loft"
+                }
+            ],
+            "choices": [
+                {
+                    "text": "Follow the steward up toward the loft hammocks.",
                     "target": "cloud_burrow_loft"
                 },
                 {

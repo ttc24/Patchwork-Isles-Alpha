@@ -94,6 +94,16 @@ def normalize_nodes(raw_nodes: Any, ctx: ValidationContext) -> Dict[str, Dict[st
 def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> None:
     if condition in (None, {}):
         return
+    if isinstance(condition, Sequence) and not isinstance(condition, (str, bytes, Mapping)):
+        if not condition:
+            ctx.add(f"{context}: condition list must not be empty.")
+            return
+        for idx, sub in enumerate(condition, start=1):
+            if not isinstance(sub, Mapping):
+                ctx.add(f"{context}: condition list entry {idx} must be an object.")
+                continue
+            validate_condition(sub, f"{context} (entry {idx})", ctx)
+        return
     if not isinstance(condition, Mapping):
         ctx.add(f"{context}: condition must be an object or null.")
         return
@@ -104,8 +114,10 @@ def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> 
         "missing_item",
         "flag_eq",
         "has_tag",
+        "has_advanced_tag",
         "has_trait",
         "rep_at_least",
+        "rep_at_least_count",
     }:
         ctx.add(f"{context}: unsupported condition type '{cond_type}'.")
         return
@@ -125,6 +137,11 @@ def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> 
         value = condition.get("value")
         if not str_or_str_list(value):
             ctx.add(f"{context}: '{cond_type}' requires a tag or list of tags in 'value'.")
+    elif cond_type == "has_advanced_tag":
+        value = condition.get("value", [])
+        if value not in (None, []):
+            if not str_or_str_list(value):
+                ctx.add(f"{context}: 'has_advanced_tag' requires tags as a string or list when provided.")
     elif cond_type == "rep_at_least":
         faction = condition.get("faction")
         value = condition.get("value")
@@ -132,6 +149,16 @@ def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> 
             ctx.add(f"{context}: 'rep_at_least' requires a non-empty string 'faction'.")
         if not isinstance(value, int):
             ctx.add(f"{context}: 'rep_at_least' requires an integer 'value'.")
+    elif cond_type == "rep_at_least_count":
+        value = condition.get("value")
+        count = condition.get("count")
+        factions = condition.get("factions")
+        if not isinstance(value, int):
+            ctx.add(f"{context}: 'rep_at_least_count' requires an integer 'value'.")
+        if count is not None and not isinstance(count, int):
+            ctx.add(f"{context}: 'rep_at_least_count' optional 'count' must be an integer if provided.")
+        if factions is not None and not str_or_str_list(factions):
+            ctx.add(f"{context}: 'rep_at_least_count' optional 'factions' must be a string or list of strings.")
 
 
 def validate_effect(

@@ -75,6 +75,11 @@ Use reputation gates sparingly; when you do, ensure a tagless alternative remain
 - [ ] Choice targets exist; playtest from start reaches and exits the node cleanly.
 - [ ] `tools/validate.py` passes on updated content.
 
+## How to add a new unlockable start in 3 steps
+1. **Author the start entry.** Add a new object to `world/world.json`'s `starts` list with `locked`: `true`, a `locked_title`, and the target `node` that should become the player's origin after unlock. Keep tags consistent with the world bible and make sure the node exists.
+2. **Deliver the unlock diegetically.** Script the related hub arc so a single reward node (typically via `on_enter`) grants the start using an `{"type": "unlock_start", "value": "your_start_id"}` effect. Avoid duplicating the effect across multiple choices—route all completion branches through that reward beat.
+3. **Wire QA and documentation.** Confirm the new start can be earned in play (playtest + `python tools/validate.py`), ensure it appears in the unlock audit list, and update any hub notes or docs that track available origins.
+
 ## Roadmap Notes
 - First chapter hubs: **Sky Docks**, **Root Court Market**, **Prism Galleria**.
 - Endings available in chapter one: escape via hidden canal or codify guest-law precedent.
