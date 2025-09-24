@@ -876,6 +876,60 @@
                     "target": "root_orrery_registry"
                 },
                 {
+                    "text": "(Weaver+Arbiter) Lace consensus cords through a sealed mediation hollow.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Weaver",
+                            "Arbiter"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_mediator_clearance",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_mediator_passage"
+                },
+                {
+                    "text": "(Healer+Resonant) Harmonize the pulse conduits toward a quiet convalescence pod.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Healer",
+                            "Resonant"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_pulse_harmonized",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_pulse_chamber"
+                },
+                {
+                    "text": "(Cartographer+Glasswright) Align refracted sap charts with migratory shade lattices.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Cartographer",
+                            "Glasswright"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_prism_maps",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_prism_atrium"
+                },
+                {
                     "text": "Step onto the caretaker dais at the orrery's heart.",
                     "target": "root_orrery_dais"
                 },
@@ -928,6 +982,38 @@
                     "target": "root_orrery_registry"
                 },
                 {
+                    "text": "(Quiet Ledger 1+) Present a balanced budget to underwrite the root ledgers.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_quiet_funding",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_quiet_ledger_audit"
+                },
+                {
+                    "text": "(Freehands 1+) Coordinate a mutual aid roster for overworked caretakers.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_freehands_roster",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_freehands_coop"
+                },
+                {
                     "text": "(Arbiter) Argue for caretaker access, impressing the registrars.",
                     "condition": {
                         "type": "has_tag",
@@ -973,6 +1059,161 @@
                 {
                     "text": "Return to the concourse tiers.",
                     "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_mediator_passage": {
+            "title": "Mediation Hollow",
+            "text": "Braided concord cords hum between arbiter seats while saplight scripts tally compromises struck between distant boroughs.",
+            "choices": [
+                {
+                    "text": "Record the consensus and relay it through the registry roots.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_mediator_clearance",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_registry"
+                },
+                {
+                    "text": "Let Quiet Ledger auditors review the compromise for future funding.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_quiet_ledger_audit"
+                },
+                {
+                    "text": "Slip back toward the concourse before the cords still.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_pulse_chamber": {
+            "title": "Pulse Attunement Pod",
+            "text": "Resonant heartroots cradle a convalescence pod where harmonic sap circulates through patients and caretakers alike.",
+            "choices": [
+                {
+                    "text": "Sustain the pulse weave so exhausted caretakers can rest within it.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_pulse_harmonized",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "Guide the pulse energy toward ailing roots before departing.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_prism_atrium": {
+            "title": "Prism Exchange Atrium",
+            "text": "Refracted saplight intersects migratory shade lattices, projecting a joint map of root corrections and saltglass reefs.",
+            "choices": [
+                {
+                    "text": "Chart a shared ledger of shade migrations for both assemblies.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_prism_maps",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_shade_workshop"
+                },
+                {
+                    "text": "Archive the hybrid charts for later reference and return to the concourse.",
+                    "target": "root_orrery_concourse"
+                }
+            ]
+        },
+        "root_orrery_quiet_ledger_audit": {
+            "title": "Quiet Ledger Audit Alcove",
+            "text": "Ledger clerks suspend amber abacuses above rootflow schematics, ready to seed discretionary grants into the orrery.",
+            "choices": [
+                {
+                    "text": "Accept earmarked funding for restorative rootwork.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_quiet_funding",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_concourse"
+                },
+                {
+                    "text": "Decline the grant and instead share the findings with Freehands envoys.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "root_orrery_freehands_coop"
+                }
+            ]
+        },
+        "root_orrery_freehands_coop": {
+            "title": "Freehands Care Co-op",
+            "text": "Volunteers portion out mutual-aid kits beneath hanging sap cisterns, trading shifts and relief routes among the caretakers.",
+            "choices": [
+                {
+                    "text": "Organize the shift ledger so relief reaches exhausted crews.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orrery_freehands_roster",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_infirmary"
+                },
+                {
+                    "text": "Return to the registry once supplies are accounted for.",
+                    "target": "root_orrery_registry"
                 }
             ]
         },
@@ -2154,9 +2395,30 @@
                             "type": "set_flag",
                             "flag": "ledger_council_pass",
                             "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
                         }
                     ],
-                    "target": "saltglass_carravan_council"
+                    "target": "saltglass_ledger_convoy"
+                },
+                {
+                    "text": "(Freehands 1+) Rally outriders to ferry mutual aid between stranded caravans.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_freehands_corridor",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_freehands_cache"
                 },
                 {
                     "text": "Trail the memory-laden caravan toward the Starfallen Orchard.",
@@ -2244,6 +2506,60 @@
                     "target": "saltglass_glass_reef"
                 },
                 {
+                    "text": "(Sneaky+Resonant) Slip into the echo-market to chart contraband song routes.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Sneaky",
+                            "Resonant"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_echo_routes",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_echo_lattice"
+                },
+                {
+                    "text": "(Cartographer+Glasswright) Fuse mirrored charts into a private prism vault.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Cartographer",
+                            "Glasswright"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_prism_vault",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_prism_cache"
+                },
+                {
+                    "text": "(Scout+Tinkerer) Retrofit a glider harness to surf the shade thermals.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Scout",
+                            "Tinkerer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_glider_synergy",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_glider_bay"
+                },
+                {
                     "text": "Step back out into the mirrored dunes.",
                     "target": "saltglass_expanse"
                 }
@@ -2317,6 +2633,168 @@
                 },
                 {
                     "text": "Return to the bazaar's central deck.",
+                    "target": "saltglass_shade_bazaar"
+                }
+            ]
+        },
+        "saltglass_echo_lattice": {
+            "title": "Echo-Market Lattice",
+            "text": "Contraband choruses shimmer along suspended wires, each songline masking a trade route beneath resonant camouflage.",
+            "choices": [
+                {
+                    "text": "Sync the song routes with Freehands relief paths.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_echo_routes",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_freehands_cache"
+                },
+                {
+                    "text": "Archive the encoded melodies for Quiet Ledger auditors.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "saltglass_ledger_convoy"
+                },
+                {
+                    "text": "Fade back toward the bazaar decks before the chorus shifts.",
+                    "target": "saltglass_shade_bazaar"
+                }
+            ]
+        },
+        "saltglass_prism_cache": {
+            "title": "Mirrored Prism Cache",
+            "text": "Interlocking panes fold around a recessed vault, projecting overlays of root corrections and shade migrations as you work.",
+            "choices": [
+                {
+                    "text": "Etch the composite charts into a portable prism for the Root Assembly.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_prism_vault",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_prism_atrium"
+                },
+                {
+                    "text": "Seal the vault and return the mirrored panels to the bazaar.",
+                    "target": "saltglass_shade_bazaar"
+                }
+            ]
+        },
+        "saltglass_glider_bay": {
+            "title": "Thermal Glider Bay",
+            "text": "Shade engine riggers suspend glider harnesses above roaring vents, timing launch windows with caravans on the move.",
+            "choices": [
+                {
+                    "text": "Launch along the thermal to scout the cloud-burrow approaches.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_glider_synergy",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "Glide down to the mirrored dunes near the Freehands cache.",
+                    "target": "saltglass_freehands_cache"
+                },
+                {
+                    "text": "Fold the harness away and return to the bazaar.",
+                    "target": "saltglass_shade_bazaar"
+                }
+            ]
+        },
+        "saltglass_ledger_convoy": {
+            "title": "Ledger-Piloted Convoy",
+            "text": "Amber-lit skiffs bearing Quiet Ledger sigils anchor beside the caravan council, their coffers ready to stabilize trade routes.",
+            "choices": [
+                {
+                    "text": "Allocate the convoy's funding to reinforce guest-law patrols.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "ledger_council_pass",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_carravan_council"
+                },
+                {
+                    "text": "Divert a tithe toward Freehands relief runners.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "saltglass_freehands_cache"
+                },
+                {
+                    "text": "Thank the pilots and return to the mirrored dunes.",
+                    "target": "saltglass_expanse"
+                }
+            ]
+        },
+        "saltglass_freehands_cache": {
+            "title": "Freehands Relief Cache",
+            "text": "Mutual-aid lockers carved into the dunes brim with ration cords, water bladders, and shade salves awaiting redistribution.",
+            "choices": [
+                {
+                    "text": "Distribute supplies along the caravans' shadowed path.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_freehands_corridor",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Log the cache usage for Quiet Ledger reimbursements.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "saltglass_ledger_convoy"
+                },
+                {
+                    "text": "Return to the bazaar with remaining supplies.",
                     "target": "saltglass_shade_bazaar"
                 }
             ]
@@ -3119,6 +3597,60 @@
                     "target": "cloud_burrow_chime_market"
                 },
                 {
+                    "text": "(Scout+Resonant) Pace the underside cadence to open an echo span.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Scout",
+                            "Resonant"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_echo_span",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_echo_span"
+                },
+                {
+                    "text": "(Weaver+Storm-Conductor) Braid gust cords with plaza banners to stabilize a stormloom.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Weaver",
+                            "Storm-Conductor"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_stormloom_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_stormloom"
+                },
+                {
+                    "text": "(Sneaky+Cartographer) Trace the inverted relief lines to a hidden map cache.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Sneaky",
+                            "Cartographer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_hidden_map",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_hidden_cache"
+                },
+                {
                     "text": "Climb the spiral gantry toward the storm gallery.",
                     "target": "cloud_burrow_storm_gallery"
                 }
@@ -3436,6 +3968,226 @@
                 }
             ]
         },
+        "cloud_burrow_echo_span": {
+            "title": "Echo Span",
+            "text": "An inverted bridge of resonant wire hums between plaza spires, each step tuning the gale toward distant wells.",
+            "choices": [
+                {
+                    "text": "Guide the span's hum toward the resonance wells for future travelers.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_echo_span",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "Mark the span for Freehands runners to ferry supplies.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_freehands_drop"
+                },
+                {
+                    "text": "Retrace your steps back to the inverted plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "cloud_burrow_stormloom": {
+            "title": "Stormloom Gantry",
+            "text": "Banners woven with gust cords billow around a suspended loom, braiding stormlines into stable conduits.",
+            "choices": [
+                {
+                    "text": "Lock the stormloom into the gallery's training schedule.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_stormloom_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "Let the stormloom unwind and return to the plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "cloud_burrow_hidden_cache": {
+            "title": "Hidden Rift Cache",
+            "text": "Behind a tessellated hatch, suspended maps pulse with skip-trajectory ink tracing seams between gust lanes.",
+            "choices": [
+                {
+                    "text": "Decode the skip-trajectory and seek the mentor who drafted it.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "rift_skipper_map_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_rift_skipper_intro"
+                },
+                {
+                    "text": "Leave the cache sealed and return to the plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "mentor_rift_skipper_intro": {
+            "title": "Rift-Skipper's Perch",
+            "text": "A rift-skipper lounges between suspended anchors, eyes tracking unseen seams as they test a ring of phase-tuning stones.",
+            "choices": [
+                {
+                    "text": "Present the decoded map and request training.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "rift_skipper_map_ready",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "rift_skipper_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_rift_skipper_trial"
+                },
+                {
+                    "text": "Study the anchors from afar and slip back to the plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "mentor_rift_skipper_trial": {
+            "title": "Rift-Skipper Trial",
+            "text": "The mentor releases phase stones into the gale, expecting you to thread leaps between inverted streets before they collide.",
+            "choices": [
+                {
+                    "text": "(Sneaky) Slide along shadow seams to land on each anchor silently.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Sneaky"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "rift_skipper_trial_shadow",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_rift_skipper_award"
+                },
+                {
+                    "text": "(Cartographer) Plot the skip vectors to anticipate each anchor drift.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Cartographer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "rift_skipper_trial_charted",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_rift_skipper_award"
+                },
+                {
+                    "text": "(Storm-Conductor) Harness the gale's beat to propel each leap.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Storm-Conductor"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "rift_skipper_trial_gale",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_rift_skipper_award"
+                },
+                {
+                    "text": "Yield before the phase stones destabilize.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "mentor_rift_skipper_award": {
+            "title": "Rift-Skipper Accord",
+            "text": "The mentor presses a phase stone into your palm, granting you the call-sign of those who slip between seams.",
+            "choices": [
+                {
+                    "text": "(Shadow Line) Accept the phase stone and swear the Rift-Skipper oath.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "rift_skipper_trial_shadow",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Rift-Skipper"
+                        }
+                    ],
+                    "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "(Charted Line) Accept the phase stone and imprint your plotted skips.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "rift_skipper_trial_charted",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Rift-Skipper"
+                        }
+                    ],
+                    "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "(Storm-Conductor) Bind the gale to your new route and accept the title.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "rift_skipper_trial_gale",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Rift-Skipper"
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "Thank the mentor and plan your next skip.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
         "cloud_burrow_tunnel_survey": {
             "title": "Tunnel Survey",
             "text": "Luminous lichen paints the burrow walls while pressure-gauges tick, the air thick with drifting soil motes.",
@@ -3563,6 +4315,80 @@
                 }
             ]
         },
+        "cloud_burrow_quiet_scrip": {
+            "title": "Quiet Ledger Scrip Room",
+            "text": "Ledger envoys suspend balance-beads across gust models, allocating stipends to stabilize the burrow lanes.",
+            "choices": [
+                {
+                    "text": "Channel funding toward the storm gallery's upkeep.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_quiet_underwriting",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "Divert an emergency stipend to the Freehands chain.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_freehands_drop"
+                },
+                {
+                    "text": "Close the ledgers and return to the embassy.",
+                    "target": "cloud_burrow_embassy"
+                }
+            ]
+        },
+        "cloud_burrow_freehands_drop": {
+            "title": "Freehands Balcony Drop",
+            "text": "Mutual-aid parcels swing between balconies on woven cords, volunteers timing releases with each gust.",
+            "choices": [
+                {
+                    "text": "Coordinate the drop schedule so every den receives relief.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_freehands_chain",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_balcony_warrens"
+                },
+                {
+                    "text": "Document the operation for Quiet Ledger reimbursement.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_quiet_scrip"
+                },
+                {
+                    "text": "Ride a supply cord back toward the inverted plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
         "cloud_burrow_loft": {
             "title": "Cloud-Burrow Loft",
             "text": "A reclaimed glider loft cradles the burrow family, hammocks swaying beside windbone chimes tuned to the gale.",
@@ -3650,6 +4476,38 @@
                         }
                     ],
                     "target": "cloud_burrow_windbone_forum"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Underwrite new gust corridors for the burrow budget.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_quiet_underwriting",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_quiet_scrip"
+                },
+                {
+                    "text": "(Freehands 1+) Coordinate balcony mutual aid drops for wind-mole crews.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_freehands_chain",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_freehands_drop"
                 },
                 {
                     "text": "Request a tether back toward the Saltglass Expanse.",
@@ -4290,6 +5148,60 @@
                     "target": "amber_tides_bone_weaver_gallery"
                 },
                 {
+                    "text": "(Resonant+Healer) Harmonize the tide hymn to invite the deep mentor.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Resonant",
+                            "Healer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_singer_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_tide_singer_intro"
+                },
+                {
+                    "text": "(Archivist+Dreamwalker) Thread stored wakes into a shared memory vigil.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Archivist",
+                            "Dreamwalker"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_memory_vigil",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_memory_vigil"
+                },
+                {
+                    "text": "(Trickster+Weaver) Splice hidden wake routes through the cloister veils.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Trickster",
+                            "Weaver"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_masked_wakes",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_masked_wakes"
+                },
+                {
                     "text": "Listen to amber-sealed memoirs recited over the tide.",
                     "effects": [
                         {
@@ -4302,6 +5214,279 @@
                 },
                 {
                     "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "mentor_tide_singer_intro": {
+            "title": "Tide-Singer's Alcove",
+            "text": "A Tide-Singer rests waist-deep in glowing brine, humming countercurrents that braid wakes into safe passage.",
+            "choices": [
+                {
+                    "text": "Present your harmonized hymn and ask for mentorship.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "tide_singer_invited",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_singer_trial_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_tide_singer_trial"
+                },
+                {
+                    "text": "Bow to the singer and let the hymn fade.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "mentor_tide_singer_trial": {
+            "title": "Tide-Singer Trial",
+            "text": "Currents surge through the alcove as the mentor calls for you to steer wakes, travelers, and memories in unison.",
+            "choices": [
+                {
+                    "text": "(Resonant) Weave a counter-harmony that steadies each swell.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_singer_trial_resonant",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_tide_singer_award"
+                },
+                {
+                    "text": "(Healer) Guide the wakes to cradle each traveler safely.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_singer_trial_healer",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_tide_singer_award"
+                },
+                {
+                    "text": "(Dreamwalker) Fold shared memories into the tide to calm it.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Dreamwalker"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_singer_trial_dream",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_tide_singer_award"
+                },
+                {
+                    "text": "Retreat before the undertow takes hold.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "mentor_tide_singer_award": {
+            "title": "Tide-Singer Accord",
+            "text": "The Tide-Singer braids a current of amber light around your wrists, recognizing you as one who can steer memorial tides.",
+            "choices": [
+                {
+                    "text": "(Resonant) Accept the current and vow to keep wakes in harmony.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "tide_singer_trial_resonant",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Tide-Singer"
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "(Healer) Accept the current and promise safe passage for every wake.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "tide_singer_trial_healer",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Tide-Singer"
+                        }
+                    ],
+                    "target": "amber_tides_tide_cloister"
+                },
+                {
+                    "text": "(Dreamwalker) Accept the current and carry its memories between tides.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "tide_singer_trial_dream",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Tide-Singer"
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Thank the mentor and let the currents settle.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "amber_tides_memory_vigil": {
+            "title": "Memory Vigil",
+            "text": "Amber-lit alcoves hold sleepers sharing borrowed memories, their breaths syncing with a soft tide hymn.",
+            "choices": [
+                {
+                    "text": "Guide the vigil toward the Living Wake preparations.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_memory_vigil",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "Let the vigil rest and return to the cloister.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "amber_tides_masked_wakes": {
+            "title": "Masked Wake Routes",
+            "text": "Hidden canals ripple beneath curtain veils, masked conductors rehearsing secret memorial circuits.",
+            "choices": [
+                {
+                    "text": "Chart the masked routes for Freehands flotillas.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_masked_wakes",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_freehands_flotilla"
+                },
+                {
+                    "text": "Record the concealed currents for Quiet Ledger auditors.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_tides_quiet_endowment"
+                },
+                {
+                    "text": "Return to the cloister before the masks are reclaimed.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "amber_tides_quiet_endowment": {
+            "title": "Quiet Ledger Endowment Dock",
+            "text": "Amber coffers gleam beside moored barges, ready to finance additional memorial voyages.",
+            "choices": [
+                {
+                    "text": "Assign endowment shares to reinforce Living Wake logistics.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_quiet_endowment",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "Divert a stipend to the Freehands flotilla.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_tides_freehands_flotilla"
+                },
+                {
+                    "text": "Return to the Current Court with the updated ledgers.",
+                    "target": "amber_tides_current_court"
+                }
+            ]
+        },
+        "amber_tides_freehands_flotilla": {
+            "title": "Freehands Wake Flotilla",
+            "text": "Community skiffs gather around a lantern buoy, crews preparing mutual aid voyages alongside the formal wakes.",
+            "choices": [
+                {
+                    "text": "Dispatch the flotilla to ferry waiting families.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_freehands_flotilla",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "Log the flotilla routes for Quiet Ledger balance sheets.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_tides_quiet_endowment"
+                },
+                {
+                    "text": "Sail back toward the Lantern Lock with the volunteer crews.",
                     "target": "amber_tides_lantern_lock"
                 }
             ]
@@ -4495,6 +5680,38 @@
                         }
                     ],
                     "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Underwrite additional wake barges for memorial travelers.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_quiet_endowment",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_quiet_endowment"
+                },
+                {
+                    "text": "(Freehands 1+) Coordinate community ferries for those priced out of wakes.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_freehands_flotilla",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_freehands_flotilla"
                 },
                 {
                     "text": "Study the shifting tide edicts before returning to the lock.",
@@ -4762,6 +5979,60 @@
                     "target": "shed_market_charter_workshop"
                 },
                 {
+                    "text": "(Sneaky+Resonant) Blend into the hush chorus echoing beneath the stalls.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Sneaky",
+                            "Resonant"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_echo_routes",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_echo_arcade"
+                },
+                {
+                    "text": "(Trickster+Lumenar) Cast mirage-lanterns to access the mask gallery.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Trickster",
+                            "Lumenar"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_mask_gallery",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_mask_gallery"
+                },
+                {
+                    "text": "(Dreamwalker+Healer) Tend the cocoon chorus and follow the shared dreamway.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Dreamwalker",
+                            "Healer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_dreamway",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_dreamway_coop"
+                },
+                {
                     "text": "Trail the lantern stream toward the name archives.",
                     "target": "shed_market_name_lanterns"
                 }
@@ -4815,6 +6086,117 @@
                 },
                 {
                     "text": "Return to the bazaar thoroughfare.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_echo_arcade": {
+            "title": "Echo Arcade",
+            "text": "Curtained stalls pulse with murmured identities, resonance threads guiding whispers through hidden deal-mirrors.",
+            "choices": [
+                {
+                    "text": "Tune the hush chorus toward the ledger court to expose fraud.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_echo_routes",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_ledger_court"
+                },
+                {
+                    "text": "Redirect the chorus toward Freehands caretakers awaiting relief.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_freehands_network"
+                },
+                {
+                    "text": "Slip back into the bazaar flow before the echoes shift.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_mask_gallery": {
+            "title": "Mask Gallery",
+            "text": "A gallery of borrowed visages glitters under lantern prisms, each mask whispering the memories it once carried.",
+            "choices": [
+                {
+                    "text": "Catalogue the masks for ledger archivists awaiting new exhibits.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_mask_gallery",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_wandering_archive"
+                },
+                {
+                    "text": "Stage an impromptu lantern show to fund the mutual aid stall.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_freehands_network"
+                },
+                {
+                    "text": "Return the masks to their hooks and rejoin the bazaar.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_dreamway_coop": {
+            "title": "Dreamway Mutual Aid Coop",
+            "text": "Cocoons line a quiet alcove where healers and dreamwalkers weave shared rest for travelers molting new selves.",
+            "choices": [
+                {
+                    "text": "Coordinate shared dreams that guide aid to the overworked caretakers.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_dreamway",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "Record the restful patterns for Quiet Ledger stewards.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_fund"
+                },
+                {
+                    "text": "Wake gently and drift back to the bazaar.",
                     "target": "shed_market_shed_bazaar"
                 }
             ]
@@ -4878,8 +6260,114 @@
                     "target": "shed_market_cocoon_hostel"
                 },
                 {
+                    "text": "(Quiet Ledger 1+) Audit the shadow contracts to redirect patron funding.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_quiet_fund",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_fund"
+                },
+                {
+                    "text": "(Freehands 1+) Build a mutual aid loop for molt refugees waiting nearby.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_freehands_loop",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_freehands_network"
+                },
+                {
                     "text": "Slip away toward the mirage canal.",
                     "target": "shed_market_mirage_canal"
+                }
+            ]
+        },
+        "shed_market_quiet_ledger_fund": {
+            "title": "Quiet Ledger Patron Hall",
+            "text": "Ledger patrons weigh amber donations beside contracts, debating how to stabilize the bazaar's shifting identities.",
+            "choices": [
+                {
+                    "text": "Earmark funding for the charter workshop's legal support.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_quiet_fund",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Divert a stipend toward the Freehands dreamway coop.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_freehands_network"
+                },
+                {
+                    "text": "Conclude the audit and return to the shadow exchange.",
+                    "target": "shed_market_shadow_exchange"
+                }
+            ]
+        },
+        "shed_market_freehands_network": {
+            "title": "Freehands Molt Network",
+            "text": "Volunteers distribute shared skins, meal chits, and rest schedules to travelers awaiting their next self.",
+            "choices": [
+                {
+                    "text": "Coordinate aid packages with the dreamway coop.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_freehands_loop",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_dreamway_coop"
+                },
+                {
+                    "text": "Report usage totals back to the Quiet Ledger patrons.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_fund"
+                },
+                {
+                    "text": "Return to the bazaar with renewed purpose.",
+                    "target": "shed_market_shed_bazaar"
                 }
             ]
         },
@@ -5638,6 +7126,24 @@
                     "target": "starfallen_orchard_cartography_canopy"
                 },
                 {
+                    "text": "(Resonant+Cartographer) Overlay songlines and root maps to open a harmonic passage.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Resonant",
+                            "Cartographer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_harmonic_passage",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_harmonic_map"
+                },
+                {
                     "text": "Shadow the orchardists toward the echo press hall.",
                     "target": "starfallen_orchard_echo_press"
                 },
@@ -5676,6 +7182,42 @@
                         }
                     ],
                     "target": "starfallen_orchard_glass_lattice"
+                },
+                {
+                    "text": "(Glasswright+Root-Speaker) Fuse saplight and latticework to balance the press.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Glasswright",
+                            "Root-Speaker"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_prism_roots",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_prism_roots"
+                },
+                {
+                    "text": "(Dreamwalker+Healer) Dream a restorative blend for weary orchardists.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Dreamwalker",
+                            "Healer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_dream_tonic",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_dream_nursery"
                 },
                 {
                     "text": "(Healer) Massage sap-weary hands with meteor balm.",
@@ -5752,6 +7294,24 @@
                     "target": "starfallen_orchard_resonance_grove"
                 },
                 {
+                    "text": "(Tide-Singer+Cartographer) Chart tidal graft rotations for the sharecrop canals.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": [
+                            "Tide-Singer",
+                            "Cartographer"
+                        ]
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_tidal_schedule",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_tidal_channel"
+                },
+                {
                     "text": "Gather shared fruit for the coming commons.",
                     "effects": [
                         {
@@ -5761,6 +7321,198 @@
                         }
                     ],
                     "target": "starfallen_orchard_sharecrop_commons"
+                }
+            ]
+        },
+        "starfallen_orchard_harmonic_map": {
+            "title": "Harmonic Mapping Glade",
+            "text": "Resonance threads weave across etched root maps, projecting overlapping songlines of the orchard's harvest routes.",
+            "choices": [
+                {
+                    "text": "Anchor the harmonic overlay to guide future gleaners.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_harmonic_passage",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_cartography_canopy"
+                },
+                {
+                    "text": "Carry the humming map toward the sharecrop commons.",
+                    "target": "starfallen_orchard_sharecrop_commons"
+                }
+            ]
+        },
+        "starfallen_orchard_prism_roots": {
+            "title": "Prism-Root Workshop",
+            "text": "Sap conduits spiral through glass prisms, refracting memory light into roots awaiting careful tending.",
+            "choices": [
+                {
+                    "text": "Stabilize the prisms and record the procedure for the archives.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_prism_roots",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_glass_lattice"
+                },
+                {
+                    "text": "Channel the balanced sap toward ailing branches in the grove.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "target": "starfallen_orchard_resonance_grove"
+                }
+            ]
+        },
+        "starfallen_orchard_dream_nursery": {
+            "title": "Dream Nursery",
+            "text": "Cocoons hang between meteor boughs while healers braid lullabies through shared dreams of future harvests.",
+            "choices": [
+                {
+                    "text": "Guide the restful dream toward the sharecrop volunteers.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_dream_tonic",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "Record the tonic formula for Quiet Ledger healers.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "starfallen_orchard_quiet_grant"
+                }
+            ]
+        },
+        "starfallen_orchard_tidal_channel": {
+            "title": "Tidal Channel Loom",
+            "text": "Irrigation channels shimmer with tide-memory, ready to be tuned so sharecrop fruit ripens with distant tides.",
+            "choices": [
+                {
+                    "text": "Synchronize the tidal schedule with the sharecrop commons.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_tidal_schedule",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "Carry the tidal insights to the Freehands collective.",
+                    "target": "starfallen_orchard_freehands_collective"
+                }
+            ]
+        },
+        "starfallen_orchard_quiet_grant": {
+            "title": "Quiet Ledger Grafting Grant",
+            "text": "Ledger stewards tally fruit stores and allocate amber credits to sustain the commons' shared harvest.",
+            "choices": [
+                {
+                    "text": "Apply the grant to expand the sharecrop tables.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_quiet_grant",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "Share a portion with the Freehands gleaner network.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "target": "starfallen_orchard_freehands_collective"
+                },
+                {
+                    "text": "Return to the meteor gate with updated tallies.",
+                    "target": "starfallen_orchard_meteoric_gate"
+                }
+            ]
+        },
+        "starfallen_orchard_freehands_collective": {
+            "title": "Freehands Gleaner Collective",
+            "text": "Volunteers parcel fruit bundles and graft slips for neighboring crews, sharing stories beneath meteor-lit canopies.",
+            "choices": [
+                {
+                    "text": "Distribute the bundles across the commons.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_freehands_network",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "Log the gleaners' routes for Quiet Ledger auditors.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "starfallen_orchard_quiet_grant"
+                },
+                {
+                    "text": "Carry surplus fruit toward the tidal channel.",
+                    "target": "starfallen_orchard_tidal_channel"
                 }
             ]
         },
@@ -6188,6 +7940,38 @@
                         }
                     ],
                     "target": "ending_sharecrop_of_stories"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Dedicate ledger grants to expand the sharecrop stores.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_quiet_grant",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_quiet_grant"
+                },
+                {
+                    "text": "(Freehands 1+) Organize a gleaner network to share fruit with distant crews.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "orchard_freehands_network",
+                            "value": true
+                        }
+                    ],
+                    "target": "starfallen_orchard_freehands_collective"
                 },
                 {
                     "text": "Slip away toward the saltglass expanse with new recollections.",
