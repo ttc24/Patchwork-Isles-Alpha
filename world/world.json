@@ -87,13 +87,25 @@
                 "Healer"
             ],
             "locked": true
+        },
+        {
+            "id": "amber_barge_quarters",
+            "title": "Amber Barge Quarters",
+            "locked_title": "Amber Barge Quarters (Locked)",
+            "node": "amber_barge_quarters",
+            "tags": [
+                "Healer",
+                "Archivist"
+            ],
+            "locked": true
         }
     ],
     "endings": {
         "ending_escape": "Slip away through the hidden canal network.",
         "ending_guestlaw": "Guest-law precedent codified across the hubs.",
         "ending_correction": "You become the seasonal caretaker of the orrery.",
-        "ending_unshattered_gale": "You harmonize the Cloud-Burrow updrafts into a lasting gale."
+        "ending_unshattered_gale": "You harmonize the Cloud-Burrow updrafts into a lasting gale.",
+        "ending_living_wake": "You inaugurate a civic wake that redraws how travelers depart."
     },
     "nodes": {
         "sky_docks": {
@@ -3682,6 +3694,17 @@
                     "target": "cloud_burrow_resonant_wells"
                 },
                 {
+                    "text": "Accept a tide-clergy invitation down to the Amber Tides Necropolis.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_tides_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_lantern_lock"
+                },
+                {
                     "text": "Return to the inverted plaza.",
                     "target": "cloud_burrow_inverted_plaza"
                 }
@@ -3923,6 +3946,687 @@
                 }
             ]
         },
+        "amber_tides_lantern_lock": {
+            "title": "Lantern Lock",
+            "text": "Amber panes seal a reef-bone gate as tide clergy weigh ledgers against arriving wakes. Funeral barges drift beneath, their hulls inscribed with memoirs trapped in honeyed glass.",
+            "choices": [
+                {
+                    "text": "(Archivist) Audit the sealed tide ledgers to earn a scriptorium berth.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_ledgers_decoded",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_codex_scriptorium"
+                },
+                {
+                    "text": "(Healer) Ease the brine-chapped novices preparing the next wake.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tide_clergy_trust",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_tide_cloister"
+                },
+                {
+                    "text": "Step aboard a funeral-library barge before it drifts into the undertow.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "funeral_armada_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "Climb back toward the Cloud-Burrow threshold.",
+                    "target": "cloud_burrow_threshold"
+                }
+            ]
+        },
+        "amber_tides_codex_scriptorium": {
+            "title": "Codex Scriptorium",
+            "text": "Rows of reef-bone desks hold amber-sealed memoirs while clergy scratch tide edicts into wax that hardens like resin.",
+            "choices": [
+                {
+                    "text": "(Archivist) Index drift memoirs to recover a codex spine for the barge stacks.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "codex spine"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_spine",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_amber_bindery"
+                },
+                {
+                    "text": "(Weaver) Lace tide-silk markers through the shelving rigging.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "codex_threads_prepared",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_bone_weaver_gallery"
+                },
+                {
+                    "text": "Trade citations with the Current Court envoy studying guest-law wakes.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "current_court_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_amber_bindery": {
+            "title": "Amber Bindery",
+            "text": "Molten amber seeps through bone channels while clergy bind memoir spines to tide charts, each breath logged before the current claims it.",
+            "choices": [
+                {
+                    "text": "(Trickster) Smuggle the copied memoir spool into the binding cradle.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "memoir spool"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "memoir spool"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_spool_set",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_bindery_spine"
+                },
+                {
+                    "text": "(Weaver) Fuse tide-silk lattice around the bone clasps.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_bound",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Review amber formulas for resonance-ready wakes.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_formulas_reviewed",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Seal the barge codex and register the Amber Barge Quarters.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "barge_codex_sanctified",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_completed",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "amber_barge_quarters"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_barge_quarters"
+                },
+                {
+                    "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_bindery_spine": {
+            "title": "Bindery Spine Cradle",
+            "text": "Amber light pools over the cradle where memoir spools wait beside a vacant bone spine mount.",
+            "choices": [
+                {
+                    "text": "(Archivist) Seat the recovered codex spine beside the new memoir spools.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "codex spine"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "codex spine"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_spine_set",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_bindery_blessing"
+                },
+                {
+                    "text": "Check the brine-scribed margins once more before sealing.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "spine_margins_checked",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_amber_bindery"
+                },
+                {
+                    "text": "Return to the amber bindery floor.",
+                    "target": "amber_tides_amber_bindery"
+                }
+            ]
+        },
+        "amber_tides_bindery_blessing": {
+            "title": "Amber Blessing Font",
+            "text": "A tide font glows with sanctified resin while clergy hum low wakesongs, ready to seal the codex for travel.",
+            "choices": [
+                {
+                    "text": "(Healer) Pour the amber blessing across the codex before it sets.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "amber blessing phial"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "amber blessing phial"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_sanctified",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_amber_bindery"
+                },
+                {
+                    "text": "Chant the tide benediction with the clergy.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_benediction_recited",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Carry the half-sealed codex back to the bindery.",
+                    "target": "amber_tides_amber_bindery"
+                }
+            ]
+        },
+        "amber_tides_tide_cloister": {
+            "title": "Tide Cloister",
+            "text": "Salt-slick cloisters ring an inner pool where novices practice wake hymns amid drying shrouds.",
+            "choices": [
+                {
+                    "text": "(Healer) Soothe tide-sick novices and accept a phial of amber blessing.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "amber blessing phial"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_blessing",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_amber_bindery"
+                },
+                {
+                    "text": "(Weaver) Knot brine-silk shrouds for the coming wakes.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_shrouds_woven",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_bone_weaver_gallery"
+                },
+                {
+                    "text": "Listen to amber-sealed memoirs recited over the tide.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "mnemonic_harbor_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_funeral_armada": {
+            "title": "Funeral Armada",
+            "text": "Processional barges drift in concentric circles, their shelves of amber memoirs doubling as tide libraries.",
+            "choices": [
+                {
+                    "text": "(Trickster) Stow away among shelf-poles to copy sealed memoirs.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "memoir spool"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "barge_codex_memories",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_amber_bindery"
+                },
+                {
+                    "text": "(Archivist) Audit wake catalogues to gather procession notes.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_procession_notes",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "Share travel stories with mourners as the barges glide past.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "living_wake_story_bank",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "Disembark back to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_mnemonic_harbor": {
+            "title": "Mnemonic Harbor",
+            "text": "Amber buoys bob within a sheltered basin, each holding layered voices that hum against the tide.",
+            "choices": [
+                {
+                    "text": "(Healer) Ease memory-bent travelers soaking in the brine baths.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "mnemonic_harbor_soothed",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_tide_cloister"
+                },
+                {
+                    "text": "(Archivist) Catalog the amber whispers for the Quiet Ledger.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "mnemonic_catalogued",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "(Trickster) Thread playful currents through the wake routes.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_current_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "Let the harbor's voices settle inside you, promising an extra thread to any tale.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "barge_codex_completed",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_trait",
+                            "value": "Rememberer's Boon"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "rememberers_boon_awarded",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_barge_quarters"
+                },
+                {
+                    "text": "Return to the amber bindery walkway.",
+                    "target": "amber_tides_amber_bindery"
+                }
+            ]
+        },
+        "amber_tides_current_court": {
+            "title": "Current Court",
+            "text": "Tide clergy convene beneath a vaulted reef, balancing ledgers that decide who travels by wake and who waits for calmer seas.",
+            "choices": [
+                {
+                    "text": "(Archivist) Present wake procession notes to petition a civic Living Wake.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "wake_procession_notes",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "living_wake_petitioned",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "(Weaver) Reweave tide cords so wakes can carry travelers between rites.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "living_wake_procession_supplied",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "(Trickster) Slip future mourners travel tokens to bypass stormbound tolls.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_current_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "Study the shifting tide edicts before returning to the lock.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "current_court_studied",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_bone_weaver_gallery": {
+            "title": "Bone-Weaver Gallery",
+            "text": "Reef-bone looms creak as artisans braid brine-silk into frameworks that steady funeral barges.",
+            "choices": [
+                {
+                    "text": "(Weaver) Shape frameworks so the Living Wake can host travelers mid-rite.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "living_wake_procession_supplied",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "(Healer) Polish bone lanterns to calm waiting families.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "bone_gallery_tranquil",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_barge_quarters"
+                },
+                {
+                    "text": "Deliver finished shrouds to the wake processional.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_shrouds_woven",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "Return to the tide cloister.",
+                    "target": "amber_tides_tide_cloister"
+                }
+            ]
+        },
+        "amber_barge_quarters": {
+            "title": "Amber Barge Quarters",
+            "text": "Amber-paneled cabins cradle fresh codices while tide clergy host travelers preparing for wakebound journeys.",
+            "choices": [
+                {
+                    "text": "(Archivist) Arrange the new codex alcove for visiting crews.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_berth_catalogued",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_current_court"
+                },
+                {
+                    "text": "(Healer) Guide mourners through steadying breath before embarkation.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "amber_quarters_soothed",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
+                    "text": "Invite barge crews to rehearse the Living Wake procession.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "living_wake_procession_supplied",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_wake_processional"
+                },
+                {
+                    "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
+        "amber_tides_wake_processional": {
+            "title": "Wake Processional",
+            "text": "A reef-bone avenue arcs above slow tides where barges queue, half library and half funeral procession awaiting a new rite.",
+            "choices": [
+                {
+                    "text": "(Weaver) Stage shroud-looms along the route so travelers can join mid-rite.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_route_woven",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "(Trickster) Scatter playful lanterns that double as travel markers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "wake_current_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "Lead the Living Wake, inviting travelers to depart within the rite itself.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "living_wake_petitioned",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "The Living Wake"
+                        }
+                    ],
+                    "target": "ending_living_wake"
+                },
+                {
+                    "text": "Return to the Lantern Lock.",
+                    "target": "amber_tides_lantern_lock"
+                }
+            ]
+        },
         "ending_unshattered_gale": {
             "title": "The Unshattered Gale",
             "text": "Your song threads every gust until the Cloud-Burrow Warrens rise in concert, the updraft harmonized and unbroken."
@@ -3930,6 +4634,10 @@
         "ending_shade_treaty": {
             "title": "Treaty of Moving Shade",
             "text": "Walking cities align their shadows across the dunes as caravans salute your accord, mirrored dunes humming with newfound law."
+        },
+        "ending_living_wake": {
+            "title": "The Living Wake",
+            "text": "You inaugurate a civic rite where funeral barges double as departure halls, every traveler folded into the memory tide."
         }
     }
 }
