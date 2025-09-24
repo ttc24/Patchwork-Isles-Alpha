@@ -76,12 +76,24 @@
                 "Cartographer",
                 "Tinkerer"
             ]
+        },
+        {
+            "id": "cloud_burrow_loft",
+            "title": "Cloud-Burrow Loft",
+            "locked_title": "Cloud-Burrow Loft (Locked)",
+            "node": "cloud_burrow_loft",
+            "tags": [
+                "Resonant",
+                "Healer"
+            ],
+            "locked": true
         }
     ],
     "endings": {
         "ending_escape": "Slip away through the hidden canal network.",
         "ending_guestlaw": "Guest-law precedent codified across the hubs.",
-        "ending_correction": "You become the seasonal caretaker of the orrery."
+        "ending_correction": "You become the seasonal caretaker of the orrery.",
+        "ending_unshattered_gale": "You harmonize the Cloud-Burrow updrafts into a lasting gale."
     },
     "nodes": {
         "sky_docks": {
@@ -1671,6 +1683,25 @@
                     "target": "saltglass_obelisk_south"
                 },
                 {
+                    "text": "Spend a favor to hitch a basket-lift into the Cloud-Burrow Warrens.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "favor"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "favor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_burrow_passage",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
                     "text": "Follow the tuned root-paths back to the Caretaker Dais.",
                     "target": "root_orrery_dais"
                 }
@@ -2513,6 +2544,971 @@
                     "target": "saltglass_shade_workshop"
                 }
             ]
+        },
+        "cloud_burrow_threshold": {
+            "title": "Cloud-Burrow Threshold",
+            "text": "Honeycombed isles hang upside-down overhead, their streets braided around burrow balconies while wind-moles scurry along inverted rails.",
+            "choices": [
+                {
+                    "text": "(Scout) Traverse the underside walkway to chart the plaza levels.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_plaza_scouted",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "Accept a tethered basket up toward the burrow balconies.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "balcony_intro",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_balcony_warrens"
+                },
+                {
+                    "text": "(Resonant) Hum along the updraft and let it lift you toward the resonance wells.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "resonant_welcome",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "Ride the dunes' return current back to the Saltglass Expanse.",
+                    "target": "saltglass_expanse"
+                }
+            ]
+        },
+        "cloud_burrow_inverted_plaza": {
+            "title": "Inverted Plaza",
+            "text": "Vendors hang beneath the plaza's stone belly, trading wind-tethered wares while passerby stride along upside-down streets.",
+            "choices": [
+                {
+                    "text": "(Scout) Follow the spine-walks to trace tunnel junctions.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "tunnel_paths_plotted",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "(Emissary) Present guest-law seals to the aerie elders for a windbone token.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "windbone_token_held",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_windbone_forum"
+                },
+                {
+                    "text": "Barter for gust sweets and gossip about burrow routes.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "market_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_chime_market"
+                },
+                {
+                    "text": "Climb the spiral gantry toward the storm gallery.",
+                    "target": "cloud_burrow_storm_gallery"
+                }
+            ]
+        },
+        "cloud_burrow_balcony_warrens": {
+            "title": "Burrow Balconies",
+            "text": "Wind-mole families lounge in hammocks slung beneath the stone, their dens opening onto dangling porches fragrant with sun-baked roots.",
+            "choices": [
+                {
+                    "text": "(Healer) Tend the kits' wind-burned paws and earn the family's trust.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "mole-whistle"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "mole_family_bonded",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_loft_access",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "cloud_burrow_loft"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_loft"
+                },
+                {
+                    "text": "(Resonant) Match the burrow songs until the elders gift you a whistle.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "mole-whistle"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "mole_family_bonded",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_loft_access",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "cloud_burrow_loft"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_loft"
+                },
+                {
+                    "text": "Offer a favor chit to join the burrow's guest ledger.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "favor"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "favor"
+                        },
+                        {
+                            "type": "add_item",
+                            "value": "mole-whistle"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "mole_family_bonded",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_loft_access",
+                            "value": true
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "cloud_burrow_loft"
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_loft"
+                },
+                {
+                    "text": "Thank the family and descend toward the threshold.",
+                    "target": "cloud_burrow_threshold"
+                }
+            ]
+        },
+        "cloud_burrow_resonant_wells": {
+            "title": "Resonant Wells",
+            "text": "Stone flutes wind through the cavern, channeling updrafts into a trembling chord that keeps the warrens aloft.",
+            "choices": [
+                {
+                    "text": "(Resonant) Shape the chord until the updraft recognizes your cadence.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "gale_harmonics_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_updraft_well"
+                },
+                {
+                    "text": "(Healer) Ease the wind-tenders' ringing ears with cooling salves.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "resonant_wells_tended",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_embassy"
+                },
+                {
+                    "text": "Study the carved notations to better read the burrow flows.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "burrow_notations_studied",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "Return to the inverted plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "cloud_burrow_windbone_forum": {
+            "title": "Windbone Forum",
+            "text": "Aeol arbiters and mole elders trade windbone tokens beneath fluttering pennants, each gust notarized with chime-scribed sigils.",
+            "choices": [
+                {
+                    "text": "(Emissary) Mediate gust-rights to receive a windbone token.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "windbone_token_held",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "cloud_burrow_embassy"
+                },
+                {
+                    "text": "(Scout) Slip along the underside ledger paths to map the tunnels.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "forum_scanned",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "(Resonant) Join the chime-call to steady the gust tallies.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "windbone_chant_joined",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "Carry gust petitions back to the embassy clerks.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "windbone_errand",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_embassy"
+                }
+            ]
+        },
+        "cloud_burrow_chime_market": {
+            "title": "Chime-Lit Market",
+            "text": "Strings of wind-chimes ring in shifting gravity, vendors trading gust teas and burrow quilts along the plaza's underside.",
+            "choices": [
+                {
+                    "text": "Sample gust teas with Freehands vendors and trade stories.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "market_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Resonant) Join the market chorus to steady the inverted stalls.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "chorus_shared",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "(Emissary) Broker a truce between Aeol traders and burrow runners.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "market_embassy_invite",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_embassy"
+                },
+                {
+                    "text": "Use your burrow map to slip into the service tunnels.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "burrow map"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "map_routes_open",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_mole_warren"
+                }
+            ]
+        },
+        "cloud_burrow_tunnel_survey": {
+            "title": "Tunnel Survey",
+            "text": "Luminous lichen paints the burrow walls while pressure-gauges tick, the air thick with drifting soil motes.",
+            "choices": [
+                {
+                    "text": "(Scout) Chart the branching shafts into a proper burrow map.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "burrow map"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "burrow_map_inscribed",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_mole_warren"
+                },
+                {
+                    "text": "Blow your mole-whistle to call guides deeper.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "mole-whistle"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "whistle_path_open",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_mole_warren"
+                },
+                {
+                    "text": "Plant wind-markers pointing back to the threshold.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "survey_markers",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                }
+            ]
+        },
+        "cloud_burrow_mole_warren": {
+            "title": "Wind-Mole Warren",
+            "text": "Warm tunnels spiral around a humming airshaft where elders braid wind-fronds into cushioning nests.",
+            "choices": [
+                {
+                    "text": "(Healer) Soothe the elder burrowers with herbal poultices.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "mole_family_bonded",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_loft"
+                },
+                {
+                    "text": "(Emissary) Negotiate shared gust-runs between rival warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "warren_deal_brokered",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_embassy"
+                },
+                {
+                    "text": "Blow the mole-whistle to open a path toward the updraft well.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "mole-whistle"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "whistle_path_open",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_updraft_well"
+                },
+                {
+                    "text": "Share Saltglass news and accept woven wind-charms.",
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "warren_news_shared",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_chime_market"
+                }
+            ]
+        },
+        "cloud_burrow_loft": {
+            "title": "Cloud-Burrow Loft",
+            "text": "A reclaimed glider loft cradles the burrow family, hammocks swaying beside windbone chimes tuned to the gale.",
+            "choices": [
+                {
+                    "text": "Glide down to the inverted plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "(Scout) Sketch hidden shortcuts between balcony warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "loft_shortcuts",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "(Resonant) Practice harmonies with the wind-mole chorus.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "gale_harmonics_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "Share tea and plan your next foray back toward the Saltglass Expanse.",
+                    "target": "saltglass_expanse"
+                }
+            ]
+        },
+        "cloud_burrow_embassy": {
+            "title": "Sky Burrow Embassy",
+            "text": "A suspended chamber balances Aeol scrolls and burrow knot-ledgers, envoys drifting between inverted desks.",
+            "choices": [
+                {
+                    "text": "(Emissary) Deliver Aeol letters securing new gust accords.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_embassy_heard",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "(Healer) Ease the negotiators' pressure aches with balancing tonics.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_embassy_tended",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_windbone_forum"
+                },
+                {
+                    "text": "Request a tether back toward the Saltglass Expanse.",
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Review the ledgers to mark new burrow passages.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "embassy_routes_noted",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "Spend your windbone token to board an Aeol lift toward the Startways Nexus.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "windbone token"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "windbone_token_spent",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "cloud_burrow_storm_gallery": {
+            "title": "Storm Gallery",
+            "text": "A ring of inverted chimes focuses the gale, apprentices pacing the rim as they coax gusts through carved vents.",
+            "choices": [
+                {
+                    "text": "(Resonant) Ring the chimes in time with the gale and request mentorship.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_intro"
+                },
+                {
+                    "text": "(Scout) Trace safe airways leading toward the updraft well.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_gallery_mapped",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_updraft_well"
+                },
+                {
+                    "text": "Observe the apprentices adjusting each gust vane.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_gallery_observed",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_resonant_wells"
+                },
+                {
+                    "text": "Return to the inverted plaza.",
+                    "target": "cloud_burrow_inverted_plaza"
+                }
+            ]
+        },
+        "cloud_burrow_updraft_well": {
+            "title": "Updraft Well",
+            "text": "A roaring column of wind spirals through the heart of the warrens, stray chimes spinning like constellations in the gale.",
+            "choices": [
+                {
+                    "text": "(Resonant) Bind the gale into an unshattered song.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "gale_harmonics_ready",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "The Unshattered Gale"
+                        }
+                    ],
+                    "target": "ending_unshattered_gale"
+                },
+                {
+                    "text": "Blow your mole-whistle to guide the gust toward the warrens.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "mole-whistle"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "whistle_path_open",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_mole_warren"
+                },
+                {
+                    "text": "Trace your burrow map for a safer descent.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "burrow map"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "burrow_map_inscribed",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_tunnel_survey"
+                },
+                {
+                    "text": "Step back before the gale peaks.",
+                    "target": "cloud_burrow_storm_gallery"
+                }
+            ]
+        },
+        "mentor_storm_conductor_intro": {
+            "title": "Storm-Conductor Atrium",
+            "text": "The Storm-Conductor stands amid suspended batons, each stroke tuning a different gust coursing through the gallery.",
+            "choices": [
+                {
+                    "text": "(Resonant) Echo the mentor's baton patterns in song.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_harmonic",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_trial"
+                },
+                {
+                    "text": "(Scout) Present mapped air-currents from the warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_trial"
+                },
+                {
+                    "text": "Ask for guidance in balancing the gust ledger.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_listened",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_trial"
+                },
+                {
+                    "text": "Return to the storm gallery.",
+                    "target": "cloud_burrow_storm_gallery"
+                }
+            ]
+        },
+        "mentor_storm_conductor_trial": {
+            "title": "Tempest Loom Trial",
+            "text": "Batons whirl as the mentor releases a tangle of gusts, expecting you to weave current, chorus, and care into one flow.",
+            "choices": [
+                {
+                    "text": "(Resonant) Sing counterwinds that stitch the gale together.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_trial_echo",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_award"
+                },
+                {
+                    "text": "(Emissary) Coordinate the watch-lines so every gust yields passage.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_trial_deal",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_award"
+                },
+                {
+                    "text": "(Healer) Steady the apprentices as the gale surges.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_trial_care",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_storm_conductor_award"
+                },
+                {
+                    "text": "Bow out before the tempest overwhelms you.",
+                    "target": "cloud_burrow_storm_gallery"
+                }
+            ]
+        },
+        "mentor_storm_conductor_award": {
+            "title": "Storm-Conductor Accord",
+            "text": "With the gale subdued, the mentor threads a windbone baton into your hands and marks you as kin to the storm.",
+            "choices": [
+                {
+                    "text": "(Resonant) Accept the baton and swear to keep the gale whole.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "storm_conductor_trial_echo",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Storm-Conductor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_mentored",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "(Emissary) Pledge to coordinate every gust-bound envoy.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "storm_conductor_trial_deal",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Storm-Conductor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_mentored",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "(Healer) Vow to tend the conductors who keep the gale balanced.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "storm_conductor_trial_care",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Storm-Conductor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_conductor_mentored",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_storm_gallery"
+                },
+                {
+                    "text": "Thank the mentor and return to the gallery.",
+                    "target": "cloud_burrow_storm_gallery"
+                }
+            ]
+        },
+        "ending_unshattered_gale": {
+            "title": "The Unshattered Gale",
+            "text": "Your song threads every gust until the Cloud-Burrow Warrens rise in concert, the updraft harmonized and unbroken."
         },
         "ending_shade_treaty": {
             "title": "Treaty of Moving Shade",
