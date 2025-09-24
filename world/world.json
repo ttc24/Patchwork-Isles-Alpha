@@ -290,6 +290,100 @@
                     "target": "prism_galleria"
                 },
                 {
+                    "text": "(Emissary) Rally Aeol outriders to ferry you toward the Cloud-Burrow warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_envoy_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Emissary) Broker a prism exchange to ride their courier lane into the galleria.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Cartel",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "prism_lane_authorized",
+                            "value": true
+                        }
+                    ],
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "Spend a root-writ to fast-track your guest-law hearing docket.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "root-writ"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "root-writ"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_docket",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "Trade a favor for a Freehands glider run toward the Saltglass engines.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "favor"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "favor"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_glider_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Root Assembly 1+) Call in Assembly trust to open the caretaker lift.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Root Assembly",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "assembly_trust_pass",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
+                },
+                {
                     "text": "Descend toward the orrery-of-roots caretakers.",
                     "target": "root_orrery_concourse"
                 }
@@ -378,6 +472,115 @@
                         }
                     ],
                     "target": "luminous_grotto"
+                },
+                {
+                    "text": "(Emissary) Broker a chime-lift lane into the Cloud-Burrow warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Prism Cartel",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "cloud_chime_pass",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Emissary) Escort Prism proofs directly to the guest-law chamber.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_prism_escort",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "Spend a color baffle to signal the Saltglass engine's prism pier.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "color baffle"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "color baffle"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_baffle_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Trade a windbone token for a stewarded lift back to the Startways.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "windbone token"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "startways_chime_escort",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                },
+                {
+                    "text": "(Prism Cartel 1+) Invoke Cartel patronage for a private tram to the grotto.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Prism Cartel",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "cartel_tram_clearance",
+                            "value": true
+                        }
+                    ],
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "(Resonant) Harmonize the galleria chimes to open the Cloud-Burrow transfer.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "resonant_cloud_lane",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
                 }
             ]
         },
@@ -1461,6 +1664,130 @@
                 {
                     "text": "Return along the tether to the Aeol moorings.",
                     "target": "sky_docks"
+                },
+                {
+                    "text": "(Emissary) Convene a cross-hub summit in the guest-law chamber.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_summit_called",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "(Emissary) Lead Aeol outriders on a guided drop toward the Saltglass Expanse.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_envoy_drop",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Spend a map sliver to align a mirror corridor into the Saltglass lanes.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "map sliver"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "map sliver"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "nexus_map_lane",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Surrender a windbone token for an updraft escort into the Cloud-Burrow.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "windbone token"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "windbone token"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "nexus_updraft_escort",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Aeol Nests 1+) Request a priority wind-rail from the steward.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Aeol Nests",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "nexus_priority_rail",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_storm_trial"
+                },
+                {
+                    "text": "(Cartographer) Trace the compass stem to thread a drop into the Saltglass caravans.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Cartographer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "nexus_cartographer_vector",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_glass_reef"
+                },
+                {
+                    "text": "(Resonant) Sing the nexus chords into phase with the Cloud-Burrow chimes.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "nexus_resonant_lane",
+                            "value": true
+                        }
+                    ],
+                    "target": "cloud_burrow_threshold"
                 }
             ]
         },
@@ -1683,6 +2010,61 @@
                     "target": "saltglass_obelisk_south"
                 },
                 {
+                    "text": "(Weaver) Stitch mirrored dune veils to reveal the buried orrery route.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "mirrored_route_woven",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_threading"
+                },
+                {
+                    "text": "(Emissary) Convene caravan envoys for a guest-law audience at the dais.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_guestlaw_envoys",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "(Emissary) Negotiate Aeol outriders for a direct Startways flight.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "startways_envoy_route",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                },
+                {
                     "text": "Spend a favor to hitch a basket-lift into the Cloud-Burrow Warrens.",
                     "condition": {
                         "type": "has_item",
@@ -1700,6 +2082,41 @@
                         }
                     ],
                     "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "Trade a map sliver to plot a Startways drop point.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "map sliver"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "map sliver"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "startways_map_lane",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Call in ledger pilots to escort you to the caravan council.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "ledger_council_pass",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_carravan_council"
                 },
                 {
                     "text": "Follow the tuned root-paths back to the Caretaker Dais.",
