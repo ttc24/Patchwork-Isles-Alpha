@@ -156,6 +156,7 @@ def validate_effect(
         "hp_delta",
         "teleport",
         "end_game",
+        "unlock_start",
     }:
         ctx.add(f"{context}: unsupported effect type '{effect_type}'.")
         return
@@ -164,6 +165,10 @@ def validate_effect(
         value = effect.get("value")
         if not is_non_empty_str(value):
             ctx.add(f"{context}: '{effect_type}' requires a non-empty string 'value'.")
+    elif effect_type == "unlock_start":
+        value = effect.get("value")
+        if not is_non_empty_str(value):
+            ctx.add(f"{context}: 'unlock_start' requires a non-empty string 'value'.")
     elif effect_type == "set_flag":
         flag = effect.get("flag")
         if not is_non_empty_str(flag):
