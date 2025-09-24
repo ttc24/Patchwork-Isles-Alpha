@@ -98,6 +98,17 @@
                 "Archivist"
             ],
             "locked": true
+        },
+        {
+            "id": "market_of_skins_stall",
+            "title": "Market of Shed Skins Stall",
+            "locked_title": "Market of Shed Skins Stall (Locked)",
+            "node": "shed_market_shed_bazaar",
+            "tags": [
+                "Trickster",
+                "Lumenar"
+            ],
+            "locked": true
         }
     ],
     "endings": {
@@ -105,7 +116,8 @@
         "ending_guestlaw": "Guest-law precedent codified across the hubs.",
         "ending_correction": "You become the seasonal caretaker of the orrery.",
         "ending_unshattered_gale": "You harmonize the Cloud-Burrow updrafts into a lasting gale.",
-        "ending_living_wake": "You inaugurate a civic wake that redraws how travelers depart."
+        "ending_living_wake": "You inaugurate a civic wake that redraws how travelers depart.",
+        "ending_amnesty_of_names": "You usher in an amnesty that lets every traveler reclaim or reinvent the names they need."
     },
     "nodes": {
         "sky_docks": {
@@ -1672,6 +1684,10 @@
                 {
                     "text": "Follow the prism-lit corridor toward the Cartel galleria.",
                     "target": "prism_galleria"
+                },
+                {
+                    "text": "Descend toward the Night Market of Shed Skins.",
+                    "target": "shed_market_molting_gate"
                 },
                 {
                     "text": "Return along the tether to the Aeol moorings.",
@@ -4626,6 +4642,896 @@
                     "target": "amber_tides_lantern_lock"
                 }
             ]
+        },
+        "shed_market_molting_gate": {
+            "title": "Molting Gate",
+            "text": "Molted banners rustle above a gate where sentinels wear their past faces on sashes, weighing each visitor's willingness to trade what was.",
+            "choices": [
+                {
+                    "text": "Present your guest-law braid for entry.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_gate_briefed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_shed_bazaar"
+                },
+                {
+                    "text": "(Trickster) Swap masks with a mouser of borrowed selves and slip inside laughing.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_gate_masquerade",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_lumen_stage"
+                },
+                {
+                    "text": "(Emissary) Pledge cross-hub courtesy to the sentinel and secure a guest mark.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_gate_accord",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_shed_bazaar"
+                },
+                {
+                    "text": "Return to the Startways Nexus.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "shed_market_shed_bazaar": {
+            "title": "Bazaar of Shed Skins",
+            "text": "Stalls shimmer with hanging husks, vendors swapping stories of the selves they've molted while charters of consent hum above the crowd.",
+            "choices": [
+                {
+                    "text": "Browse rows of shed selves cataloged for barter.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_bazaar_mapped",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_identity_broker"
+                },
+                {
+                    "text": "Follow chrysalis steam toward the cocoons' hostel alcove.",
+                    "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "(Arbiter) Adjudicate a dispute over a shared adolescence.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_arbiter_signal",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Trail the lantern stream toward the name archives.",
+                    "target": "shed_market_name_lanterns"
+                }
+            ]
+        },
+        "shed_market_identity_broker": {
+            "title": "Identity Broker's Pavilion",
+            "text": "Ledger-slates glow with columns of retired names while a broker smiles through three alternating faces, offering contracts for who you might become tonight.",
+            "choices": [
+                {
+                    "text": "Evaluate the ledger of molted names awaiting guardianship.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_broker_ledger",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_wandering_archive"
+                },
+                {
+                    "text": "(Lumenar) Ignite a truthlight to expose fraudulent moltings.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Accept a borrowed persona for the evening crowd.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_borrowed_persona",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "Return to the bazaar thoroughfare.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_shadow_exchange": {
+            "title": "Shadow Exchange",
+            "text": "Braided shade cords anchor contracts for shared silhouettes, clerks ensuring every traded shadow can still find its owner at dawn.",
+            "choices": [
+                {
+                    "text": "Study the contracts stitched from shade thread.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_shadow_studied",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_ledger_court"
+                },
+                {
+                    "text": "(Emissary) Broker mutual custody of a shared silhouette between travelers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_shadow_treaty",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Trade your shadow IOU for a market berth.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "shadow IOU"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "shadow IOU"
+                        },
+                        {
+                            "type": "unlock_start",
+                            "value": "market_of_skins_stall"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_shadow_paid",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "Slip away toward the mirage canal.",
+                    "target": "shed_market_mirage_canal"
+                }
+            ]
+        },
+        "shed_market_name_lanterns": {
+            "title": "Name Lantern Stream",
+            "text": "Lanterns bob along a suspended canal, each etched with names gently retired, waiting for caretakers to walk beside them.",
+            "choices": [
+                {
+                    "text": "Trace the lanterns cataloging castoff monikers.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_lanterns_traced",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_wandering_archive"
+                },
+                {
+                    "text": "(Lumenar) Reignite a dim lantern so its bearer feels seen.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_lanterns_renewed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_lumen_stage"
+                },
+                {
+                    "text": "(Trickster) Rearrange lantern order to spark conversations between strangers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_lanterns_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "Return to the bazaar.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_ledger_court": {
+            "title": "Ledger Court",
+            "text": "A circle of clerks and keepers review petitions for identity amnesty, quills scratching beside jars of shed voices.",
+            "choices": [
+                {
+                    "text": "Listen to the arbitrators weigh petitions.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_court_attended",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "(Arbiter) Cite guest-law precedent for shared custody of a name.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_court_precedent",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "(Emissary) Invite Aeol witnesses to endorse the ruling for other hubs.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_court_witnessed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molting_gate"
+                },
+                {
+                    "text": "Depart toward the shadow exchange.",
+                    "target": "shed_market_shadow_exchange"
+                }
+            ]
+        },
+        "shed_market_lumen_stage": {
+            "title": "Lumen Stage",
+            "text": "Performers shed light like cloaks, projecting constellations of the names they've retired while the crowd hums the chorus of who they became.",
+            "choices": [
+                {
+                    "text": "Watch luminaries shed borrowed glows across the crowd.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_stage_watched",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_name_lanterns"
+                },
+                {
+                    "text": "(Lumenar) Project your radiance to reveal hidden names ready for amnesty.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "(Trickster) Sync a playful echo that loosens tensions among traders.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_stage_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "Return to the bazaar.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_cocoon_hostel": {
+            "title": "Cocoon Hostel",
+            "text": "Suspended cocoons sway gently, each cradle hosting travelers between selves while caretakers brew teas that steady shifting identities.",
+            "choices": [
+                {
+                    "text": "Rest among the cocoons and listen to whispered rebirths.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_hostel_rest",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_shed_bazaar"
+                },
+                {
+                    "text": "(Emissary) Pair travelers with guides who knew their former selves.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_hostel_matched",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "(Lumenar) Bathe the cocoons in steady glow so sleepers wake gently.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_hostel_glow",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_name_lanterns"
+                },
+                {
+                    "text": "Seek the Dreamwalker tending the deepest cocoons.",
+                    "target": "mentor_dreamwalker_intro"
+                }
+            ]
+        },
+        "shed_market_wandering_archive": {
+            "title": "Wandering Archive",
+            "text": "Archivists carry shelves on their backs, cataloging every traded name with footnotes on consent, continuity, and future claims.",
+            "choices": [
+                {
+                    "text": "Catalog the traded identities you recognized from other hubs.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_archive_catalogued",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "(Arbiter) Flag contradictory contracts for renewed consent.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_archive_flagged",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_ledger_court"
+                },
+                {
+                    "text": "(Emissary) Add guest-law footnotes from other hubs to the archive.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_archive_addendum",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "Slip through the shelves toward the mirage canal.",
+                    "target": "shed_market_mirage_canal"
+                }
+            ]
+        },
+        "shed_market_mirage_canal": {
+            "title": "Mirage Canal",
+            "text": "Water mirrors ripple with glimpses of who you might be tomorrow, ferriers steering gondolas shaped like shed skins.",
+            "choices": [
+                {
+                    "text": "Follow the mirrored water toward the rally of new names.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_canal_traced",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molt_rally"
+                },
+                {
+                    "text": "(Trickster) Send ripples carrying secret jokes about past selves.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_canal_prank",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_lumen_stage"
+                },
+                {
+                    "text": "(Emissary) Lead visiting dignitaries safely along the reflections.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_canal_guided",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_molting_gate"
+                },
+                {
+                    "text": "Return to the shadow exchange.",
+                    "target": "shed_market_shadow_exchange"
+                }
+            ]
+        },
+        "shed_market_molt_rally": {
+            "title": "Molt Rally",
+            "text": "Crowds celebrate as travelers trade sashes of past achievements, drafting accords to carry multiple selves respectfully.",
+            "choices": [
+                {
+                    "text": "Join the crowd exchanging borrowed selves and swap stories.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_rally_joined",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_shed_bazaar"
+                },
+                {
+                    "text": "(Emissary) Draft a pact for portable identities recognized across hubs.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_emissary_signatories",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "(Arbiter) Ensure each persona is archived with consent before release.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_rally_arbitered",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_wandering_archive"
+                },
+                {
+                    "text": "(Lumenar) Raise a lantern chorus to celebrate every change.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_rally_lit",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_lumen_stage"
+                }
+            ]
+        },
+        "shed_market_charter_workshop": {
+            "title": "Charter Workshop",
+            "text": "Tables overflow with petitions, testimony ribbons, and blank charters awaiting signatures for the Amnesty of Names.",
+            "choices": [
+                {
+                    "text": "Compile testimonies from the bazaar disputes.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_arbiter_signal",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_compiled",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Infuse the charter with truthlight sigils.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_truthlight",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_illumined",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Gather signatories from the rally of portable identities.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_emissary_signatories",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_signed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Proclaim the Amnesty of Names across the market.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_charter_signed",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Amnesty of Names"
+                        }
+                    ],
+                    "target": "ending_amnesty_of_names"
+                },
+                {
+                    "text": "Step back to the bazaar.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "mentor_dreamwalker_intro": {
+            "title": "Dreamwalker Concierge",
+            "text": "A Dreamwalker with eyes like closed moons invites you to walk the seam between who you were and who you might drift into.",
+            "choices": [
+                {
+                    "text": "Accept the Dreamwalker's invitation into the seam.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_invited",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_trial"
+                },
+                {
+                    "text": "(Trickster) Mirror their shifting cadence to show comfort with change.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_cadence_matched",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_trial"
+                },
+                {
+                    "text": "Thank them and return to the cocoons.",
+                    "target": "shed_market_cocoon_hostel"
+                }
+            ]
+        },
+        "mentor_dreamwalker_trial": {
+            "title": "Dreamlace Trial",
+            "text": "Threads of forgotten selves lace around you, the Dreamwalker asking you to guide them toward a shared cadence without losing your core.",
+            "choices": [
+                {
+                    "text": "Follow them through a braid of half-remembered moments.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_trial_completed",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_confluence"
+                },
+                {
+                    "text": "(Emissary) Convene the dream-selves into a gentle council.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_trial_completed",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_confluence"
+                },
+                {
+                    "text": "(Lumenar) Light the path so no identity slips into shadow.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_trial_completed",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_path_lit",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_confluence"
+                },
+                {
+                    "text": "Step back to the hostel to steady yourself.",
+                    "target": "shed_market_cocoon_hostel"
+                }
+            ]
+        },
+        "mentor_dreamwalker_confluence": {
+            "title": "Dream Confluence",
+            "text": "The Dreamwalker weaves a pool of still thought, waiting to see if you can anchor both your waking self and the personas you escorted.",
+            "choices": [
+                {
+                    "text": "Hold the confluence until every self hums in harmony.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "dreamwalker_trial_completed",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_confluence_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_awakened"
+                },
+                {
+                    "text": "(Arbiter) Balance the voices before the pool settles.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "dreamwalker_confluence_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "mentor_dreamwalker_awakened"
+                },
+                {
+                    "text": "Release the visions and return to the hostel.",
+                    "target": "shed_market_cocoon_hostel"
+                }
+            ]
+        },
+        "mentor_dreamwalker_awakened": {
+            "title": "Dreamwalker's Benediction",
+            "text": "Satisfied, the Dreamwalker places a ribbon of shared memory in your palm, offering the mantle of a traveler who can cross dreams.",
+            "choices": [
+                {
+                    "text": "Accept the ribbon and embrace the Dreamwalker mantle.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "dreamwalker_confluence_ready",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "add_tag",
+                            "value": "Dreamwalker"
+                        }
+                    ],
+                    "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "Bow with gratitude and return to the cocoons.",
+                    "target": "shed_market_cocoon_hostel"
+                }
+            ]
+        },
+        "ending_amnesty_of_names": {
+            "title": "Amnesty of Names",
+            "text": "Identity charters ripple through the Startways as traders cheer, every traveler free to reclaim or reinvent the name that fits this dawn."
         },
         "ending_unshattered_gale": {
             "title": "The Unshattered Gale",
