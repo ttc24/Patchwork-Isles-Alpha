@@ -109,6 +109,7 @@ def load_world(path):
     world.setdefault("starts", [])
     world.setdefault("endings", {})
     world.setdefault("factions", [])
+    world.setdefault("advanced_tags", [])
     return world
 
 
@@ -128,6 +129,8 @@ def has_all(player_list, value):
 def meets_condition(cond, state):
     if not cond:
         return True
+    if isinstance(cond, list):
+        return all(meets_condition(c, state) for c in cond)
     t = cond.get("type")
     p = state.player
 
@@ -143,10 +146,30 @@ def meets_condition(cond, state):
         if isinstance(required, list):
             return all(r in player_tags for r in required)
         return required in player_tags
+    if t == "has_advanced_tag":
+        world_adv = canonicalize_tag_list(state.world.get("advanced_tags", []))
+        requested = cond.get("value")
+        if requested is None:
+            required = world_adv
+        else:
+            required = canonicalize_tag_list(requested if isinstance(requested, list) else [requested])
+        if not required:
+            return False
+        player_tags = set(canonicalize_tag_list(p["tags"]))
+        return any(r in player_tags for r in required)
     if t == "has_trait":
         return has_all(p["traits"], cond.get("value"))
     if t == "rep_at_least":
         return p["rep"].get(cond["faction"], 0) >= int(cond["value"])
+    if t == "rep_at_least_count":
+        value = int(cond.get("value", 0))
+        count = int(cond.get("count", 1))
+        factions = cond.get("factions")
+        if isinstance(factions, str):
+            factions = [factions]
+        factions = factions or state.world.get("factions", [])
+        met = sum(1 for fac in factions if p["rep"].get(fac, 0) >= value)
+        return met >= count
     return False
 
 # ---------- Effects (minimal set) ----------

@@ -1,11 +1,20 @@
 {
-    "title": "Patchwork Isles — Guest-Law Prelude",
+    "title": "Patchwork Isles \u2014 Guest-Law Prelude",
     "factions": [
         "Aeol Nests",
         "Root Assembly",
         "Prism Cartel",
         "Freehands",
         "Quiet Ledger"
+    ],
+    "advanced_tags": [
+        "Root-Speaker",
+        "Cartographer",
+        "Tinkerer",
+        "Trickster",
+        "Lumenar",
+        "Dreamwalker",
+        "Storm-Conductor"
     ],
     "starts": [
         {
@@ -123,13 +132,23 @@
         }
     ],
     "endings": {
-        "ending_escape": "Slip away through the hidden canal network.",
-        "ending_guestlaw": "Guest-law precedent codified across the hubs.",
-        "ending_correction": "You become the seasonal caretaker of the orrery.",
-        "ending_unshattered_gale": "You harmonize the Cloud-Burrow updrafts into a lasting gale.",
-        "ending_living_wake": "You inaugurate a civic wake that redraws how travelers depart.",
-        "ending_amnesty_of_names": "You usher in an amnesty that lets every traveler reclaim or reinvent the names they need.",
-        "ending_sharecrop_of_stories": "You cultivate a public memory commons where every grafted fruit yields stories for all."
+        "ending_escape": "Slip through the hidden canals on your own terms.",
+        "ending_guestlaw": "Establish a guest-law compact that links the hubs.",
+        "ending_correction": "Take charge of the seasonal orrery correction.",
+        "ending_unshattered_gale": "Stabilize the Cloud-Burrow gustways for local crews.",
+        "ending_living_wake": "Open a standing wake where neighbors manage every farewell.",
+        "ending_amnesty_of_names": "Open an amnesty so travelers can reclaim their needed names.",
+        "ending_sharecrop_of_stories": "Keep the orchard's memory harvest in shared stewardship.",
+        "ending_shade_treaty": "Set the Treaty of Moving Shade into motion.",
+        "ending_mooring_mediator": "Join the Aeol rota and mediate the mooring rush.",
+        "ending_market_steward": "Take the first shift of the Root Assembly's steward rota.",
+        "ending_galleria_steward": "Turn Cartel maintenance into a public galleria cooperative.",
+        "ending_freehands_regatta": "Captain the Freehands regatta out of the mist.",
+        "ending_cloud_cooperative": "Anchor a Cloud-Burrow balcony cooperative to steady traffic.",
+        "ending_saltglass_wayfinder": "Guide the Saltglass caravans with your mapped corridors.",
+        "ending_shed_market_retirement": "Retire into the Bazaar of Shed Skins as rotation keeper.",
+        "ending_orchard_accord": "Rebuild the memory harvest into the Orchard Accord.",
+        "ending_keeper_of_passways": "Accept stewardship over the Startways passways."
     },
     "nodes": {
         "sky_docks": {
@@ -227,6 +246,21 @@
                         }
                     ],
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Accept the Aeol rota posting and settle into the mooring office.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Aeol Nests",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Mooring Mediator"
+                        }
+                    ],
+                    "target": "ending_mooring_mediator"
                 }
             ]
         },
@@ -422,6 +456,28 @@
                 {
                     "text": "Descend toward the orrery-of-roots caretakers.",
                     "target": "root_orrery_concourse"
+                },
+                {
+                    "text": "File your steward rota and take the first shift yourself.",
+                    "condition": [
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "compiled_testimony",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Market Steward Rotation"
+                        }
+                    ],
+                    "target": "ending_market_steward"
                 }
             ]
         },
@@ -617,6 +673,50 @@
                         }
                     ],
                     "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "Post your maintenance rota as a public cooperative and oversee the shift.",
+                    "condition": [
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Prism Cartel",
+                            "value": 1
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "map_galleria",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Galleria Civic Cooperative"
+                        }
+                    ],
+                    "target": "ending_galleria_steward"
+                },
+                {
+                    "text": "Convert your private tram clearance into a shared steward shift and stay on.",
+                    "condition": [
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Prism Cartel",
+                            "value": 1
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "cartel_tram_clearance",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Galleria Civic Cooperative"
+                        }
+                    ],
+                    "target": "ending_galleria_steward"
                 }
             ]
         },
@@ -801,20 +901,42 @@
                         }
                     ],
                     "target": "guestlaw_chamber"
+                },
+                {
+                    "text": "Raise your cached supplies into a Freehands regatta and promise to keep it running.",
+                    "condition": [
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "grotto_scouted",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Freehands Mist Regatta"
+                        }
+                    ],
+                    "target": "ending_freehands_regatta"
                 }
             ]
         },
         "ending_escape": {
-            "title": "Open Water",
-            "text": "Sails bloom as you cut into moonlit current; the isles shrink to a constellated rim."
+            "title": "Hidden Canal Flight",
+            "text": "You slip a skiff into the phosphor canals before the patrol lights turn.\nCached crates from a dozen favors keep you ahead of every toll-chain.\nBy dusk, the mist remembers only the wake you chose to leave."
         },
         "ending_guestlaw": {
-            "title": "Names Written in Wood",
-            "text": "Guest-law sigils pulse across the hubs as new accords take root."
+            "title": "Guest-Law Compact",
+            "text": "You leave the chamber with the guest-law compact signed in four inks.\nDock masters swap updated ledgers, each hub agreeing to shelter travelers in turn.\nNo banner claims credit; the precedent simply hums through every root and rail."
         },
         "ending_correction": {
-            "title": "Tend the Correction",
-            "text": "You accept the season's schedule, tending root and bronze until each pulse aligns with the new cadence."
+            "title": "Orrery Caretaker",
+            "text": "You post yourself in the orrery's bronze heart, feeling each pulse through sap-stained gloves.\nSeason after season you tune the correction, synchronizing tides, caravans, and the breath of resting elders.\nTravelers speak of the caretaker, not a name, when they note how the schedule never slips."
         },
         "root_orrery_concourse": {
             "title": "Orrery-of-Roots Concourse",
@@ -2101,6 +2223,26 @@
                 {
                     "text": "Thank the steward and study the compass again.",
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Accept the ledgers and become the Keeper of Passways.",
+                    "condition": [
+                        {
+                            "type": "has_advanced_tag"
+                        },
+                        {
+                            "type": "rep_at_least_count",
+                            "value": 1,
+                            "count": 2
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Keeper of Passways"
+                        }
+                    ],
+                    "target": "ending_keeper_of_passways"
                 }
             ]
         },
@@ -2434,6 +2576,28 @@
                 {
                     "text": "Follow the tuned root-paths back to the Caretaker Dais.",
                     "target": "root_orrery_dais"
+                },
+                {
+                    "text": "Lock in your mapped corridors and guide the caravans through a shared shade rota.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "saltglass_routes_plotted",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Saltglass Wayfinder"
+                        }
+                    ],
+                    "target": "ending_saltglass_wayfinder"
                 }
             ]
         },
@@ -3539,6 +3703,28 @@
                 {
                     "text": "Ride the dunes' return current back to the Saltglass Expanse.",
                     "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Stay on the balconies to coordinate the cooperative glideway.",
+                    "condition": [
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "balcony_intro",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Cloud-Burrow Balcony Cooperative"
+                        }
+                    ],
+                    "target": "ending_cloud_cooperative"
                 }
             ]
         },
@@ -6035,6 +6221,28 @@
                 {
                     "text": "Trail the lantern stream toward the name archives.",
                     "target": "shed_market_name_lanterns"
+                },
+                {
+                    "text": "Hang your last borrowed mask and assume the rotation desk for good.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "shed_market_bazaar_mapped",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Shed Market Rotation Keeper"
+                        }
+                    ],
+                    "target": "ending_shed_market_retirement"
                 }
             ]
         },
@@ -7976,28 +8184,86 @@
                 {
                     "text": "Slip away toward the saltglass expanse with new recollections.",
                     "target": "saltglass_expanse"
+                },
+                {
+                    "text": "Dedicate the memory harvest to the Orchard Accord infrastructure and oversee it.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "orchard_commons_ready",
+                            "value": true
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "orchard_prism_roots",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "The Orchard Accord"
+                        }
+                    ],
+                    "target": "ending_orchard_accord"
                 }
             ]
         },
         "ending_sharecrop_of_stories": {
             "title": "The Sharecrop of Stories",
-            "text": "You open the orchard's ledgers to all comers, each graft a public promise that memories will be planted, tended, and shared in common."
+            "text": "You publish the orchard's ledgers, turning every graft into a documented community promise.\nRotating crews tend the memory fruit, logging who watered, who harvested, and who shared.\nStories ripen into public resource rather than private archive."
         },
         "ending_amnesty_of_names": {
             "title": "Amnesty of Names",
-            "text": "Identity charters ripple through the Startways as traders cheer, every traveler free to reclaim or reinvent the name that fits this dawn."
+            "text": "Your amnesty charter ripples through the Startways, stamped by every ledger you petitioned.\nTravelers line up to reclaim forgotten names or try on new ones without whispers trailing them.\nRegistrars now simply note the change and pass the quills along."
         },
         "ending_unshattered_gale": {
-            "title": "The Unshattered Gale",
-            "text": "Your song threads every gust until the Cloud-Burrow Warrens rise in concert, the updraft harmonized and unbroken."
+            "title": "Unshattered Gale",
+            "text": "You stay to recalibrate each gust frame along the Cloud-Burrow warrens.\nWind-mole crews queue for your nod before launching, the updraft braided steady and low.\nThe cooperative posts your rota beside the tool hooks, marking you as the keeper of calm breezes."
         },
         "ending_shade_treaty": {
             "title": "Treaty of Moving Shade",
-            "text": "Walking cities align their shadows across the dunes as caravans salute your accord, mirrored dunes humming with newfound law."
+            "text": "You settle the Treaty of Moving Shade beneath the caravan council's mirrored canopy.\nWalking cities now align their shadows by shared schedule, cooling routes without tribute demanded.\nMerchants wave the signed prisms, a treaty maintained by habit instead of heroics."
         },
         "ending_living_wake": {
             "title": "The Living Wake",
-            "text": "You inaugurate a civic rite where funeral barges double as departure halls, every traveler folded into the memory tide."
+            "text": "You turn the amber barges into a standing wake for anyone departing the docks.\nNeighbors bring lanternbread and names to share, weaving every farewell into the tide.\nBy week's end the procession runs itself, held together by the quiet cues you leave behind."
+        },
+        "ending_mooring_mediator": {
+            "title": "Mooring Mediator",
+            "text": "You hang up your envoy sigils and take the Aeol rota seat above the moorings.\nEach dawn you tune stormglass drums so incoming pilots stagger themselves instead of colliding.\nWhen gusts snap cables, wardens call for the mediator, not the traveler you once were."
+        },
+        "ending_market_steward": {
+            "title": "Market Steward Rotation",
+            "text": "You file the steward rota you drafted and stay to pilot the first market shift.\nPetitioners cycle through benches you rebalanced, clerks rotating before tempers fray.\nBy evening the Root Assembly posts your schedule as standard practice."
+        },
+        "ending_galleria_steward": {
+            "title": "Galleria Civic Cooperative",
+            "text": "You convert your maintenance map into a public roster for the Prism galleria lifts.\nVendors sign up for shared upkeep instead of bribed shortcuts, the rota chiming on open display.\nApprentices wave you toward the coordinator's desk you now occupy."
+        },
+        "ending_freehands_regatta": {
+            "title": "Freehands Mist Regatta",
+            "text": "You assemble the Freehands skiffs you cached in the grotto and lead them into the mist.\nRun captains take your signals, ferrying migrants and cargo through lanes you just cleared.\nBy the next tide the regatta charter bears your notes for whoever captains tomorrow."
+        },
+        "ending_cloud_cooperative": {
+            "title": "Cloud-Burrow Balcony Cooperative",
+            "text": "You stay behind on the Cloud-Burrow balconies to organize the coop glideway.\nFamilies rotate watch on the tethered baskets, following the schedule you scribed on wind-proof slate.\nThe updraft mutters your guidelines every time a newcomer clips in."
+        },
+        "ending_saltglass_wayfinder": {
+            "title": "Saltglass Wayfinder",
+            "text": "You lock your dune charts into the Saltglass co-op chest and claim the night shift.\nCaravan captains queue for your mirrored signals, gliding through shade corridors without tribute.\nThe ledger lists you simply as Wayfinder on duty."
+        },
+        "ending_shed_market_retirement": {
+            "title": "Shed Market Rotation Keeper",
+            "text": "You hang your final borrowed mask above the bazaar and settle into the rotation desk.\nMolting patrons check in for husks and histories, trading favors you reconcile without fuss.\nBy closing bell the Quiet Ledger stamps you as permanent steward of the shed stalls."
+        },
+        "ending_orchard_accord": {
+            "title": "The Orchard Accord",
+            "text": "You braid the orchard's memory fruit harvest into a public conduit, the Orchard Accord.\nPrism roots, tidal pumps, and Quiet Ledger grants now feed every hub's archive without gatekeepers.\nFamilies queue beneath the meteor glass to draw shared memories like clean water."
+        },
+        "ending_keeper_of_passways": {
+            "title": "Keeper of Passways",
+            "text": "You accept the steward's ledgers and move into the compass stem that threads every Startways arch.\nTwo factions' runners brief you each shift as you balance their requests against the tide of travelers.\nRoutes now whisper of the Keeper of Passways, a post anyone might inherit if they match your quiet balance."
         }
     }
 }
