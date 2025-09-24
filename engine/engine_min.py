@@ -11,9 +11,67 @@ Usage: python3 engine_min.py [world.json]
 import json, os, sys
 
 DEFAULT_WORLD_PATH = "world/world.json"
+PROFILE_PATH = "profile.json"
+
+TAG_ALIASES = {
+    "Diplomat": "Emissary",
+    "Emissary": "Emissary",
+    "Judge": "Arbiter",
+    "Arbiter": "Arbiter",
+}
+
+
+def canonical_tag(tag):
+    return TAG_ALIASES.get(tag, tag)
+
+
+def canonicalize_tag_list(tags):
+    seen = []
+    for tag in tags or []:
+        ctag = canonical_tag(tag)
+        if ctag not in seen:
+            seen.append(ctag)
+    return seen
+
+
+def canonicalize_tag_value(value):
+    if isinstance(value, list):
+        return [canonical_tag(v) for v in value]
+    if isinstance(value, str):
+        return canonical_tag(value)
+    return value
+
+
+def default_profile():
+    return {
+        "unlocked_starts": [],
+        "legacy_tags": [],
+    }
+
+
+def load_profile(path=PROFILE_PATH):
+    if not os.path.exists(path):
+        profile = default_profile()
+        save_profile(profile, path)
+        return profile
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data.setdefault("unlocked_starts", [])
+    data.setdefault("legacy_tags", [])
+    data["unlocked_starts"] = list(dict.fromkeys(data["unlocked_starts"]))
+    data["legacy_tags"] = canonicalize_tag_list(data["legacy_tags"])
+    save_profile(data, path)
+    return data
+
+
+def save_profile(profile, path=PROFILE_PATH):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(profile, f, indent=2)
+        f.write("\n")
+
 
 class GameState:
-    def __init__(self, world):
+    def __init__(self, world, profile, profile_path):
         self.world = world
         self.player = {
             "name": None,
@@ -27,6 +85,8 @@ class GameState:
         self.current_node = None
         self.history = []
         self.start_id = None
+        self.profile = profile
+        self.profile_path = profile_path
 
     def rep_str(self):
         if not self.player["rep"]:
@@ -51,6 +111,14 @@ def load_world(path):
     world.setdefault("factions", [])
     return world
 
+
+def get_start_title(world, start_id):
+    for start in world.get("starts", []):
+        sid = start.get("id") or start.get("node")
+        if sid == start_id:
+            return start.get("title") or start_id
+    return start_id
+
 # ---------- Conditions (minimal set) ----------
 def has_all(player_list, value):
     if isinstance(value, str):
@@ -70,7 +138,11 @@ def meets_condition(cond, state):
     if t == "flag_eq":
         return p["flags"].get(cond["flag"]) == cond.get("value")
     if t == "has_tag":
-        return has_all(p["tags"], cond.get("value"))
+        required = canonicalize_tag_value(cond.get("value"))
+        player_tags = set(canonicalize_tag_list(p["tags"]))
+        if isinstance(required, list):
+            return all(r in player_tags for r in required)
+        return required in player_tags
     if t == "has_trait":
         return has_all(p["traits"], cond.get("value"))
     if t == "rep_at_least":
@@ -97,9 +169,10 @@ def apply_effect(effect, state):
         p["flags"][effect["flag"]] = effect.get("value", True)
         print(f"[*] Flag {effect['flag']} set to {p['flags'][effect['flag']]}")
     elif t == "add_tag":
-        tg = effect["value"]
+        tg = canonical_tag(effect["value"])
         if tg not in p["tags"]:
             p["tags"].append(tg); print(f"[#] New Tag unlocked: {tg}")
+        p["tags"] = canonicalize_tag_list(p["tags"])
     elif t == "add_trait":
         tr = effect["value"]
         if tr not in p["traits"]:
@@ -115,6 +188,25 @@ def apply_effect(effect, state):
         goto = effect["target"]; print(f"[~] You are moved to '{goto}'."); state.current_node = goto
     elif t == "end_game":
         p["flags"]["__ending__"] = effect.get("value","Unnamed Ending")
+    elif t == "unlock_start":
+        start_id = effect.get("value")
+        if not start_id:
+            return
+        unlocked = state.profile.setdefault("unlocked_starts", [])
+        if start_id not in unlocked:
+            unlocked.append(start_id)
+            save_profile(state.profile, state.profile_path)
+            title = get_start_title(state.world, start_id)
+            print(f"[#] Origin unlocked: {title}")
+    elif t == "grant_legacy_tag":
+        legacy = canonical_tag(effect.get("value"))
+        if not legacy:
+            return
+        tags = state.profile.setdefault("legacy_tags", [])
+        if legacy not in tags:
+            tags.append(legacy)
+            save_profile(state.profile, state.profile_path)
+            print(f"[#] Legacy Tag granted: {legacy}")
 
 def apply_effects(effects, state):
     for eff in effects or []:
@@ -123,9 +215,9 @@ def apply_effects(effects, state):
 # ---------- Loop ----------
 def list_choices(node, state):
     visible = []
-    for idx, ch in enumerate(node.get("choices", []), start=1):
+    for ch in node.get("choices", []):
         if meets_condition(ch.get("condition"), state):
-            visible.append((idx, ch))
+            visible.append(ch)
     return visible
 
 def render_node(node, state):
@@ -138,25 +230,35 @@ def render_node(node, state):
     print("\n" + state.summary())
     print("-"*80)
     visible = list_choices(node, state)
-    for idx, ch in visible:
+    for idx, ch in enumerate(visible, start=1):
         print(f"  {idx}. {ch.get('text', f'Choice {idx}')}")
     if state.current_node not in state.world.get("endings", {}):
         print("  S. Save    L. Load    I. Inventory    T. Tags/Traits    Q. Quit")
     return visible
 
-def pick_start(world):
+def pick_start(world, profile):
     starts = world.get("starts", [])
-    if not starts:
-        return "start", []
+    unlocked_ids = set(profile.get("unlocked_starts", []))
+    available = []
+    for s in starts:
+        start_id = s.get("id") or s.get("node")
+        if s.get("locked") and start_id not in unlocked_ids:
+            continue
+        available.append((start_id, s))
+    if not available:
+        return "start", [], None
     print("Choose your origin:")
-    for i, s in enumerate(starts, start=1):
-        print(f"  {i}. {s.get('title','Start')}  -> node '{s['node']}' | tags {s.get('tags',[])}")
+    for i, (sid, s) in enumerate(available, start=1):
+        tags = canonicalize_tag_list(s.get("tags", []))
+        print(f"  {i}. {s.get('title','Start')}  -> node '{s['node']}' | tags {tags}")
     while True:
         sel = input("> ").strip().lower()
         if sel.isdigit():
             i = int(sel)
-            if 1 <= i <= len(starts):
-                return starts[i-1]["node"], starts[i-1].get("tags", [])
+            if 1 <= i <= len(available):
+                sid, start = available[i-1]
+                tags = canonicalize_tag_list(start.get("tags", []))
+                return start["node"], tags, sid
         print("Pick a valid number.")
 
 def save_game(state, path="savegame.json"):
@@ -176,6 +278,8 @@ def load_game(state, path="savegame.json"):
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
     state.player = data["player"]
+    state.player.setdefault("tags", [])
+    state.player["tags"] = canonicalize_tag_list(state.player["tags"])
     state.current_node = data["current_node"]
     state.history = data["history"]
     state.start_id = data.get("start_id")
@@ -184,7 +288,8 @@ def load_game(state, path="savegame.json"):
 def main():
     world_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_WORLD_PATH
     world = load_world(world_path)
-    state = GameState(world)
+    profile = load_profile(PROFILE_PATH)
+    state = GameState(world, profile, PROFILE_PATH)
 
     print(f"=== {world['title']} ===")
     state.player["name"] = input("Name your character: ").strip() or "Traveler"
@@ -194,12 +299,13 @@ def main():
         state.player["rep"][fac] = 0
 
     # Pick a start and seed starting tags
-    start, start_tags = pick_start(world)
-    state.current_node = start
-    state.start_id = start
-    for t in start_tags:
+    start_node, start_tags, start_id = pick_start(world, profile)
+    state.current_node = start_node
+    state.start_id = start_id or start_node
+    for t in canonicalize_tag_list(start_tags):
         if t not in state.player["tags"]:
             state.player["tags"].append(t)
+    state.player["tags"] = canonicalize_tag_list(state.player["tags"])
 
     while True:
         node_id = state.current_node
@@ -235,7 +341,7 @@ def main():
         if not (1 <= idx <= len(visible)):
             print("Pick a valid choice number."); continue
 
-        _, ch = visible[idx-1]
+        ch = visible[idx-1]
         apply_effects(ch.get("effects"), state)
         if "__ending__" in state.player["flags"]:
             print(f"\n*** Ending reached: {state.player['flags']['__ending__']} ***"); break

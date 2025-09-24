@@ -1,21 +1,24 @@
 {
-    "title": "Patchwork Isles \u2014 Guest-Law Prelude",
+    "title": "Patchwork Isles — Guest-Law Prelude",
     "factions": [
-        "Wind Choirs",
-        "Root Court",
-        "Prism Guild",
-        "Freehands"
+        "Aeol Nests",
+        "Root Assembly",
+        "Prism Cartel",
+        "Freehands",
+        "Quiet Ledger"
     ],
     "starts": [
         {
-            "title": "Wind Choir Envoy",
+            "id": "aeol_envoy",
+            "title": "Aeol Envoy",
             "node": "sky_docks",
             "tags": [
-                "Diplomat",
+                "Emissary",
                 "Resonant"
             ]
         },
         {
+            "id": "freehands_skyrunner",
             "title": "Freehands Skyrunner",
             "node": "sky_docks",
             "tags": [
@@ -24,12 +27,35 @@
             ]
         },
         {
-            "title": "Root Court Scribe",
+            "id": "root_scribe",
+            "title": "Root Assembly Scribe",
             "node": "sky_docks",
             "tags": [
                 "Archivist",
                 "Weaver"
             ]
+        },
+        {
+            "id": "moon_eel_suburb",
+            "title": "Moon-Eel Suburb",
+            "locked_title": "Moon-Eel Suburb (Locked)",
+            "node": "moon_eel_intro",
+            "tags": [
+                "Sneaky",
+                "Healer"
+            ],
+            "locked": true
+        },
+        {
+            "id": "storm_rail",
+            "title": "Storm Rail Mooring",
+            "locked_title": "Storm Rail Mooring (Locked)",
+            "node": "storm_rail_intro",
+            "tags": [
+                "Scout",
+                "Resonant"
+            ],
+            "locked": true
         }
     ],
     "endings": {
@@ -39,18 +65,18 @@
     "nodes": {
         "sky_docks": {
             "title": "Sky-Spliced Docks",
-            "text": "Stormglass piers sway above the mist; signal-kites rattle as customs officers chant the day's winds. Cargo cranes screech while travelers queue behind glowing lattice gates.",
+            "text": "Stormglass piers sway above the mist; signal-kites rattle as Aeol Nests wardens chant the day's winds. Prism Cartel runners hustle cargo while seed-compass couriers flash Startways sigils.",
             "choices": [
                 {
-                    "text": "(Diplomat) Flash envoy seals to the warden for priority clearance.",
+                    "text": "(Emissary) Flash envoy seals to the Aeol warden for priority clearance.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Diplomat"
+                        "value": "Emissary"
                     },
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Wind Choirs",
+                            "faction": "Aeol Nests",
                             "value": 1
                         },
                         {
@@ -86,7 +112,7 @@
                         },
                         {
                             "type": "rep_delta",
-                            "faction": "Root Court",
+                            "faction": "Root Assembly",
                             "value": 1
                         }
                     ],
@@ -121,23 +147,34 @@
                         }
                     ],
                     "target": "root_tangle_market"
+                },
+                {
+                    "text": "Follow a seed-compass courier toward the Startways Nexus.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "startways_access",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
                 }
             ]
         },
         "root_tangle_market": {
-            "title": "Root Court Market",
-            "text": "Living terraces coil around the courthouse tree, thrumming with petitioners and spice-sellers. Songbirds carry summaries of new rulings from branch to branch.",
+            "title": "Root Assembly Market",
+            "text": "Living terraces coil around the Assembly tree, thrumming with petitioners and spice-sellers. Songbirds carry living-law updates from branch to branch.",
             "choices": [
                 {
-                    "text": "(Judge) Audit the travel ledgers to secure a formal hearing slot.",
+                    "text": "(Arbiter) Audit the travel ledgers to secure a formal hearing slot.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Judge"
+                        "value": "Arbiter"
                     },
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Root Court",
+                            "faction": "Root Assembly",
                             "value": 1
                         },
                         {
@@ -157,7 +194,7 @@
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Root Court",
+                            "faction": "Root Assembly",
                             "value": 1
                         },
                         {
@@ -222,11 +259,11 @@
             ]
         },
         "prism_galleria": {
-            "title": "Prism Guild Galleria",
-            "text": "Mirrored arcades refract the afternoon into ribbons while guild stewards trade favors under crystal awnings. Hovering heliostats hum as apprentices tune their beams.",
+            "title": "Prism Cartel Galleria",
+            "text": "Mirrored arcades refract the afternoon into ribbons while Cartel stewards trade favors under crystal awnings. Hovering heliostats hum as apprentices tune their beams.",
             "choices": [
                 {
-                    "text": "(Tinkerer) Resequence a cracked heliostat for guild credit.",
+                    "text": "(Tinkerer) Resequence a cracked heliostat for Cartel credit.",
                     "condition": {
                         "type": "has_tag",
                         "value": "Tinkerer"
@@ -234,7 +271,7 @@
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Prism Guild",
+                            "faction": "Prism Cartel",
                             "value": 1
                         },
                         {
@@ -260,11 +297,11 @@
                     "target": "luminous_grotto"
                 },
                 {
-                    "text": "Sign a guild marker pledging future service for elevator access.",
+                    "text": "Sign a Cartel marker pledging future service for elevator access.",
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Prism Guild",
+                            "faction": "Prism Cartel",
                             "value": -1
                         },
                         {
@@ -299,7 +336,7 @@
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Prism Guild",
+                            "faction": "Prism Cartel",
                             "value": 1
                         }
                     ],
@@ -309,13 +346,13 @@
         },
         "guestlaw_chamber": {
             "title": "Guest-Law Chamber",
-            "text": "Root-braided benches cradle envoys beneath a canopy of verdict sigils. Voices resonate through living wood as the court convenes a pivotal hearing.",
+            "text": "Root-braided benches cradle envoys beneath a canopy of verdict sigils. Voices resonate through living wood as the Assembly convenes a pivotal hearing.",
             "choices": [
                 {
-                    "text": "(Judge) Ratify the guest-law compact for all hubs.",
+                    "text": "(Arbiter) Ratify the guest-law compact for all hubs.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Judge"
+                        "value": "Arbiter"
                     },
                     "effects": [
                         {
@@ -344,11 +381,11 @@
                     "target": "ending_guestlaw"
                 },
                 {
-                    "text": "Defer the hearing to rally Prism Guild support.",
+                    "text": "Defer the hearing to rally Prism Cartel support.",
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Prism Guild",
+                            "faction": "Prism Cartel",
                             "value": 1
                         }
                     ],
@@ -363,7 +400,7 @@
                     "effects": [
                         {
                             "type": "rep_delta",
-                            "faction": "Root Court",
+                            "faction": "Root Assembly",
                             "value": 1
                         },
                         {
@@ -498,6 +535,216 @@
         "ending_guestlaw": {
             "title": "Names Written in Wood",
             "text": "Guest-law sigils pulse across the hubs as new accords take root."
+        },
+        "startways_nexus": {
+            "title": "Startways Nexus",
+            "text": "Doorways bristle from a colossal seed-compass suspended over the void. Brass gimbals swivel as routes align, and distant hubs flicker within each arch.",
+            "choices": [
+                {
+                    "text": "Consult the route steward perched on the compass stem.",
+                    "target": "nexus_steward"
+                },
+                {
+                    "text": "Study the Moon-Eel archway as tides lap across its frame.",
+                    "target": "nexus_moon_eel_trial"
+                },
+                {
+                    "text": "Climb the storm-rail dais that angles into roaring sky.",
+                    "target": "nexus_storm_trial"
+                },
+                {
+                    "text": "Step through the Root Assembly promenade door.",
+                    "target": "root_tangle_market"
+                },
+                {
+                    "text": "Follow the prism-lit corridor toward the Cartel galleria.",
+                    "target": "prism_galleria"
+                },
+                {
+                    "text": "Return along the tether to the Aeol moorings.",
+                    "target": "sky_docks"
+                }
+            ]
+        },
+        "nexus_steward": {
+            "title": "Quiet Ledger Steward",
+            "text": "A Quiet Ledger scribe polishes bronze seed-tokens, charting balances owed for each route. They offer whispered summaries of distant starts.",
+            "choices": [
+                {
+                    "text": "Ask about the Moon-Eel Suburb's tides.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "moon_eel_hint",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                },
+                {
+                    "text": "Ask about the storm-rail moorings above the canyons.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_rail_hint",
+                            "value": true
+                        }
+                    ],
+                    "target": "startways_nexus"
+                },
+                {
+                    "text": "Thank the steward and study the compass again.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "nexus_moon_eel_trial": {
+            "title": "Moon-Eel Archway",
+            "text": "Pearlescent ribs rise from a suspended tide-pool, the arch breathing with the pulse of a slumbering leviathan. Each swell reveals glimpses of aquatic tenements.",
+            "choices": [
+                {
+                    "text": "(Sneaky) Slip between the tidal pulses and trace the hidden current.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Sneaky"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "moon_eel_scouted",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_moon_eel_reward"
+                },
+                {
+                    "text": "(Healer) Hum a tide-mending hymn to soothe the arch's restlessness.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "moon_eel_soothed",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_moon_eel_reward"
+                },
+                {
+                    "text": "Let the arch settle and step back toward the compass.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "nexus_moon_eel_reward": {
+            "title": "Moon-Eel Suburb Echo",
+            "text": "Cool brine spirals up your arms as ribcage homes ignite with lanterns. Canal-keepers beckon from within the leviathan's bones, promising sanctuary for the subtle and the gentle.",
+            "on_enter": [
+                {
+                    "type": "unlock_start",
+                    "value": "moon_eel_suburb"
+                },
+                {
+                    "type": "grant_legacy_tag",
+                    "value": "Tide-Singer"
+                }
+            ],
+            "choices": [
+                {
+                    "text": "Let the vision fade and mark the route for later.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "nexus_storm_trial": {
+            "title": "Storm-Rail Dais",
+            "text": "A skeletal platform spins in captured gale-force winds. Rails flare with static as canyon drafts scream through stormglass vanes.",
+            "choices": [
+                {
+                    "text": "(Resonant) Sing a countercurrent to anchor the rail's frequency.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_rail_tuned",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_storm_reward"
+                },
+                {
+                    "text": "(Scout) Chart the gust vectors and leap when the gale dips.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_rail_mapped",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_storm_reward"
+                },
+                {
+                    "text": "Descend before the winds wrench the dais apart.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "nexus_storm_reward": {
+            "title": "Storm Rail Vista",
+            "text": "You feel the thin air bite as mooring-spires arc above roaring canyons. Wind-rail sailors salute you, neon pennants snapping while storm engines glow.",
+            "on_enter": [
+                {
+                    "type": "unlock_start",
+                    "value": "storm_rail"
+                },
+                {
+                    "type": "grant_legacy_tag",
+                    "value": "Storm-Conductor"
+                }
+            ],
+            "choices": [
+                {
+                    "text": "Record the path and let the winds calm.",
+                    "target": "startways_nexus"
+                }
+            ]
+        },
+        "moon_eel_intro": {
+            "title": "Moon-Eel Suburb",
+            "text": "Aquatic tenements cling inside a moon-eel's ribcage, their windows pulsing with low tide glow. Residents ferry messages along bubble elevators and whisper of Startways favors.",
+            "choices": [
+                {
+                    "text": "Slip along canal spines toward the Startways Nexus.",
+                    "target": "startways_nexus"
+                },
+                {
+                    "text": "Navigate the flood channels toward the luminous grotto.",
+                    "target": "luminous_grotto"
+                }
+            ]
+        },
+        "storm_rail_intro": {
+            "title": "Storm Rail Mooring",
+            "text": "Wind-rail moorings straddle a canyon mouth, each rail humming with charged gusts. Aeol riggers trade gust scripts while Freehands couriers lash down cargo.",
+            "choices": [
+                {
+                    "text": "Ride the wind-rail down to the Sky-Spliced Docks.",
+                    "target": "sky_docks"
+                },
+                {
+                    "text": "Follow the compass line back to the Startways Nexus.",
+                    "target": "startways_nexus"
+                }
+            ]
         }
     }
 }
