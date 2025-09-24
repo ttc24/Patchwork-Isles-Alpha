@@ -1,0 +1,329 @@
+{
+  "title": "Prism-Tide Realms \u2014 Minimal Tag/Trait Demo",
+  "factions": [
+    "Wind Choirs",
+    "Root Court",
+    "Prism Guild",
+    "Freehands"
+  ],
+  "starts": [
+    {
+      "title": "Sky-Poet Spy",
+      "node": "zayala_docks",
+      "tags": [
+        "Sneaky",
+        "Resonant"
+      ]
+    },
+    {
+      "title": "Root Diplomat's Kid",
+      "node": "weald_gate",
+      "tags": [
+        "Diplomat",
+        "Weaver"
+      ]
+    },
+    {
+      "title": "Lens-Healer Courier",
+      "node": "mirror_outpost",
+      "tags": [
+        "Healer",
+        "Lumenar"
+      ]
+    }
+  ],
+  "endings": {
+    "ending_escape": "Slip the blockade via Hidden Docks.",
+    "ending_guestlaw": "Guest-law precedent codified across hubs."
+  },
+  "nodes": {
+    "zayala_docks": {
+      "title": "Zayala \u2014 Floating Docks",
+      "text": "Lanterns paint the tide with amber. A toll-warden taps a color lens; patrol flags snap.",
+      "choices": [
+        {
+          "text": "(Diplomat) Invoke guest-law precedent.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Diplomat"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Wind Choirs",
+              "value": 1
+            }
+          ],
+          "target": "bazaar"
+        },
+        {
+          "text": "(Sneaky) Time the gusts and ghost the gate.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Sneaky"
+          },
+          "effects": [],
+          "target": "bazaar"
+        },
+        {
+          "text": "(Tagless) Pay the toll with a favor.",
+          "condition": {
+            "type": "has_item",
+            "value": "favor"
+          },
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "favor"
+            }
+          ],
+          "target": "bazaar"
+        }
+      ]
+    },
+    "bazaar": {
+      "title": "Lighthouse Bazaar",
+      "text": "Stalls whisper with mirrored glass and rope-knots. A wind-organ gallery crowns the ridge.",
+      "choices": [
+        {
+          "text": "(Resonant) Perform the guest chord; earn a docket.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Resonant"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Wind Choirs",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "has_guest_docket",
+              "value": true
+            }
+          ],
+          "target": "hidden_docks"
+        },
+        {
+          "text": "(Archivist) Decode mosaic notes; get a route overlay.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Archivist"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "route overlay"
+            }
+          ],
+          "target": "hidden_docks"
+        },
+        {
+          "text": "Ask for mentorship (unlock Judge tag).",
+          "effects": [
+            {
+              "type": "add_tag",
+              "value": "Judge"
+            }
+          ],
+          "target": "hidden_docks"
+        }
+      ]
+    },
+    "hidden_docks": {
+      "title": "Hidden Docks",
+      "text": "Moonlight glitters on wet planks. A skiff lantern blinks a code.",
+      "choices": [
+        {
+          "text": "(Cartographer) Navigate the shoals to escape.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Cartographer"
+          },
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Hidden Docks Escape"
+            }
+          ],
+          "target": "ending_escape"
+        },
+        {
+          "text": "Present the guest docket for escort.",
+          "condition": {
+            "type": "flag_eq",
+            "flag": "has_guest_docket",
+            "value": true
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Wind Choirs",
+              "value": 1
+            },
+            {
+              "type": "end_game",
+              "value": "Hidden Docks Escape"
+            }
+          ],
+          "target": "ending_escape"
+        },
+        {
+          "text": "Trade route overlay for a smuggler ride.",
+          "condition": {
+            "type": "has_item",
+            "value": "route overlay"
+          },
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "route overlay"
+            },
+            {
+              "type": "end_game",
+              "value": "Hidden Docks Escape"
+            }
+          ],
+          "target": "ending_escape"
+        }
+      ]
+    },
+    "weald_gate": {
+      "title": "Juniperweald Gate",
+      "text": "Living wood braids into an arch. A Root Court clerk signs a welcome in silent grace.",
+      "choices": [
+        {
+          "text": "(Weaver + Diplomat) Bind a guest-law truce (gain trait People-Reader).",
+          "condition": {
+            "type": "has_tag",
+            "value": [
+              "Weaver",
+              "Diplomat"
+            ]
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Root Court",
+              "value": 1
+            },
+            {
+              "type": "add_trait",
+              "value": "People-Reader"
+            }
+          ],
+          "target": "root_hearing"
+        },
+        {
+          "text": "(Archivist) File precedents to schedule a hearing.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Archivist"
+          },
+          "effects": [],
+          "target": "root_hearing"
+        },
+        {
+          "text": "Study with the clerk (unlock Judge).",
+          "effects": [
+            {
+              "type": "add_tag",
+              "value": "Judge"
+            }
+          ],
+          "target": "root_hearing"
+        }
+      ]
+    },
+    "root_hearing": {
+      "title": "Root Court Hearing",
+      "text": "Trees hum as witnesses. A verdict ripples through kitchens and contracts.",
+      "choices": [
+        {
+          "text": "(Judge) Codify guest-law precedent (ENDING).",
+          "condition": {
+            "type": "has_tag",
+            "value": "Judge"
+          },
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Guest-Law Precedent"
+            }
+          ],
+          "target": "ending_guestlaw"
+        },
+        {
+          "text": "Pledge to rebuild relations with Freehands (+Rep).",
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Freehands",
+              "value": 1
+            }
+          ],
+          "target": "bazaar"
+        }
+      ]
+    },
+    "mirror_outpost": {
+      "title": "Mirror Steppe Outpost",
+      "text": "Black glass plains; lens-beasts graze on light. A Prism Guild agent offers a contract.",
+      "choices": [
+        {
+          "text": "(Lumenar) Mend a cracked lens; gain trust & a prism shard.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Lumenar"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Guild",
+              "value": 1
+            },
+            {
+              "type": "add_item",
+              "value": "prism shard"
+            }
+          ],
+          "target": "bazaar"
+        },
+        {
+          "text": "(Beastfriend) Calm a lens-calf; get a passage token.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Beastfriend"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "passage token"
+            }
+          ],
+          "target": "bazaar"
+        },
+        {
+          "text": "Sign the rough contract (+Rep Prism Guild).",
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Guild",
+              "value": 1
+            }
+          ],
+          "target": "bazaar"
+        }
+      ]
+    },
+    "ending_escape": {
+      "title": "Open Water",
+      "text": "Sails bloom. The isles shrink to stars on the sea."
+    },
+    "ending_guestlaw": {
+      "title": "Names Written in Wood",
+      "text": "Guest-law echoes across the hubs."
+    }
+  }
+}
