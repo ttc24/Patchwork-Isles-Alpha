@@ -74,6 +74,7 @@ def default_profile():
         "unlocked_starts": [],
         "legacy_tags": [],
         "seen_endings": [],
+        "flags": {},
     }
 
 
@@ -87,6 +88,7 @@ def load_profile(path=PROFILE_PATH):
     data.setdefault("unlocked_starts", [])
     data.setdefault("legacy_tags", [])
     data.setdefault("seen_endings", [])
+    data.setdefault("flags", {})
 
     unlocked = []
     for sid in data["unlocked_starts"]:
@@ -387,6 +389,15 @@ def meets_condition(cond, state):
         factions = factions or state.world.get("factions", [])
         met = sum(1 for fac in factions if p["rep"].get(fac, 0) >= value)
         return met >= count
+    if t == "profile_flag_eq":
+        flags = state.profile.get("flags", {})
+        return flags.get(cond.get("flag")) == cond.get("value")
+    if t == "profile_flag_is_true":
+        flags = state.profile.get("flags", {})
+        return bool(flags.get(cond.get("flag")))
+    if t == "profile_flag_is_false":
+        flags = state.profile.get("flags", {})
+        return not bool(flags.get(cond.get("flag")))
     return False
 
 # ---------- Effects (minimal set) ----------
@@ -440,6 +451,19 @@ def apply_effect(effect, state):
             title = get_start_title(state.world, start_id)
             print(f"[#] Origin unlocked: {title}")
         merge_profile_starts(state.world, state.profile)
+    elif t == "set_profile_flag":
+        flag = effect.get("flag")
+        if not flag:
+            return
+        flags = state.profile.setdefault("flags", {})
+        value = effect.get("value", True)
+        previous = flags.get(flag)
+        if previous != value:
+            flags[flag] = value
+            save_profile(state.profile, state.profile_path)
+            print(f"[Profile] {flag} set to {value}.")
+        else:
+            flags[flag] = value
     elif t == "grant_legacy_tag":
         legacy = canonical_tag(effect.get("value"))
         if not legacy:

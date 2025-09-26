@@ -53,7 +53,7 @@ def str_or_str_list(value: Any) -> bool:
 
 
 def simple_value(value: Any) -> bool:
-    return isinstance(value, (str, int, bool))
+    return value is None or isinstance(value, (str, int, bool))
 
 
 def normalize_nodes(raw_nodes: Any, ctx: ValidationContext) -> Dict[str, Dict[str, Any]]:
@@ -118,6 +118,9 @@ def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> 
         "has_trait",
         "rep_at_least",
         "rep_at_least_count",
+        "profile_flag_eq",
+        "profile_flag_is_true",
+        "profile_flag_is_false",
     }:
         ctx.add(f"{context}: unsupported condition type '{cond_type}'.")
         return
@@ -133,6 +136,17 @@ def validate_condition(condition: Any, context: str, ctx: ValidationContext) -> 
             ctx.add(f"{context}: 'flag_eq' requires a non-empty string 'flag'.")
         if not simple_value(value):
             ctx.add(f"{context}: 'flag_eq' requires a simple literal 'value'.")
+    elif cond_type == "profile_flag_eq":
+        flag = condition.get("flag")
+        value = condition.get("value")
+        if not is_non_empty_str(flag):
+            ctx.add(f"{context}: 'profile_flag_eq' requires a non-empty string 'flag'.")
+        if not simple_value(value):
+            ctx.add(f"{context}: 'profile_flag_eq' requires a simple literal 'value'.")
+    elif cond_type in {"profile_flag_is_true", "profile_flag_is_false"}:
+        flag = condition.get("flag")
+        if not is_non_empty_str(flag):
+            ctx.add(f"{context}: '{cond_type}' requires a non-empty string 'flag'.")
     elif cond_type in {"has_tag", "has_trait"}:
         value = condition.get("value")
         if not str_or_str_list(value):
@@ -185,6 +199,7 @@ def validate_effect(
         "end_game",
         "unlock_start",
         "grant_legacy_tag",
+        "set_profile_flag",
     }:
         ctx.add(f"{context}: unsupported effect type '{effect_type}'.")
         return
@@ -201,6 +216,13 @@ def validate_effect(
         value = effect.get("value")
         if not is_non_empty_str(value):
             ctx.add(f"{context}: 'grant_legacy_tag' requires a non-empty string 'value'.")
+    elif effect_type == "set_profile_flag":
+        flag = effect.get("flag")
+        value = effect.get("value", True)
+        if not is_non_empty_str(flag):
+            ctx.add(f"{context}: 'set_profile_flag' requires a non-empty string 'flag'.")
+        if not simple_value(value):
+            ctx.add(f"{context}: 'set_profile_flag' optional 'value' must be a simple literal.")
     elif effect_type == "set_flag":
         flag = effect.get("flag")
         if not is_non_empty_str(flag):
