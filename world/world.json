@@ -8299,12 +8299,12 @@
                     "target": "starfallen_orchard_cartography_canopy"
                 },
                 {
-                    "text": "(Resonant+Cartographer) Overlay songlines and root maps to open a harmonic passage.",
+                    "text": "(Cartographer+Glasswright) Align mirrored root maps to open a harmonic passage.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
-                            "Resonant",
-                            "Cartographer"
+                            "Cartographer",
+                            "Glasswright"
                         ]
                     },
                     "effects": [
@@ -9024,6 +9024,11 @@
                         },
                         {
                             "type": "set_flag",
+                            "flag": "story_graft_borrowed",
+                            "value": false
+                        },
+                        {
+                            "type": "set_flag",
                             "flag": "orchard_true_name_planted",
                             "value": true
                         },
@@ -9059,11 +9064,22 @@
             "text": "Lanternfruit dim to a gentle glow as keepers bandage your new graft, weaving its pulse into yours. Cooling vapors and annotated ledgers surround a circle of resting orchardists.",
             "choices": [
                 {
-                    "text": "(Story-Graft) Borrow a memory about the commons steward to guide your next move.",
-                    "condition": {
-                        "type": "has_item",
-                        "value": "story_graft_charge"
-                    },
+                    "text": "(Story-Graft) Spend your graft charge to borrow a memory about the commons steward.",
+                    "condition": [
+                        {
+                            "type": "has_trait",
+                            "value": "Story-Graft"
+                        },
+                        {
+                            "type": "has_item",
+                            "value": "story_graft_charge"
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "story_graft_borrowed",
+                            "value": false
+                        }
+                    ],
                     "effects": [
                         {
                             "type": "remove_item",
