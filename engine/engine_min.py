@@ -8,6 +8,7 @@ Tag/Trait CYOA Engine — Minimal
 Usage: python3 engine_min.py [world.json]
 """
 
+import hashlib
 import json
 import os
 import sys
@@ -17,9 +18,11 @@ from pathlib import Path
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from engine.options_menu import options_menu
+    from engine.save_manager import SaveError, SaveManager
     from engine.settings import Settings, load_settings
 else:
     from .options_menu import options_menu
+    from .save_manager import SaveError, SaveManager
     from .settings import Settings, load_settings
 
 DEFAULT_WORLD_PATH = "world/world.json"
@@ -133,7 +136,16 @@ def save_profile(profile, path=PROFILE_PATH):
 
 
 class GameState:
-    def __init__(self, world, profile, profile_path, settings=None):
+    def __init__(
+        self,
+        world,
+        profile,
+        profile_path,
+        settings=None,
+        *,
+        world_seed=None,
+        active_area=None,
+    ):
         self.world = world
         self.player = {
             "name": None,
@@ -141,6 +153,7 @@ class GameState:
             "tags": [],           # e.g., ["Sneaky","Diplomat"]
             "traits": [],         # e.g., ["People-Reader"]
             "inventory": [],
+            "resources": {},      # e.g., {"gold": 5}
             "flags": {},          # story state
             "rep": {},            # faction -> -2..+2
         }
@@ -154,10 +167,13 @@ class GameState:
         self.window_mode = "windowed"
         self.vsync_enabled = True
         self.audio_levels = {"master": 1.0, "music": 1.0, "sfx": 1.0}
+        self.world_seed = world_seed if world_seed is not None else 0
+        self.active_area = active_area or world.get("title") or "Unknown"
 
         if settings is None:
             settings = Settings()
         self.apply_settings(settings)
+        self.ensure_consistency()
 
     def rep_str(self):
         if not self.player["rep"]:
@@ -170,8 +186,15 @@ class GameState:
         traits = ", ".join(self.player["traits"]) or "—"
         flags = ", ".join(f"{k}={v}" for k,v in sorted(self.player["flags"].items())) or "—"
         rep = self.rep_str()
-        return (f"HP:{self.player['hp']} | TAGS:[{tags}] | TRAITS:[{traits}] | "
-                f"REP: {rep} | INV: {inv} | FLAGS: {flags}")
+        resources = self.player.get("resources", {})
+        if isinstance(resources, dict) and resources:
+            res = ", ".join(f"{k}:{v}" for k, v in sorted(resources.items()))
+        else:
+            res = "—"
+        return (
+            f"HP:{self.player['hp']} | TAGS:[{tags}] | TRAITS:[{traits}] | REP: {rep} | "
+            f"INV: {inv} | RES: {res} | FLAGS: {flags}"
+        )
 
     def apply_settings(self, settings):
         if isinstance(settings, Settings):
@@ -188,6 +211,70 @@ class GameState:
             "music": sanitized.audio_music,
             "sfx": sanitized.audio_sfx,
         }
+
+    def ensure_consistency(self):
+        player = self.player or {}
+        if not isinstance(player, dict):
+            player = {}
+        player.setdefault("name", None)
+        player.setdefault("hp", 10)
+        player.setdefault("tags", [])
+        player.setdefault("traits", [])
+        player.setdefault("inventory", [])
+        player.setdefault("resources", {})
+        player.setdefault("flags", {})
+        player.setdefault("rep", {})
+        if not isinstance(player["inventory"], list):
+            player["inventory"] = list(player["inventory"])
+        if not isinstance(player["tags"], list):
+            player["tags"] = list(player["tags"])
+        if not isinstance(player["traits"], list):
+            player["traits"] = list(player["traits"])
+        if not isinstance(player["flags"], dict):
+            player["flags"] = {}
+        if not isinstance(player["rep"], dict):
+            player["rep"] = {}
+        if not isinstance(player["resources"], dict):
+            player["resources"] = {}
+        player["tags"] = canonicalize_tag_list(player.get("tags", []))
+        self.player = player
+
+        normalized_history = []
+        if isinstance(self.history, list):
+            for entry in self.history:
+                if isinstance(entry, dict):
+                    origin = entry.get("from")
+                    target = entry.get("to")
+                    choice = entry.get("choice")
+                elif isinstance(entry, (list, tuple)) and len(entry) >= 3:
+                    origin, target, choice = entry[:3]
+                else:
+                    continue
+                normalized_history.append(
+                    {
+                        "from": origin,
+                        "to": target,
+                        "choice": choice,
+                    }
+                )
+        self.history = normalized_history
+        if not isinstance(self.start_id, str):
+            self.start_id = self.start_id or None
+        if not isinstance(self.active_area, str) or not self.active_area:
+            self.active_area = self.world.get("title") or "Unknown"
+        if not isinstance(self.world_seed, int):
+            try:
+                self.world_seed = int(self.world_seed)
+            except (TypeError, ValueError):
+                self.world_seed = 0
+
+    def record_transition(self, origin, target, choice_text):
+        entry = {
+            "from": origin,
+            "to": target,
+            "choice": choice_text,
+        }
+        self.history.append(entry)
 
 
 def apply_runtime_settings(state: GameState, new_settings: Settings, *, announce: bool = True) -> Settings:
@@ -404,8 +491,9 @@ def render_node(node, state):
         print(f"  {idx}. {ch.get('text', f'Choice {idx}')}")
     if state.current_node not in state.world.get("endings", {}):
         commands = [
-            "S. Save",
-            "L. Load",
+            "P. Pause",
+            "S. Quick Save",
+            "L. Quick Load",
             "I. Inventory",
             "T. Tags/Traits",
             "O. Options",
@@ -483,29 +571,83 @@ def pick_start(world, profile, open_options=None):
         else:
             print("Pick a valid number.")
 
-def save_game(state, path="savegame.json"):
-    data = {
-        "player": state.player,
-        "current_node": state.current_node,
-        "history": state.history,
-        "start_id": state.start_id,
-    }
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
-    print(f"[Saved] {path}")
+def show_slot_overview(save_manager):
+    slots = save_manager.list_slots()
+    if not slots:
+        print("No manual saves recorded yet.")
+        return
+    print("Available saves:")
+    for meta in slots:
+        details = []
+        if meta.player_name:
+            details.append(meta.player_name)
+        if meta.active_area:
+            details.append(f"@ {meta.active_area}")
+        if meta.saved_at:
+            details.append(meta.saved_at)
+        info = " ".join(details)
+        if info:
+            print(f"  - {meta.slot}: {info}")
+        else:
+            print(f"  - {meta.slot}")
 
-def load_game(state, path="savegame.json"):
-    if not os.path.exists(path):
-        print("[!] No save file found."); return False
-    with open(path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    state.player = data["player"]
-    state.player.setdefault("tags", [])
-    state.player["tags"] = canonicalize_tag_list(state.player["tags"])
-    state.current_node = data["current_node"]
-    state.history = data["history"]
-    state.start_id = data.get("start_id")
-    print(f"[Loaded] {path}"); return True
+
+def prompt_slot_name(action, save_manager):
+    show_slot_overview(save_manager)
+    raw = input(f"Enter slot name to {action} (blank to cancel): ").strip()
+    if not raw:
+        print(f"{action.title()} cancelled.")
+        return None
+    return raw
+
+
+def pause_menu(state, save_manager, open_options=None):
+    while True:
+        print("\n=== Pause Menu ===")
+        print("1. Save Game")
+        print("2. Load Game")
+        print("3. Quick Save")
+        print("4. Quick Load")
+        if open_options is not None:
+            print("5. Options")
+        print("R. Resume")
+        print("Q. Quit")
+        choice = input("> ").strip().lower()
+
+        if choice in {"r", "resume"}:
+            return "resume"
+        if choice in {"q", "quit"}:
+            return "quit"
+        if choice == "1":
+            slot = prompt_slot_name("save", save_manager)
+            if not slot:
+                continue
+            try:
+                save_manager.save(slot)
+            except SaveError as exc:
+                print(f"[!] {exc}")
+            continue
+        if choice == "2":
+            slot = prompt_slot_name("load", save_manager)
+            if not slot:
+                continue
+            try:
+                if save_manager.load(slot):
+                    return "loaded"
+            except SaveError as exc:
+                print(f"[!] {exc}")
+            continue
+        if choice == "3":
+            save_manager.save(save_manager.QUICK_SLOT, label="Quick Save")
+            continue
+        if choice == "4":
+            if save_manager.load(save_manager.QUICK_SLOT):
+                return "loaded"
+            continue
+        if choice == "5" and open_options is not None:
+            open_options()
+            continue
+        print("Pick a valid pause option.")
 
 def main():
     world_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_WORLD_PATH
@@ -513,7 +655,25 @@ def main():
     profile = load_profile(PROFILE_PATH)
     merge_profile_starts(world, profile)
     settings = load_settings()
-    state = GameState(world, profile, PROFILE_PATH, settings)
+    world_seed = world.get("seed") if isinstance(world, dict) else None
+    if isinstance(world_seed, str):
+        try:
+            world_seed = int(world_seed, 0)
+        except ValueError:
+            world_seed = None
+    if not isinstance(world_seed, int):
+        digest = hashlib.sha1(world_path.encode("utf-8")).hexdigest()
+        world_seed = int(digest[:8], 16)
+    active_area = world.get("title") if isinstance(world, dict) else "Unknown"
+    state = GameState(
+        world,
+        profile,
+        PROFILE_PATH,
+        settings,
+        world_seed=world_seed,
+        active_area=active_area,
+    )
+    save_manager = SaveManager(state)
 
     def open_options_menu():
         updated, changed = options_menu(
@@ -550,6 +710,8 @@ def main():
     if newly_applied:
         print(f"[#] Legacy Tags active this run: {', '.join(newly_applied)}")
 
+    save_manager.autosave()
+
     while True:
         node_id = state.current_node
         node = world["nodes"].get(node_id)
@@ -562,6 +724,8 @@ def main():
 
         visible = render_node(node, state)
 
+        save_manager.autosave()
+
         if node_id in world.get("endings", {}):
             ending_name = world["endings"][node_id]
             record_seen_ending(state, ending_name)
@@ -570,20 +734,32 @@ def main():
         choice = input("> ").strip().lower()
         if choice == "q":
             print("Goodbye!"); break
+        if choice == "p":
+            action = pause_menu(state, save_manager, open_options_menu)
+            if action == "quit":
+                print("Goodbye!"); break
+            if action == "loaded":
+                save_manager.autosave()
+            continue
         if choice == "i":
             print("Inventory:", ", ".join(state.player["inventory"]) or "Empty"); continue
         if choice == "t":
             print("Tags:", ", ".join(state.player["tags"]) or "—")
             print("Traits:", ", ".join(state.player["traits"]) or "—"); continue
         if choice == "s":
-            save_game(state); continue
+            try:
+                save_manager.save(save_manager.QUICK_SLOT, label="Quick Save")
+            except SaveError as exc:
+                print(f"[!] {exc}")
+            continue
         if choice == "l":
-            if load_game(state): continue
-            else: continue
+            if save_manager.load(save_manager.QUICK_SLOT):
+                save_manager.autosave()
+            continue
         if choice == "o":
             open_options_menu(); continue
         if not choice.isdigit():
-            print("Enter a number or S/L/I/T/O/Q."); continue
+            print("Enter a number or P/S/L/I/T/O/Q."); continue
         idx = int(choice)
         if not (1 <= idx <= len(visible)):
             print("Pick a valid choice number."); continue
@@ -597,7 +773,7 @@ def main():
         if not target:
             print("[!] Choice had no target; staying put."); continue
 
-        state.history.append((node_id, target, ch.get("text","choice")))
+        state.record_transition(node_id, target, ch.get("text","choice"))
         state.current_node = target
 
         if state.player["hp"] <= 0:
