@@ -1891,39 +1891,62 @@
         },
         "startways_nexus": {
             "title": "Startways Nexus",
-            "text": "Doorways bristle from a colossal seed-compass suspended over the void. Brass gimbals swivel as routes align, and distant hubs flicker within each arch.",
+            "text": "A colossal seed-compass suspends over the void, its gimbals swiveling as routes align and distant hubs flare within each arch.",
             "choices": [
                 {
-                    "text": "Consult the route steward perched on the compass stem.",
+                    "text": "(Ledger) Consult the route steward perched on the compass stem.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
                     "target": "nexus_steward"
                 },
                 {
-                    "text": "Study the Moon-Eel archway as tides lap across its frame.",
+                    "text": "(Tides) Study the Moon-Eel archway as tides lap across its frame.",
                     "target": "nexus_moon_eel_trial"
                 },
                 {
-                    "text": "Climb the storm-rail dais that angles into roaring sky.",
+                    "text": "(Gales) Climb the storm-rail dais that angles into roaring sky.",
                     "target": "nexus_storm_trial"
                 },
                 {
-                    "text": "Step through the Root Assembly promenade door.",
+                    "text": "(Roots) Step through the Root Assembly promenade door.",
                     "target": "root_tangle_market"
                 },
                 {
-                    "text": "Descend the sap-lit stairs toward the orrery-of-roots.",
+                    "text": "(Orrery) Descend the sap-lit stairs toward the orrery-of-roots.",
                     "target": "root_orrery_concourse"
                 },
                 {
-                    "text": "Follow the prism-lit corridor toward the Cartel galleria.",
+                    "text": "(Prism) Follow the prism-lit corridor toward the Cartel galleria.",
                     "target": "prism_galleria"
                 },
                 {
-                    "text": "Descend toward the Night Market of Shed Skins.",
+                    "text": "(Masks) Descend toward the Night Market of Shed Skins.",
                     "target": "shed_market_molting_gate"
                 },
                 {
-                    "text": "Return along the tether to the Aeol moorings.",
+                    "text": "(Updraft) Return along the tether to the Aeol moorings.",
                     "target": "sky_docks"
+                },
+                {
+                    "text": "(Envoy) Present cross-hub chits to convene a guest-law summit.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "guestlaw_summit_called",
+                            "value": true
+                        }
+                    ],
+                    "target": "guestlaw_chamber"
                 },
                 {
                     "text": "(Emissary) Convene a cross-hub summit in the guest-law chamber.",
@@ -1966,7 +1989,7 @@
                     "target": "saltglass_expanse"
                 },
                 {
-                    "text": "Spend a map sliver to align a mirror corridor into the Saltglass lanes.",
+                    "text": "(Offering) Spend a map sliver to align a mirror corridor into the Saltglass lanes.",
                     "condition": {
                         "type": "has_item",
                         "value": "map sliver"
@@ -1985,7 +2008,7 @@
                     "target": "saltglass_expanse"
                 },
                 {
-                    "text": "Surrender a windbone token for an updraft escort into the Cloud-Burrow.",
+                    "text": "(Escort) Surrender a windbone token for an updraft escort into the Cloud-Burrow.",
                     "condition": {
                         "type": "has_item",
                         "value": "windbone token"
@@ -2004,7 +2027,7 @@
                     "target": "cloud_burrow_threshold"
                 },
                 {
-                    "text": "(Aeol Nests 1+) Request a priority wind-rail from the steward.",
+                    "text": "(Aeol 1+) Request a priority wind-rail from the steward.",
                     "condition": {
                         "type": "rep_at_least",
                         "faction": "Aeol Nests",
@@ -2056,7 +2079,7 @@
             "text": "A Quiet Ledger scribe polishes bronze seed-tokens, charting balances owed for each route. They offer whispered summaries of distant starts.",
             "choices": [
                 {
-                    "text": "Ask about the Moon-Eel Suburb's tides.",
+                    "text": "(Tides) Ask about the Moon-Eel Suburb's tides.",
                     "effects": [
                         {
                             "type": "set_flag",
@@ -2067,7 +2090,7 @@
                     "target": "startways_nexus"
                 },
                 {
-                    "text": "Ask about the storm-rail moorings above the canyons.",
+                    "text": "(Gales) Ask about the storm-rail moorings above the canyons.",
                     "effects": [
                         {
                             "type": "set_flag",
@@ -2078,11 +2101,20 @@
                     "target": "startways_nexus"
                 },
                 {
-                    "text": "Thank the steward and study the compass again.",
+                    "text": "(Survey) Thank the steward and study the compass again.",
                     "target": "startways_nexus"
                 },
                 {
-                    "text": "Accept the ledgers and become the Keeper of Passways.",
+                    "text": "(Freehands 1+) Approve relief manifests and hitch a lift to their cache.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "target": "saltglass_freehands_cache"
+                },
+                {
+                    "text": "(Keeper) Accept the ledgers and become the Keeper of Passways.",
                     "condition": [
                         {
                             "type": "has_advanced_tag"
@@ -2138,7 +2170,7 @@
                     "target": "nexus_moon_eel_reward"
                 },
                 {
-                    "text": "Match your breath to the tide and step through as it ebbs.",
+                    "text": "(Calm) Match your breath to the tide and step through as it ebbs.",
                     "effects": [
                         {
                             "type": "set_flag",
@@ -2149,7 +2181,7 @@
                     "target": "nexus_moon_eel_reward"
                 },
                 {
-                    "text": "Let the arch settle and step back toward the compass.",
+                    "text": "(Retreat) Let the arch settle and step back toward the compass.",
                     "target": "startways_nexus"
                 }
             ]
@@ -2169,7 +2201,7 @@
             ],
             "choices": [
                 {
-                    "text": "Let the vision fade and mark the route for later.",
+                    "text": "(Mark) Let the vision fade and note the route for later.",
                     "target": "startways_nexus"
                 }
             ]
@@ -2185,6 +2217,11 @@
                         "value": "Resonant"
                     },
                     "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
                         {
                             "type": "set_flag",
                             "flag": "storm_rail_tuned",
@@ -2209,7 +2246,7 @@
                     "target": "nexus_storm_reward"
                 },
                 {
-                    "text": "Brace against the railing and edge forward between surges.",
+                    "text": "(Steady) Brace against the railing and edge forward between surges.",
                     "effects": [
                         {
                             "type": "set_flag",
@@ -2220,7 +2257,7 @@
                     "target": "nexus_storm_reward"
                 },
                 {
-                    "text": "Descend before the winds wrench the dais apart.",
+                    "text": "(Retreat) Descend before the winds wrench the dais apart.",
                     "target": "startways_nexus"
                 }
             ]
@@ -2240,7 +2277,7 @@
             ],
             "choices": [
                 {
-                    "text": "Record the path and let the winds calm.",
+                    "text": "(Chart) Record the path and let the winds calm.",
                     "target": "startways_nexus"
                 }
             ]
