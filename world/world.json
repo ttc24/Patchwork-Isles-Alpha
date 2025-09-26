@@ -6388,6 +6388,14 @@
                     "target": "amber_tides_funeral_armada"
                 },
                 {
+                    "text": "(Rememberer's Boon) Recall a mirrored wake chapter to host late arrivals without breaking the rite.",
+                    "condition": {
+                        "type": "has_trait",
+                        "value": "Rememberer's Boon"
+                    },
+                    "target": "amber_tides_mnemonic_harbor"
+                },
+                {
                     "text": "Lead the Living Wake, inviting travelers to depart within the rite itself.",
                     "condition": {
                         "type": "flag_eq",
