@@ -46,6 +46,7 @@ def default_profile():
     return {
         "unlocked_starts": [],
         "legacy_tags": [],
+        "seen_endings": [],
     }
 
 
@@ -58,10 +59,47 @@ def load_profile(path=PROFILE_PATH):
         data = json.load(f)
     data.setdefault("unlocked_starts", [])
     data.setdefault("legacy_tags", [])
-    data["unlocked_starts"] = list(dict.fromkeys(data["unlocked_starts"]))
+    data.setdefault("seen_endings", [])
+
+    unlocked = []
+    for sid in data["unlocked_starts"]:
+        if isinstance(sid, str) and sid not in unlocked:
+            unlocked.append(sid)
+    data["unlocked_starts"] = unlocked
+
     data["legacy_tags"] = canonicalize_tag_list(data["legacy_tags"])
+
+    seen = []
+    for ending in data["seen_endings"]:
+        if isinstance(ending, str) and ending not in seen:
+            seen.append(ending)
+    data["seen_endings"] = seen
+
     save_profile(data, path)
     return data
+
+
+def merge_profile_starts(world, profile):
+    starts = world.setdefault("starts", [])
+    if not isinstance(starts, list):
+        return
+
+    unlocked_ids = set(profile.get("unlocked_starts", []))
+    for entry in starts:
+        if not isinstance(entry, dict):
+            continue
+        sid = entry.get("id") or entry.get("node")
+        if sid in unlocked_ids:
+            entry.pop("locked", None)
+
+
+def record_seen_ending(state, ending_name):
+    if not ending_name:
+        return
+    seen = state.profile.setdefault("seen_endings", [])
+    if ending_name not in seen:
+        seen.append(ending_name)
+        save_profile(state.profile, state.profile_path)
 
 
 def save_profile(profile, path=PROFILE_PATH):
@@ -210,7 +248,8 @@ def apply_effect(effect, state):
     elif t == "teleport":
         goto = effect["target"]; print(f"[~] You are moved to '{goto}'."); state.current_node = goto
     elif t == "end_game":
-        p["flags"]["__ending__"] = effect.get("value","Unnamed Ending")
+        p["flags"]["__ending__"] = effect.get("value", "Unnamed Ending")
+        record_seen_ending(state, p["flags"]["__ending__"])
     elif t == "unlock_start":
         start_id = effect.get("value")
         if not start_id:
@@ -221,6 +260,7 @@ def apply_effect(effect, state):
             save_profile(state.profile, state.profile_path)
             title = get_start_title(state.world, start_id)
             print(f"[#] Origin unlocked: {title}")
+        merge_profile_starts(state.world, state.profile)
     elif t == "grant_legacy_tag":
         legacy = canonical_tag(effect.get("value"))
         if not legacy:
@@ -312,6 +352,7 @@ def main():
     world_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_WORLD_PATH
     world = load_world(world_path)
     profile = load_profile(PROFILE_PATH)
+    merge_profile_starts(world, profile)
     state = GameState(world, profile, PROFILE_PATH)
 
     print(f"=== {world['title']} ===")
@@ -330,6 +371,16 @@ def main():
             state.player["tags"].append(t)
     state.player["tags"] = canonicalize_tag_list(state.player["tags"])
 
+    legacy_tags = canonicalize_tag_list(profile.get("legacy_tags", []))
+    newly_applied = []
+    for t in legacy_tags:
+        if t not in state.player["tags"]:
+            state.player["tags"].append(t)
+            newly_applied.append(t)
+    state.player["tags"] = canonicalize_tag_list(state.player["tags"])
+    if newly_applied:
+        print(f"[#] Legacy Tags active this run: {', '.join(newly_applied)}")
+
     while True:
         node_id = state.current_node
         node = world["nodes"].get(node_id)
@@ -343,7 +394,9 @@ def main():
         visible = render_node(node, state)
 
         if node_id in world.get("endings", {}):
-            print(f"\n*** Ending reached: {world['endings'][node_id]} ***"); break
+            ending_name = world["endings"][node_id]
+            record_seen_ending(state, ending_name)
+            print(f"\n*** Ending reached: {ending_name} ***"); break
 
         choice = input("> ").strip().lower()
         if choice == "q":
@@ -377,7 +430,9 @@ def main():
         state.current_node = target
 
         if state.player["hp"] <= 0:
-            print("\n*** You have perished. Ending: 'A Short Tale' ***"); break
+            demise = "A Short Tale"
+            record_seen_ending(state, demise)
+            print(f"\n*** You have perished. Ending: '{demise}' ***"); break
 
 if __name__ == "__main__":
     try:
