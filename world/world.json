@@ -1060,7 +1060,7 @@
         },
         "root_orrery_registry": {
             "title": "Root Registry Tiers",
-            "text": "Brass-sheathed root clerks hum from loam-caked abaci, stamping living writs; one pulses through your palm, 'We feel urgency by soil-scent—steady yourself.'",
+            "text": "Brass-sheathed root clerks hum from loam-caked abaci, stamping living writs; one pulses through your palm, 'We feel urgency by soil-scent\u2014steady yourself.'",
             "choices": [
                 {
                     "text": "(Archivist) Compile the seasonal casework into a formal root-writ.",
@@ -1700,155 +1700,155 @@
             "text": "Root-crowns and bronze rings spin in cautious counterpoint, waiting for a guiding hand to set their season.",
             "choices": [
                 {
-            "text": "(Weaver) Weave the bronze and root pulses into a new cadence.",
-            "condition": {
-                "type": "has_tag",
-                "value": "Weaver"
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
+                    "text": "(Weaver) Weave the bronze and root pulses into a new cadence.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Weaver"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "type": "rep_delta",
-                    "faction": "Root Assembly",
-                    "value": 1
+                    "text": "(Archivist) Record the adjustments and signal the caretakers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Archivist"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "logs_amended",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
-        {
-            "text": "(Archivist) Record the adjustments and signal the caretakers.",
-            "condition": {
-                "type": "has_tag",
-                "value": "Archivist"
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
+                    "text": "(Healer) Channel restorative sap to smooth the change.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Healer"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "type": "set_flag",
-                    "flag": "logs_amended",
-                    "value": true
+                    "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
-        {
-            "text": "(Healer) Channel restorative sap to smooth the change.",
-            "condition": {
-                "type": "has_tag",
-                "value": "Healer"
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
+                    "text": "(Root-Speaker) Commune directly with the thinking tree.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "roots_attuned",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "type": "rep_delta",
-                    "faction": "Root Assembly",
-                    "value": 1
+                    "text": "Hold the correction steady while the caretakers finish.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "filament_seated",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "correction_tuned",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": true
+                        },
+                        {
+                            "type": "hp_delta",
+                            "value": -1
+                        }
+                    ],
+                    "target": "root_orrery_dais"
                 },
-                {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
-        {
-            "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
-            "condition": {
-                "type": "has_tag",
-                "value": "Arbiter"
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
-                },
-                {
-                    "type": "rep_delta",
-                    "faction": "Root Assembly",
-                    "value": 1
-                },
-                {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
-        {
-            "text": "(Root-Speaker) Commune directly with the thinking tree.",
-            "condition": {
-                "type": "has_tag",
-                "value": "Root-Speaker"
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
-                },
-                {
-                    "type": "set_flag",
-                    "flag": "roots_attuned",
-                    "value": true
-                },
-                {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
-        {
-            "text": "Hold the correction steady while the caretakers finish.",
-            "condition": {
-                "type": "flag_eq",
-                "flag": "filament_seated",
-                "value": true
-            },
-            "effects": [
-                {
-                    "type": "set_flag",
-                    "flag": "correction_tuned",
-                    "value": true
-                },
-                {
-                    "type": "set_flag",
-                    "flag": "staging_ready",
-                    "value": true
-                },
-                {
-                    "type": "hp_delta",
-                    "value": -1
-                }
-            ],
-            "target": "root_orrery_dais"
-        },
                 {
                     "text": "Step away, leaving the correction incomplete.",
                     "target": "root_orrery_dais"
@@ -2250,6 +2250,30 @@
                 {
                     "text": "(Mark) Let the vision fade and note the route for later.",
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Accept canal hospitality and linger among the ribcage homes.",
+                    "target": "moon_eel_intro"
+                },
+                {
+                    "text": "Carry their sanctuary tidings back through the luminous grotto.",
+                    "target": "luminous_grotto"
+                },
+                {
+                    "text": "(Root-Speaker) Listen through the rib-boughs for orchard callings.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "target": "starfallen_orchard_meteoric_gate"
+                },
+                {
+                    "text": "(Dreamwalker) Drift with the eel's memory tide toward the cocoons.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Dreamwalker"
+                    },
+                    "target": "shed_market_cocoon_hostel"
                 }
             ]
         },
@@ -2326,6 +2350,26 @@
                 {
                     "text": "(Chart) Record the path and let the winds calm.",
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Ride the wind-rail onward to the storm rail moorings.",
+                    "target": "storm_rail_intro"
+                },
+                {
+                    "text": "Signal an escort glide back toward the Sky-Spliced Docks.",
+                    "target": "sky_docks"
+                },
+                {
+                    "text": "Send the mapped gusts toward Saltglass outriders preparing a convoy.",
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Storm-Conductor) Tune the captured gale toward the Cloud-Burrow stormloom.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Storm-Conductor"
+                    },
+                    "target": "cloud_burrow_stormloom"
                 }
             ]
         },
@@ -2340,6 +2384,18 @@
                 {
                     "text": "Navigate the flood channels toward the luminous grotto.",
                     "target": "luminous_grotto"
+                },
+                {
+                    "text": "Glide along bubble elevators toward the cocoon hostel.",
+                    "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "(Tide-Singer) Harmonize the tide glow to open a quiet retreat toward the Amber Tides cloister.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Tide-Singer"
+                    },
+                    "target": "amber_tides_tide_cloister"
                 }
             ]
         },
@@ -2354,6 +2410,18 @@
                 {
                     "text": "Follow the compass line back to the Startways Nexus.",
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Chart a supply glide toward the Saltglass Expanse.",
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Storm-Conductor) Lash the charged winds into a drop toward the Cloud-Burrow threshold.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Storm-Conductor"
+                    },
+                    "target": "cloud_burrow_threshold"
                 }
             ]
         },
@@ -2832,6 +2900,18 @@
                 {
                     "text": "Seal the vault and return the mirrored panels to the bazaar.",
                     "target": "saltglass_shade_bazaar"
+                },
+                {
+                    "text": "Carry the mirrored insights toward the sharecrop commons.",
+                    "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "(Root-Speaker) Thread the prism pulses into orchard sap channels.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "target": "starfallen_orchard_prism_roots"
                 }
             ]
         },
@@ -3343,6 +3423,18 @@
                 {
                     "text": "Let the reflections fall out of sync and retreat.",
                     "target": "saltglass_obelisk_east"
+                },
+                {
+                    "text": "Steer the reflections into a safe corridor toward the Moon-Eel Suburb.",
+                    "target": "moon_eel_intro"
+                },
+                {
+                    "text": "(Storm-Conductor) Braid the gust-lights toward the Cloud-Burrow stormloom.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Storm-Conductor"
+                    },
+                    "target": "cloud_burrow_stormloom"
                 }
             ]
         },
@@ -3940,6 +4032,10 @@
                 {
                     "text": "Thank the family and descend toward the threshold.",
                     "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "Transfer the ledger notes into the hidden skip cache.",
+                    "target": "cloud_burrow_hidden_cache"
                 }
             ]
         },
@@ -4202,6 +4298,18 @@
                 {
                     "text": "Let the stormloom unwind and return to the plaza.",
                     "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "Escort the braided cords up toward the guest ledger alcove.",
+                    "target": "cloud_burrow_guest_ledger"
+                },
+                {
+                    "text": "(Storm-Conductor) Conduct the charged threads toward the Saltglass convoy staging.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Storm-Conductor"
+                    },
+                    "target": "saltglass_expanse"
                 }
             ]
         },
@@ -4223,6 +4331,10 @@
                 {
                     "text": "Leave the cache sealed and return to the plaza.",
                     "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "Copy the skip-lines into the guest ledger for future allies.",
+                    "target": "cloud_burrow_guest_ledger"
                 }
             ]
         },
@@ -4249,6 +4361,18 @@
                 {
                     "text": "Study the anchors from afar and slip back to the plaza.",
                     "target": "cloud_burrow_inverted_plaza"
+                },
+                {
+                    "text": "Discuss the skip map's context back at the hidden cache.",
+                    "target": "cloud_burrow_hidden_cache"
+                },
+                {
+                    "text": "(Dreamwalker) Match the anchor rhythm to shared dream currents.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Dreamwalker"
+                    },
+                    "target": "mentor_dreamwalker_awakened"
                 }
             ]
         },
@@ -5415,6 +5539,18 @@
                 {
                     "text": "Bow to the singer and let the hymn fade.",
                     "target": "amber_tides_tide_cloister"
+                },
+                {
+                    "text": "Share the skip-map insights with the rift-skipper mentor.",
+                    "target": "mentor_rift_skipper_intro"
+                },
+                {
+                    "text": "(Tide-Singer) Weave a tide-binding vow toward the orchard's tidal channel.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Tide-Singer"
+                    },
+                    "target": "starfallen_orchard_tidal_channel"
                 }
             ]
         },
@@ -7253,6 +7389,10 @@
                 {
                     "text": "Bow with gratitude and return to the cocoons.",
                     "target": "shed_market_cocoon_hostel"
+                },
+                {
+                    "text": "Carry the dream ribbon toward the orchard's dream nursery.",
+                    "target": "starfallen_orchard_dream_nursery"
                 }
             ]
         },
@@ -7563,6 +7703,18 @@
                 {
                     "text": "Carry the humming map toward the sharecrop commons.",
                     "target": "starfallen_orchard_sharecrop_commons"
+                },
+                {
+                    "text": "Deliver the harmonic chart to the tidal channel loom.",
+                    "target": "starfallen_orchard_tidal_channel"
+                },
+                {
+                    "text": "(Root-Speaker) Anchor the songlines into the meteor cradle's roots.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "target": "starfallen_orchard_meteor_cradle"
                 }
             ]
         },
@@ -7596,6 +7748,18 @@
                         }
                     ],
                     "target": "starfallen_orchard_resonance_grove"
+                },
+                {
+                    "text": "Dispatch a glass courier toward the Cloud-Burrow guest ledger.",
+                    "target": "cloud_burrow_guest_ledger"
+                },
+                {
+                    "text": "(Tide-Singer) Pulse the sap with tidelines toward the Amber Tides cloister.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Tide-Singer"
+                    },
+                    "target": "amber_tides_tide_cloister"
                 }
             ]
         },
@@ -7629,6 +7793,18 @@
                         }
                     ],
                     "target": "starfallen_orchard_quiet_grant"
+                },
+                {
+                    "text": "Guide the rested gleaners back toward the meteor gate.",
+                    "target": "starfallen_orchard_meteoric_gate"
+                },
+                {
+                    "text": "(Dreamwalker) Thread the lullaby toward the Moon-Eel sanctuary.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Dreamwalker"
+                    },
+                    "target": "moon_eel_intro"
                 }
             ]
         },
@@ -7655,6 +7831,18 @@
                 {
                     "text": "Carry the tidal insights to the Freehands collective.",
                     "target": "starfallen_orchard_freehands_collective"
+                },
+                {
+                    "text": "Carry tide readings to the Quiet Ledger grant hall.",
+                    "target": "starfallen_orchard_quiet_grant"
+                },
+                {
+                    "text": "(Tide-Singer) Bind a currentway toward the Amber Tides cloister.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Tide-Singer"
+                    },
+                    "target": "amber_tides_tide_cloister"
                 }
             ]
         },
