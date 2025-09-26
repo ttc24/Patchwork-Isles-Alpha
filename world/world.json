@@ -1000,7 +1000,7 @@
                     "target": "root_orrery_registry"
                 },
                 {
-                    "text": "(Weaver+Arbiter) Lace consensus cords through a sealed mediation hollow.",
+                    "text": "(Weaver+Arbiter) Lace consensus cords to open the caretaker dais.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
@@ -1008,17 +1008,10 @@
                             "Arbiter"
                         ]
                     },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_mediator_clearance",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_mediator_passage"
+                    "target": "root_orrery_dais"
                 },
                 {
-                    "text": "(Healer+Resonant) Harmonize the pulse conduits toward a quiet convalescence pod.",
+                    "text": "(Healer+Resonant) Harmonize the pulse conduits before tending the infirmary.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
@@ -1026,32 +1019,18 @@
                             "Resonant"
                         ]
                     },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_pulse_harmonized",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_pulse_chamber"
+                    "target": "root_orrery_infirmary"
                 },
                 {
-                    "text": "(Cartographer+Glasswright) Align refracted sap charts with migratory shade lattices.",
+                    "text": "(Archivist+Weaver) Pattern a schema that ushers you toward the lens cradle.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
-                            "Cartographer",
-                            "Glasswright"
+                            "Archivist",
+                            "Weaver"
                         ]
                     },
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_prism_maps",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_prism_atrium"
+                    "target": "root_orrery_lens_cradle"
                 },
                 {
                     "text": "Step onto the caretaker dais at the orrery's heart.",
@@ -1106,7 +1085,7 @@
                     "target": "root_orrery_registry"
                 },
                 {
-                    "text": "(Quiet Ledger 1+) Present a balanced budget to underwrite the root ledgers.",
+                    "text": "(Quiet Ledger 1+) Present a balanced budget to underwrite the correction crews.",
                     "condition": {
                         "type": "rep_at_least",
                         "faction": "Quiet Ledger",
@@ -1114,28 +1093,17 @@
                     },
                     "effects": [
                         {
-                            "type": "set_flag",
-                            "flag": "orrery_quiet_funding",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_quiet_ledger_audit"
-                },
-                {
-                    "text": "(Freehands 1+) Coordinate a mutual aid roster for overworked caretakers.",
-                    "condition": {
-                        "type": "rep_at_least",
-                        "faction": "Freehands",
-                        "value": 1
-                    },
-                    "effects": [
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
                         {
                             "type": "set_flag",
-                            "flag": "orrery_freehands_roster",
+                            "flag": "quiet_budget_backing",
                             "value": true
                         }
                     ],
-                    "target": "root_orrery_freehands_coop"
+                    "target": "root_orrery_registry"
                 },
                 {
                     "text": "(Arbiter) Argue for caretaker access, impressing the registrars.",
@@ -1191,161 +1159,6 @@
                 {
                     "text": "Return to the concourse tiers.",
                     "target": "root_orrery_concourse"
-                }
-            ]
-        },
-        "root_orrery_mediator_passage": {
-            "title": "Mediation Hollow",
-            "text": "Braided concord cords hum between arbiter seats while saplight scripts tally compromises struck between distant boroughs.",
-            "choices": [
-                {
-                    "text": "Record the consensus and relay it through the registry roots.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Root Assembly",
-                            "value": 1
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_mediator_clearance",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_registry"
-                },
-                {
-                    "text": "Let Quiet Ledger auditors review the compromise for future funding.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Quiet Ledger",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_quiet_ledger_audit"
-                },
-                {
-                    "text": "Slip back toward the concourse before the cords still.",
-                    "target": "root_orrery_concourse"
-                }
-            ]
-        },
-        "root_orrery_pulse_chamber": {
-            "title": "Pulse Attunement Pod",
-            "text": "Resonant heartroots cradle a convalescence pod where harmonic sap circulates through patients and caretakers alike.",
-            "choices": [
-                {
-                    "text": "Sustain the pulse weave so exhausted caretakers can rest within it.",
-                    "effects": [
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_pulse_harmonized",
-                            "value": true
-                        },
-                        {
-                            "type": "rep_delta",
-                            "faction": "Freehands",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_infirmary"
-                },
-                {
-                    "text": "Guide the pulse energy toward ailing roots before departing.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Root Assembly",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_concourse"
-                }
-            ]
-        },
-        "root_orrery_prism_atrium": {
-            "title": "Prism Exchange Atrium",
-            "text": "Refracted saplight intersects migratory shade lattices, projecting a joint map of root corrections and saltglass reefs.",
-            "choices": [
-                {
-                    "text": "Chart a shared ledger of shade migrations for both assemblies.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Quiet Ledger",
-                            "value": 1
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_prism_maps",
-                            "value": true
-                        }
-                    ],
-                    "target": "saltglass_shade_workshop"
-                },
-                {
-                    "text": "Archive the hybrid charts for later reference and return to the concourse.",
-                    "target": "root_orrery_concourse"
-                }
-            ]
-        },
-        "root_orrery_quiet_ledger_audit": {
-            "title": "Quiet Ledger Audit Alcove",
-            "text": "Ledger clerks suspend amber abacuses above rootflow schematics, ready to seed discretionary grants into the orrery.",
-            "choices": [
-                {
-                    "text": "Accept earmarked funding for restorative rootwork.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Quiet Ledger",
-                            "value": 1
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_quiet_funding",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_concourse"
-                },
-                {
-                    "text": "Decline the grant and instead share the findings with Freehands envoys.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Freehands",
-                            "value": 1
-                        }
-                    ],
-                    "target": "root_orrery_freehands_coop"
-                }
-            ]
-        },
-        "root_orrery_freehands_coop": {
-            "title": "Freehands Care Co-op",
-            "text": "Volunteers portion out mutual-aid kits beneath hanging sap cisterns, trading shifts and relief routes among the caretakers.",
-            "choices": [
-                {
-                    "text": "Organize the shift ledger so relief reaches exhausted crews.",
-                    "effects": [
-                        {
-                            "type": "rep_delta",
-                            "faction": "Freehands",
-                            "value": 1
-                        },
-                        {
-                            "type": "set_flag",
-                            "flag": "orrery_freehands_roster",
-                            "value": true
-                        }
-                    ],
-                    "target": "root_orrery_infirmary"
-                },
-                {
-                    "text": "Return to the registry once supplies are accounted for.",
-                    "target": "root_orrery_registry"
                 }
             ]
         },
@@ -1684,6 +1497,26 @@
                     "target": "root_orrery_resonance"
                 },
                 {
+                    "text": "Claim staging quarters for the Root Depths crews.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "staging_ready",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "unlock_start",
+                            "value": "root_depths_staging"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "staging_ready",
+                            "value": false
+                        }
+                    ],
+                    "target": "root_orrery_concourse"
+                },
+                {
                     "text": "Return to the concourse tiers.",
                     "target": "root_orrery_concourse"
                 },
@@ -1870,9 +1703,14 @@
                     "type": "rep_delta",
                     "faction": "Root Assembly",
                     "value": 1
+                },
+                {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
         {
             "text": "(Archivist) Record the adjustments and signal the caretakers.",
@@ -1890,9 +1728,14 @@
                     "type": "set_flag",
                     "flag": "logs_amended",
                     "value": true
+                },
+                {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
         {
             "text": "(Healer) Channel restorative sap to smooth the change.",
@@ -1910,9 +1753,14 @@
                     "type": "rep_delta",
                     "faction": "Root Assembly",
                     "value": 1
+                },
+                {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
         {
             "text": "(Arbiter) Affirm the correction in the Assembly ledgers.",
@@ -1930,9 +1778,14 @@
                     "type": "rep_delta",
                     "faction": "Root Assembly",
                     "value": 1
+                },
+                {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
         {
             "text": "(Root-Speaker) Commune directly with the thinking tree.",
@@ -1950,9 +1803,14 @@
                     "type": "set_flag",
                     "flag": "roots_attuned",
                     "value": true
+                },
+                {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
         {
             "text": "Hold the correction steady while the caretakers finish.",
@@ -1968,35 +1826,20 @@
                     "value": true
                 },
                 {
+                    "type": "set_flag",
+                    "flag": "staging_ready",
+                    "value": true
+                },
+                {
                     "type": "hp_delta",
                     "value": -1
                 }
             ],
-            "target": "root_depths_staging_reward"
+            "target": "root_orrery_dais"
         },
                 {
                     "text": "Step away, leaving the correction incomplete.",
                     "target": "root_orrery_dais"
-                }
-            ]
-        },
-        "root_depths_staging_reward": {
-            "title": "Root Depths Staging Ledger",
-            "text": "Caretakers log your correction and slide a lattice of staging quarters across the dais, inviting you to claim a berth among the crews.",
-            "on_enter": [
-                {
-                    "type": "unlock_start",
-                    "value": "root_depths_staging"
-                }
-            ],
-            "choices": [
-                {
-                    "text": "Accept the quarters and return to the caretaker dais.",
-                    "target": "root_orrery_dais"
-                },
-                {
-                    "text": "Carry the roster back toward the concourse tiers.",
-                    "target": "root_orrery_concourse"
                 }
             ]
         },
@@ -2010,6 +1853,14 @@
                 }
             ],
             "choices": [
+                {
+                    "text": "(Root-Speaker) Echo the mentor's cadence into the sap chorus.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Root-Speaker"
+                    },
+                    "target": "root_orrery_resonance"
+                },
                 {
                     "text": "Share a breath with the mentor and match their cadence.",
                     "effects": [
@@ -2884,7 +2735,7 @@
                             "value": true
                         }
                     ],
-                    "target": "root_orrery_prism_atrium"
+                    "target": "root_orrery_archives"
                 },
                 {
                     "text": "Seal the vault and return the mirrored panels to the bazaar.",
