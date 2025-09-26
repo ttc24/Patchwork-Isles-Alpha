@@ -25,7 +25,8 @@
             "tags": [
                 "Emissary",
                 "Resonant"
-            ]
+            ],
+            "blurb": "Carry Aeol dispatch seals to broker storm routes.\nDiplomacy and gust control keep flights on time."
         },
         {
             "id": "freehands_skyrunner",
@@ -34,7 +35,8 @@
             "tags": [
                 "Sneaky",
                 "Scout"
-            ]
+            ],
+            "blurb": "Leap between rigging to supply stranded crews.\nFast mutual-aid runs earn Freehands trust."
         },
         {
             "id": "root_scribe",
@@ -43,7 +45,8 @@
             "tags": [
                 "Archivist",
                 "Weaver"
-            ]
+            ],
+            "blurb": "Keep meticulous ledgers for the Root Assembly.\nPaperwork and hearings bend guest-law your way."
         },
         {
             "id": "moon_eel_suburb",
@@ -54,7 +57,8 @@
                 "Sneaky",
                 "Healer"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Swim the moon-eel canals collecting tidal favors.\nResonant insight navigates shifting currents."
         },
         {
             "id": "storm_rail",
@@ -65,7 +69,8 @@
                 "Cartographer",
                 "Resonant"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Ride storm-rails across canyon gustways.\nBold maneuvers and Aeol ties cut new lanes."
         },
         {
             "id": "root_depths_staging",
@@ -76,7 +81,8 @@
                 "Weaver",
                 "Healer"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Stage caretaker dives into the root orrery.\nSteady labor opens sap-lit maintenance routes."
         },
         {
             "id": "shade_walker_outpost",
@@ -87,7 +93,8 @@
                 "Cartographer",
                 "Tinkerer"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Guide caravans through migrating shade engines.\nStealth and wit guard against tribute hunters."
         },
         {
             "id": "cloud_burrow_loft",
@@ -98,7 +105,8 @@
                 "Resonant",
                 "Healer"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Wake in lofts above the Cloud-Burrow warrens.\nAirborne logistics favor resonance and glidecraft."
         },
         {
             "id": "amber_barge_quarters",
@@ -109,7 +117,8 @@
                 "Healer",
                 "Archivist"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Serve aboard memorial barges on the amber tides.\nHealing rites and archives soothe mourners."
         },
         {
             "id": "market_of_skins_stall",
@@ -120,7 +129,8 @@
                 "Trickster",
                 "Lumenar"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Run a stall within the Market of Shed Skins.\nMasks and bargains pivot identities mid-stride."
         },
         {
             "id": "orchard_keeper_hut",
@@ -131,7 +141,8 @@
                 "Resonant",
                 "Cartographer"
             ],
-            "locked": true
+            "locked": true,
+            "blurb": "Tend meteor-grown memories in the orchard huts.\nCooperative caretaking knits ledgers and lullabies."
         }
     ],
     "endings": {
@@ -2072,6 +2083,41 @@
                         }
                     ],
                     "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Freehands 1+) Relay supply rosters straight into the Saltglass caravans.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Freehands",
+                        "value": 1
+                    },
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) File a ledger itinerary that drops you beside the Saltglass engines.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Aeol 1+) Signal an outrider shift to sling you toward the Cloud-Burrow balconies.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Aeol Nests",
+                        "value": 1
+                    },
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Cartographer) Map thermal threads for a guided descent into the Cloud-Burrow warrens.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Cartographer"
+                    },
+                    "target": "cloud_burrow_threshold"
                 }
             ]
         },
@@ -2421,6 +2467,14 @@
                             "value": true
                         }
                     ],
+                    "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "(Resonant) Harmonize dune song with Aeol lifts and glide into the Cloud-Burrow.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Resonant"
+                    },
                     "target": "cloud_burrow_threshold"
                 },
                 {
@@ -3620,6 +3674,15 @@
                 {
                     "text": "Ride the dunes' return current back to the Saltglass Expanse.",
                     "target": "saltglass_expanse"
+                },
+                {
+                    "text": "(Aeol 1+) Ride a rostered courier draft back toward the Startways Nexus.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Aeol Nests",
+                        "value": 1
+                    },
+                    "target": "startways_nexus"
                 },
                 {
                     "text": "Stay on the balconies to coordinate the cooperative glideway.",
