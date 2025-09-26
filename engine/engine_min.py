@@ -8,10 +8,25 @@ Tag/Trait CYOA Engine — Minimal
 Usage: python3 engine_min.py [world.json]
 """
 
-import json, os, sys
+import json
+import os
+import sys
+import textwrap
+from pathlib import Path
+
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+    from engine.options_menu import options_menu
+    from engine.settings import Settings, load_settings
+else:
+    from .options_menu import options_menu
+    from .settings import Settings, load_settings
 
 DEFAULT_WORLD_PATH = "world/world.json"
 PROFILE_PATH = "profile.json"
+BASE_LINE_WIDTH = 80
+MIN_LINE_WIDTH = 50
+MAX_LINE_WIDTH = 120
 
 TAG_ALIASES = {
     "Diplomat": "Emissary",
@@ -40,6 +55,15 @@ def canonicalize_tag_value(value):
     if isinstance(value, str):
         return canonical_tag(value)
     return value
+
+
+def compute_line_width(settings: Settings) -> int:
+    try:
+        scale = float(getattr(settings, "ui_scale", 1.0))
+    except (TypeError, ValueError):
+        scale = 1.0
+    width = int(round(BASE_LINE_WIDTH * scale))
+    return max(MIN_LINE_WIDTH, min(MAX_LINE_WIDTH, width))
 
 
 def default_profile():
@@ -109,7 +133,7 @@ def save_profile(profile, path=PROFILE_PATH):
 
 
 class GameState:
-    def __init__(self, world, profile, profile_path):
+    def __init__(self, world, profile, profile_path, settings=None):
         self.world = world
         self.player = {
             "name": None,
@@ -125,6 +149,15 @@ class GameState:
         self.start_id = None
         self.profile = profile
         self.profile_path = profile_path
+        self.settings = Settings()
+        self.line_width = BASE_LINE_WIDTH
+        self.window_mode = "windowed"
+        self.vsync_enabled = True
+        self.audio_levels = {"master": 1.0, "music": 1.0, "sfx": 1.0}
+
+        if settings is None:
+            settings = Settings()
+        self.apply_settings(settings)
 
     def rep_str(self):
         if not self.player["rep"]:
@@ -139,6 +172,65 @@ class GameState:
         rep = self.rep_str()
         return (f"HP:{self.player['hp']} | TAGS:[{tags}] | TRAITS:[{traits}] | "
                 f"REP: {rep} | INV: {inv} | FLAGS: {flags}")
+
+    def apply_settings(self, settings):
+        if isinstance(settings, Settings):
+            sanitized = settings.copy()
+        else:
+            sanitized = Settings()
+        sanitized.clamp()
+        self.settings = sanitized
+        self.line_width = compute_line_width(sanitized)
+        self.window_mode = sanitized.window_mode
+        self.vsync_enabled = sanitized.vsync
+        self.audio_levels = {
+            "master": sanitized.audio_master,
+            "music": sanitized.audio_music,
+            "sfx": sanitized.audio_sfx,
+        }
+
+
+def apply_runtime_settings(state: GameState, new_settings: Settings, *, announce: bool = True) -> Settings:
+    if isinstance(new_settings, Settings):
+        target = new_settings.copy()
+    else:
+        target = Settings()
+    target.clamp()
+
+    previous = state.settings.copy()
+    state.apply_settings(target)
+
+    if not announce:
+        return state.settings
+
+    updates = []
+    if (
+        previous.audio_master != state.settings.audio_master
+        or previous.audio_music != state.settings.audio_music
+        or previous.audio_sfx != state.settings.audio_sfx
+    ):
+        updates.append(
+            "[Audio] Master {0:.0f}% | Music {1:.0f}% | SFX {2:.0f}%".format(
+                state.settings.audio_master * 100,
+                state.settings.audio_music * 100,
+                state.settings.audio_sfx * 100,
+            )
+        )
+    if previous.window_mode != state.settings.window_mode:
+        updates.append(f"[Display] Window mode set to {state.settings.window_mode.title()}.")
+    if previous.vsync != state.settings.vsync:
+        updates.append(
+            f"[Display] VSync {'enabled' if state.settings.vsync else 'disabled'}."
+        )
+    if previous.ui_scale != state.settings.ui_scale:
+        updates.append(
+            f"[UI] Scale adjusted to {state.settings.ui_scale:.2f}x (line width {state.line_width})."
+        )
+
+    for message in updates:
+        print(message)
+
+    return state.settings
 
 def load_world(path):
     with open(path, "r", encoding="utf-8") as f:
@@ -284,22 +376,45 @@ def list_choices(node, state):
     return visible
 
 def render_node(node, state):
-    print("\n" + "="*80)
+    width = getattr(state, "line_width", BASE_LINE_WIDTH)
+    print("\n" + "=" * width)
     print(node.get("title", state.world["title"]))
-    print("-"*80)
-    print(node.get("text",""))
+    print("-" * width)
+
+    body = node.get("text", "")
+    if body:
+        for paragraph in body.split("\n"):
+            if paragraph.strip():
+                print(textwrap.fill(paragraph, width=width))
+            else:
+                print("")
+    else:
+        print("")
+
     if node.get("image"):
         print(f"[Image: {node['image']}]")
-    print("\n" + state.summary())
-    print("-"*80)
+
+    print("")
+    summary_text = state.summary()
+    for line in textwrap.wrap(summary_text, width=width):
+        print(line)
+    print("-" * width)
     visible = list_choices(node, state)
     for idx, ch in enumerate(visible, start=1):
         print(f"  {idx}. {ch.get('text', f'Choice {idx}')}")
     if state.current_node not in state.world.get("endings", {}):
-        print("  S. Save    L. Load    I. Inventory    T. Tags/Traits    Q. Quit")
+        commands = [
+            "S. Save",
+            "L. Load",
+            "I. Inventory",
+            "T. Tags/Traits",
+            "O. Options",
+            "Q. Quit",
+        ]
+        print("  " + "    ".join(commands))
     return visible
 
-def pick_start(world, profile):
+def pick_start(world, profile, open_options=None):
     starts = world.get("starts", [])
     unlocked_ids = set(profile.get("unlocked_starts", []))
     core = []
@@ -315,42 +430,58 @@ def pick_start(world, profile):
             core.append(entry)
     if not (core or unlocked):
         return "start", [], None
-    print("Choose your origin:")
-    display = []
-    index = 0
-    def show_group(title, entries):
-        nonlocal index
-        if not entries:
-            return
-        print(title)
-        for sid, start in entries:
-            index += 1
-            display.append((sid, start))
-            tags = canonicalize_tag_list(start.get("tags", []))
-            tag_str = ", ".join(tags) if tags else "—"
-            node = start.get("node", "?")
-            print(f"  {index}. {start.get('title','Start')} (Node: {node} | Tags: {tag_str})")
-            blurb = start.get("blurb")
-            if blurb:
-                for line in blurb.splitlines():
-                    print(f"     {line}")
-            else:
-                print("     —")
-        print("")
 
-    show_group("Core Starts (always available):", core)
-    show_group("Unlocked Starts (profile):", unlocked)
-    if not display:
-        return "start", [], None
     while True:
-        sel = input("> ").strip().lower()
-        if sel.isdigit():
-            i = int(sel)
+        print("Choose your origin:")
+        display = []
+        index = 0
+
+        def show_group(title, entries):
+            nonlocal index
+            if not entries:
+                return
+            print(title)
+            for sid, start in entries:
+                index += 1
+                display.append((sid, start))
+                tags = canonicalize_tag_list(start.get("tags", []))
+                tag_str = ", ".join(tags) if tags else "—"
+                node = start.get("node", "?")
+                print(
+                    f"  {index}. {start.get('title','Start')} (Node: {node} | Tags: {tag_str})"
+                )
+                blurb = start.get("blurb")
+                if blurb:
+                    for line in blurb.splitlines():
+                        print(f"     {line}")
+                else:
+                    print("     —")
+            print("")
+
+        show_group("Core Starts (always available):", core)
+        show_group("Unlocked Starts (profile):", unlocked)
+
+        if not display:
+            return "start", [], None
+
+        if open_options is not None:
+            print("  O. Options")
+
+        selection = input("> ").strip().lower()
+        if selection in {"o", "options"} and open_options is not None:
+            open_options()
+            print("")
+            continue
+        if selection.isdigit():
+            i = int(selection)
             if 1 <= i <= len(display):
-                sid, start = display[i-1]
+                sid, start = display[i - 1]
                 tags = canonicalize_tag_list(start.get("tags", []))
                 return start["node"], tags, sid
-        print("Pick a valid number.")
+        if open_options is not None:
+            print("Pick a valid number or press O for options.")
+        else:
+            print("Pick a valid number.")
 
 def save_game(state, path="savegame.json"):
     data = {
@@ -381,7 +512,17 @@ def main():
     world = load_world(world_path)
     profile = load_profile(PROFILE_PATH)
     merge_profile_starts(world, profile)
-    state = GameState(world, profile, PROFILE_PATH)
+    settings = load_settings()
+    state = GameState(world, profile, PROFILE_PATH, settings)
+
+    def open_options_menu():
+        updated, changed = options_menu(
+            state.settings,
+            apply_callback=lambda new_settings: apply_runtime_settings(state, new_settings),
+        )
+        if changed:
+            apply_runtime_settings(state, updated, announce=False)
+        return changed
 
     print(f"=== {world['title']} ===")
     state.player["name"] = input("Name your character: ").strip() or "Traveler"
@@ -391,7 +532,7 @@ def main():
         state.player["rep"][fac] = 0
 
     # Pick a start and seed starting tags
-    start_node, start_tags, start_id = pick_start(world, profile)
+    start_node, start_tags, start_id = pick_start(world, profile, open_options_menu)
     state.current_node = start_node
     state.start_id = start_id or start_node
     for t in canonicalize_tag_list(start_tags):
@@ -439,8 +580,10 @@ def main():
         if choice == "l":
             if load_game(state): continue
             else: continue
+        if choice == "o":
+            open_options_menu(); continue
         if not choice.isdigit():
-            print("Enter a number or S/L/I/T/Q."); continue
+            print("Enter a number or S/L/I/T/O/Q."); continue
         idx = int(choice)
         if not (1 <= idx <= len(visible)):
             print("Pick a valid choice number."); continue
