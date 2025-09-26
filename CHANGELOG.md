@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Repository scaffolding: README, code of conduct, contributing guide, changelog, license, and issue templates.
 - Development tooling configuration for Black, Ruff, and Mypy, plus dev requirements list.
 - Planning backlog for the `v0.9 Beta` milestone.
+- Persistent options menu with audio, display, and UI scale settings saved to `settings.json`.
 
 ## [0.1.0] - 2025-09-26
 ### Added

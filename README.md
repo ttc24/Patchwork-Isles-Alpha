@@ -7,6 +7,7 @@
 ## Controls at a Glance
 - Type the number or letter shown next to a choice and press <kbd>Enter</kbd> to advance the story.
 - Enter `i` at any prompt to view your current tags, traits, inventory, and faction reputation.
+- Enter `o` to open the Options screen for audio, display, and UI scale settings.
 - Enter `h` to review the last few story beats, or `q` to quit to the title screen and optionally save.
 
 ## Quick Start
