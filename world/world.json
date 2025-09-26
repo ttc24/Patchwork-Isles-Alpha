@@ -13,6 +13,7 @@
         "Tinkerer",
         "Trickster",
         "Lumenar",
+        "Glasswright",
         "Dreamwalker",
         "Storm-Conductor"
     ],
@@ -2349,10 +2350,10 @@
                     "target": "saltglass_obelisk_south"
                 },
                 {
-                    "text": "(Weaver) Stitch mirrored dune veils to reveal the buried orrery route.",
+                    "text": "(Lumenar) Refract the dunes' glare to reveal the buried orrery route.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Weaver"
+                        "value": "Lumenar"
                     },
                     "effects": [
                         {
@@ -2364,10 +2365,10 @@
                     "target": "root_orrery_threading"
                 },
                 {
-                    "text": "(Emissary) Convene caravan envoys for a guest-law audience at the dais.",
+                    "text": "(Tinkerer) Tune the envoy dais so caravan speakers can gather.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Emissary"
+                        "value": "Tinkerer"
                     },
                     "effects": [
                         {
@@ -2384,10 +2385,10 @@
                     "target": "guestlaw_chamber"
                 },
                 {
-                    "text": "(Emissary) Negotiate Aeol outriders for a direct Startways flight.",
+                    "text": "(Lumenar) Signal Aeol outriders for a direct Startways flight.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Emissary"
+                        "value": "Lumenar"
                     },
                     "effects": [
                         {
@@ -2586,12 +2587,12 @@
                     "target": "saltglass_glass_reef"
                 },
                 {
-                    "text": "(Sneaky+Resonant) Slip into the echo-market to chart contraband song routes.",
+                    "text": "(Sneaky+Lumenar) Diffuse the echo-market's glare to chart contraband routes.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
                             "Sneaky",
-                            "Resonant"
+                            "Lumenar"
                         ]
                     },
                     "effects": [
@@ -2622,11 +2623,11 @@
                     "target": "saltglass_prism_cache"
                 },
                 {
-                    "text": "(Scout+Tinkerer) Retrofit a glider harness to surf the shade thermals.",
+                    "text": "(Lumenar+Tinkerer) Retrofit a glider harness to surf the shade thermals.",
                     "condition": {
                         "type": "has_tag",
                         "value": [
-                            "Scout",
+                            "Lumenar",
                             "Tinkerer"
                         ]
                     },
