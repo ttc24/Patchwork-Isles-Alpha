@@ -2641,6 +2641,26 @@
                     "target": "saltglass_obelisk_south"
                 },
                 {
+                    "text": "(Scout) Scale a mirror dune to flag a clear caravan lane.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_scout_lane",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_carravan_council"
+                },
+                {
                     "text": "(Lumenar) Refract the dunes' glare to reveal the buried orrery route.",
                     "condition": {
                         "type": "has_tag",
@@ -3376,6 +3396,33 @@
                         }
                     ],
                     "target": "saltglass_carravan_council"
+                },
+                {
+                    "text": "(Scout) Deliver field charts to widen the Freehands relief lane.",
+                    "condition": [
+                        {
+                            "type": "has_tag",
+                            "value": "Scout"
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "saltglass_scout_lane",
+                            "value": true
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "saltglass_freehands_corridor",
+                            "value": true
+                        }
+                    ],
+                    "target": "saltglass_freehands_cache"
                 },
                 {
                     "text": "(Lumenar) Drape the council with cooled shade to settle tempers.",
@@ -6436,6 +6483,21 @@
                             "type": "set_flag",
                             "flag": "wake_current_prank",
                             "value": true
+                        }
+                    ],
+                    "target": "amber_tides_funeral_armada"
+                },
+                {
+                    "text": "(Scout) Chart a wake corridor so mourners can cycle between barges.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Scout"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Freehands",
+                            "value": 1
                         }
                     ],
                     "target": "amber_tides_funeral_armada"
