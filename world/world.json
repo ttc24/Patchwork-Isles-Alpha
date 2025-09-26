@@ -161,6 +161,20 @@
         "ending_cloud_cooperative": "Anchor a Cloud-Burrow balcony cooperative to steady traffic.",
         "ending_saltglass_wayfinder": "Guide the Saltglass caravans with your mapped corridors.",
         "ending_shed_market_retirement": "Retire into the Bazaar of Shed Skins as rotation keeper.",
+        "ending_rainchain_hostel": "Keep the rainchain hostel bunks running at the docks.",
+        "ending_root_night_auditor": "Audit the Root Assembly petitions through the night shift.",
+        "ending_prism_liftkeeper": "Hold the prism lifts open as a trusted night steward.",
+        "ending_saltglass_waystation": "Steady the Saltglass waystation for caravans arriving after dark.",
+        "ending_moon_eel_guest": "Curate hospitality in the Moon-Eel suburb's ribcage guesthouse.",
+        "ending_wake_candle_warden": "Tend the vigil lamps for the ongoing Living Wake.",
+        "ending_bazaar_maskbinder": "Oversee the mask gallery's gentle exchanges.",
+        "ending_cocoon_host_caretaker": "Keep the cocoon hostel's rota warm and welcoming.",
+        "ending_freehands_dispatch": "Coordinate Freehands relief runs from the Saltglass cache.",
+        "ending_canal_common_tide": "Align Aeol and Freehands schedules through a common tide charter.",
+        "ending_shared_ledger_loop": "Loop Root Assembly dispatches into Quiet Ledger circulation.",
+        "ending_balcony_safe_concord": "Pair Aeol couriers with burrow crews through a safety concord.",
+        "ending_prism_light_commons": "Open the prism lifts as a commons linked to guest-law routes.",
+        "ending_migrant_kithhouse": "Sign the accord that links kithhouse bunks across the hubs.",
         "ending_orchard_accord": "Rebuild the memory harvest into the Orchard Accord.",
         "ending_keeper_of_passways": "Accept stewardship over the Startways passways."
     },
@@ -275,6 +289,16 @@
                         }
                     ],
                     "target": "ending_mooring_mediator"
+                },
+                {
+                    "text": "Sign on as the rainchain hostel steward and keep the bunks humming.",
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Rainchain Hostel Steward"
+                        }
+                    ],
+                    "target": "ending_rainchain_hostel"
                 }
             ]
         },
@@ -492,6 +516,21 @@
                         }
                     ],
                     "target": "ending_market_steward"
+                },
+                {
+                    "text": "Close the petitions early and audit the night ledgers yourself.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "guestlaw_docket",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Night Auditor of Roots"
+                        }
+                    ],
+                    "target": "ending_root_night_auditor"
                 }
             ]
         },
@@ -731,6 +770,48 @@
                         }
                     ],
                     "target": "ending_galleria_steward"
+                },
+                {
+                    "text": "Trade your pledge for the night lift roster and settle behind the desk.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "guild_marker",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Prism Liftkeeper"
+                        }
+                    ],
+                    "target": "ending_prism_liftkeeper"
+                },
+                {
+                    "text": "Publish the prism light commons pact linking lifts to guest-law routes.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "map_galleria",
+                            "value": true
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "guestlaw_prism_escort",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Prism Cartel",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Prism Light Commons"
+                        }
+                    ],
+                    "target": "ending_prism_light_commons"
                 }
             ]
         },
@@ -937,6 +1018,33 @@
                         }
                     ],
                     "target": "ending_freehands_regatta"
+                },
+                {
+                    "text": "File the common tide charter so Aeol pilots match Freehands relief runs.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "grotto_scouted",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Freehands",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Common Tide Charter"
+                        }
+                    ],
+                    "target": "ending_canal_common_tide"
                 }
             ]
         },
@@ -2118,6 +2226,33 @@
                         "value": "Cartographer"
                     },
                     "target": "cloud_burrow_threshold"
+                },
+                {
+                    "text": "Post the migrant kithhouse accord linking every hub's rest decks.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "guestlaw_summit_called",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Migrant Kithhouse Accord"
+                        }
+                    ],
+                    "target": "ending_migrant_kithhouse"
                 }
             ]
         },
@@ -2159,6 +2294,33 @@
                         "value": 1
                     },
                     "target": "saltglass_freehands_cache"
+                },
+                {
+                    "text": "Loop the Root Assembly dispatches into Quiet Ledger circulation for good.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "archive_template",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Shared Ledger Loop"
+                        }
+                    ],
+                    "target": "ending_shared_ledger_loop"
                 },
                 {
                     "text": "(Keeper) Accept the ledgers and become the Keeper of Passways.",
@@ -2396,6 +2558,21 @@
                         "value": "Tide-Singer"
                     },
                     "target": "amber_tides_tide_cloister"
+                },
+                {
+                    "text": "Stay on to curate the ribcage guesthouse and mind the tide diaries.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "moon_eel_soothed",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Moon-Eel Guest Curator"
+                        }
+                    ],
+                    "target": "ending_moon_eel_guest"
                 }
             ]
         },
@@ -3011,6 +3188,21 @@
                 {
                     "text": "Return to the bazaar with remaining supplies.",
                     "target": "saltglass_shade_bazaar"
+                },
+                {
+                    "text": "Post yourself at the cache ledger and coordinate every relief dispatch.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "saltglass_freehands_corridor",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Freehands Dispatch Coordinator"
+                        }
+                    ],
+                    "target": "ending_freehands_dispatch"
                 }
             ]
         },
@@ -3775,6 +3967,33 @@
                         "value": 1
                     },
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Post the balcony safety concord for Aeol couriers and burrow crews.",
+                    "condition": [
+                        {
+                            "type": "flag_eq",
+                            "flag": "balcony_intro",
+                            "value": true
+                        },
+                        {
+                            "type": "flag_eq",
+                            "flag": "cloud_plaza_scouted",
+                            "value": true
+                        },
+                        {
+                            "type": "rep_at_least",
+                            "faction": "Aeol Nests",
+                            "value": 1
+                        }
+                    ],
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Balcony Safety Concord"
+                        }
+                    ],
+                    "target": "ending_balcony_safe_concord"
                 },
                 {
                     "text": "Stay on the balconies to coordinate the cooperative glideway.",
@@ -5035,6 +5254,21 @@
                         }
                     ],
                     "target": "startways_nexus"
+                },
+                {
+                    "text": "Claim the night shift at the waystation and guide caravans in.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "saltglass_routes_plotted",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Saltglass Waystation Warden"
+                        }
+                    ],
+                    "target": "ending_saltglass_waystation"
                 }
             ]
         },
@@ -6411,6 +6645,21 @@
                     "target": "ending_living_wake"
                 },
                 {
+                    "text": "Keep the vigil lamps trimmed and tend the wake's quiet roster.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "living_wake_procession_supplied",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Wake Candle Warden"
+                        }
+                    ],
+                    "target": "ending_wake_candle_warden"
+                },
+                {
                     "text": "Return to the Lantern Lock.",
                     "target": "amber_tides_lantern_lock"
                 }
@@ -7330,6 +7579,21 @@
                 {
                     "text": "Return the masks to their hooks and rejoin the bazaar.",
                     "target": "shed_market_shed_bazaar"
+                },
+                {
+                    "text": "Bind the gallery's borrowed faces into a calm rotation you oversee.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_mask_gallery",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Maskbinder in Residence"
+                        }
+                    ],
+                    "target": "ending_bazaar_maskbinder"
                 }
             ]
         },
@@ -7771,6 +8035,21 @@
                 {
                     "text": "Seek the Dreamwalker tending the deepest cocoons.",
                     "target": "mentor_dreamwalker_intro"
+                },
+                {
+                    "text": "Stay to run the cocoon rota and keep the teas brewing warm.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_hostel_rest",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "end_game",
+                            "value": "Cocoon Hostel Caretaker"
+                        }
+                    ],
+                    "target": "ending_cocoon_host_caretaker"
                 }
             ]
         },
@@ -9285,6 +9564,62 @@
         "ending_shed_market_retirement": {
             "title": "Shed Market Rotation Keeper",
             "text": "You hang your final borrowed mask above the bazaar and settle into the rotation desk.\nMolting patrons check in for husks and histories, trading favors you reconcile without fuss.\nBy closing bell the Quiet Ledger stamps you as permanent steward of the shed stalls."
+        },
+        "ending_rainchain_hostel": {
+            "title": "Rainchain Hostel Steward",
+            "text": "You catalog bunk chits and hang fresh rainchain towels as ferries roll through.\nTravelers swap tokens for dry hammocks under the steady rhythm you keep.\nThe hostel hums without fuss because you stay to mind the roster."
+        },
+        "ending_root_night_auditor": {
+            "title": "Night Auditor of Roots",
+            "text": "After hearings close you balance the petitions ledger by lanternlight.\nClerks slide you quiet nods while you reconcile favors into open access notes.\nBy dawn, the market trusts your calm sums more than any speech."
+        },
+        "ending_prism_liftkeeper": {
+            "title": "Prism Liftkeeper",
+            "text": "You take the night desk, tuning prism lifts to the cadence of working crews.\nVendors bring you coilbread while you pencil every shared ride onto the public slate.\nThe galleria lights stay even because you keep the rota honest."
+        },
+        "ending_saltglass_waystation": {
+            "title": "Saltglass Waystation Warden",
+            "text": "You chalk mirrored arrows into the dune shelters and listen for caravan bells.\nNight caravans coast in on your signals, trading gossip for cool shade.\nThe waystation ledger bears your initials beside every safe arrival."
+        },
+        "ending_moon_eel_guest": {
+            "title": "Moon-Eel Guest Curator",
+            "text": "You settle in the ribcage hosthouse, annotating tide diaries between potluck shifts.\nResidents drift through to borrow guest marks and leave baskets of brined sweets.\nThe suburb hums with gentle courtesy under your watch."
+        },
+        "ending_wake_candle_warden": {
+            "title": "Wake Candle Warden",
+            "text": "You stand the middle watch of the wake barges, trimming wicks before each procession.\nMourners breathe easier knowing you log who needs a lantern and who can rest.\nThe river glows steady because you keep the candles in quiet rotation."
+        },
+        "ending_bazaar_maskbinder": {
+            "title": "Maskbinder in Residence",
+            "text": "You hang each borrowed face back on its hook and record the stories tied to it.\nVisitors leave new masks with consent slips you seal in lacquer.\nThe gallery becomes a calm exchange because you stay to tend every persona."
+        },
+        "ending_cocoon_host_caretaker": {
+            "title": "Cocoon Hostel Caretaker",
+            "text": "You make tea in the predawn hush and chart who wakes in which cocoon.\nTravelers easing between selves find their blankets warmed and names spelled right.\nThe hostel keeps its gentle rhythm under your steady shift."
+        },
+        "ending_freehands_dispatch": {
+            "title": "Freehands Dispatch Coordinator",
+            "text": "You claim a stool beside the cache ledger, logging every cord and salve that leaves.\nCouriers swing by for your updated lists before sprinting into the dunes.\nRelief routes stay supplied because you keep the dispatch drumbeat."
+        },
+        "ending_canal_common_tide": {
+            "title": "Common Tide Charter",
+            "text": "You draft a tide charter that stitches Aeol departure bells to Freehands relief runs.\nCouriers now launch in alternating waves, sharing canals without jostled hulls.\nThe charter posts on both piers as a plain-signed schedule anyone can keep."
+        },
+        "ending_shared_ledger_loop": {
+            "title": "Shared Ledger Loop",
+            "text": "You merge Root Assembly dispatch notes with Quiet Ledger reimbursements.\nClerks swap tablets through your new loop, cross-crediting aid before disputes can bloom.\nRoutes stay funded because you normalized the cycle."
+        },
+        "ending_balcony_safe_concord": {
+            "title": "Balcony Safety Concord",
+            "text": "You publish a concord that pairs Aeol rosters with balcony stewards on every shift.\nCouriers and residents clip the same safety charms before stepping onto windlines.\nThe burrow's glideways hum with mutual check-ins instead of flinches."
+        },
+        "ending_prism_light_commons": {
+            "title": "Prism Light Commons",
+            "text": "You unlock the prism lifts and post a commons pact linking them to guest-law routes.\nCartel stewards rotate upkeep with visiting advocates, their signatures all on one slate.\nLifts chime open to anyone carrying the new rota token."
+        },
+        "ending_migrant_kithhouse": {
+            "title": "Migrant Kithhouse Accord",
+            "text": "You circulate the kithhouse accord tying rest decks across the hubs to shared care.\nQuiet Ledger stewards and Assembly hosts share pantry tallies on the same board.\nTravelers find a ready bunk anywhere the accord seal hangs."
         },
         "ending_orchard_accord": {
             "title": "The Orchard Accord",
