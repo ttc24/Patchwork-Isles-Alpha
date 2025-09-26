@@ -184,6 +184,7 @@ def validate_effect(
         "teleport",
         "end_game",
         "unlock_start",
+        "grant_legacy_tag",
     }:
         ctx.add(f"{context}: unsupported effect type '{effect_type}'.")
         return
@@ -196,6 +197,10 @@ def validate_effect(
         value = effect.get("value")
         if not is_non_empty_str(value):
             ctx.add(f"{context}: 'unlock_start' requires a non-empty string 'value'.")
+    elif effect_type == "grant_legacy_tag":
+        value = effect.get("value")
+        if not is_non_empty_str(value):
+            ctx.add(f"{context}: 'grant_legacy_tag' requires a non-empty string 'value'.")
     elif effect_type == "set_flag":
         flag = effect.get("flag")
         if not is_non_empty_str(flag):
