@@ -41,6 +41,7 @@ Reserve 6 late-game upgrade tags; do not use or reference them yet.
 - **People-Reader** — Authors include one hidden branch per hub visible only with this trait; use for social insight or extra intel.
 - **Light-Step** — Provide an alternate branch that bypasses the first tag gate encountered in a hub. It should read as agile improvisation, not teleportation.
 - **Well-Provisioned** — Grants access to supply caches. Characters with the trait should reliably acquire or refresh a `favor` item that can be spent on tagless routes.
+- **Rememberer's Boon** — Unlocks mirrored memories that let the character author an alternate branch of events once per chapter.
 
 Traits are earned diegetically through choices (no menus). When granting a trait, consider pairing it with a resource or flag that motivates future branches.
 
