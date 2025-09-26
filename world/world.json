@@ -6488,6 +6488,10 @@
                     "target": "shed_market_identity_broker"
                 },
                 {
+                    "text": "Inspect the metamorph stalls where husks are weighed.",
+                    "target": "shed_market_metamorph_stalls"
+                },
+                {
                     "text": "Follow chrysalis steam toward the cocoons' hostel alcove.",
                     "target": "shed_market_cocoon_hostel"
                 },
@@ -6590,6 +6594,616 @@
                         }
                     ],
                     "target": "ending_shed_market_retirement"
+                }
+            ]
+        },
+        "shed_market_metamorph_stalls": {
+            "title": "Metamorph Stalls",
+            "text": "Glass-backed counters display husks cooling on hooks while ethicists tally consent slips and metamorphs trade tips on easing into new selves.",
+            "choices": [
+                {
+                    "text": "Help the appraisers sort claim slips into proper ledgers.",
+                    "target": "shed_market_molting_appraisers"
+                },
+                {
+                    "text": "(Trickster) Stage a persona-swap demonstration to ease the nervous queue.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_queue_calm",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_trickster_swapmeet"
+                },
+                {
+                    "text": "(Emissary) Convene the stallholders about a shared amnesty pledge.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_emissary_forum",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_emissary_forum"
+                },
+                {
+                    "text": "Trace the refraction spines toward the ledger's witnessing window.",
+                    "target": "shed_market_lumenar_refraction"
+                }
+            ]
+        },
+        "shed_market_molting_appraisers": {
+            "title": "Molting Appraisers",
+            "text": "Ledger keepers rotate molted skins beneath glowstones, matching each to its consent braid before filing tonight's exchanges.",
+            "choices": [
+                {
+                    "text": "Sort the claim slips into ledger order, calming the backlog.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_claim_catalogued",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_identity_vault"
+                },
+                {
+                    "text": "Pocket an unclaimed slip as payment for the meticulous work.",
+                    "condition": {
+                        "type": "missing_item",
+                        "value": "molting claim slip"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "molting claim slip"
+                        }
+                    ],
+                    "target": "shed_market_identity_vault"
+                },
+                {
+                    "text": "(Arbiter) Compare conflicting ledgers until every entry aligns.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_precedent",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_arbiter_lattice"
+                },
+                {
+                    "text": "Borrow splicer tools to salvage a damaged husk.",
+                    "target": "shed_market_skin_splicer_lab"
+                }
+            ]
+        },
+        "shed_market_skin_splicer_lab": {
+            "title": "Skin Splicer Lab",
+            "text": "Steam curls above tables where technicians stitch consent sigils into reclaimed skins, double-checking that each splice honors its origin.",
+            "choices": [
+                {
+                    "text": "Stitch consent sigils so each reclaimed skin keeps its story intact.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_splicer_aided",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_identity_vault"
+                },
+                {
+                    "text": "(Lumenar) Maintain the vats' glow so new selves don't smear.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_identity_vault"
+                },
+                {
+                    "text": "Carry the splicers' notes to the ledger window for safekeeping.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_quiet_window_noted",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "Return the borrowed tools before anyone panics.",
+                    "target": "shed_market_molting_appraisers"
+                }
+            ]
+        },
+        "shed_market_identity_vault": {
+            "title": "Identity Vault",
+            "text": "Shelves of sealed husks line a cooled vault, each tagged with testimony ribbons awaiting the amnesty filing.",
+            "choices": [
+                {
+                    "text": "Restore archived names to the crates they nearly lost.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_vault_ordered",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "(Lumenar) Paint the shelves with gentle truthlight glyphs.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "Deliver the claim slip toward the proof counter queue.",
+                    "target": "shed_market_identity_proof_counter"
+                },
+                {
+                    "text": "Slip back to the appraisers' tables.",
+                    "target": "shed_market_molting_appraisers"
+                }
+            ]
+        },
+        "shed_market_identity_proof_counter": {
+            "title": "Identity Proof Counter",
+            "text": "Clerks flick between mirrored panes, confirming that each visitor's current face aligns with their consent braids before issuing passage tokens.",
+            "choices": [
+                {
+                    "text": "Submit the molting claim slip you secured from the vault.",
+                    "condition": {
+                        "type": "has_item",
+                        "value": "molting claim slip"
+                    },
+                    "effects": [
+                        {
+                            "type": "remove_item",
+                            "value": "molting claim slip"
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_verified",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "(Arbiter) Cite market precedent guaranteeing provisional identity.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_verified",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "(Lumenar) Cast a truthlight halo so the queue sees you clearly.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_verified",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Reference your ledger credit to vouch for the claim.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_verified",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "Step away from the counter before deciding.",
+                    "target": "shed_market_metamorph_stalls"
+                }
+            ]
+        },
+        "shed_market_trickster_swapmeet": {
+            "title": "Trickster Swapmeet",
+            "text": "Performers juggle voice boxes and masks, demonstrating how to trade selves without breaking consent ledgers.",
+            "choices": [
+                {
+                    "text": "Juggle borrowed personas to relax the anxious queue.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_queue_calm",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_metamorph_stalls"
+                },
+                {
+                    "text": "(Trickster) Orchestrate a daring multi-mask trade for the waiting patrons.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        }
+                    ],
+                    "target": "shed_market_metamorph_stalls"
+                },
+                {
+                    "text": "Palm an unclaimed slip while everyone watches the routine.",
+                    "condition": {
+                        "type": "missing_item",
+                        "value": "molting claim slip"
+                    },
+                    "effects": [
+                        {
+                            "type": "add_item",
+                            "value": "molting claim slip"
+                        }
+                    ],
+                    "target": "shed_market_identity_proof_counter"
+                },
+                {
+                    "text": "Guide a jittery metamorph toward the Dreamwalker's seam.",
+                    "target": "mentor_dreamwalker_intro"
+                }
+            ]
+        },
+        "shed_market_emissary_forum": {
+            "title": "Emissary Forum",
+            "text": "Stallholders cluster beneath rotating husks, debating how the amnesty charter should protect visitors wearing borrowed faces tonight.",
+            "choices": [
+                {
+                    "text": "Draft a shared amnesty statement for the ledger clerks to review.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_emissary_signatories",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "(Emissary) Call in cross-hub observers to witness the pledges.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Emissary"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_emissary_signatories",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Ask the pledgers to rehearse within the pledge chorus alcove.",
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Return to the metamorph stalls.",
+                    "target": "shed_market_metamorph_stalls"
+                }
+            ]
+        },
+        "shed_market_arbiter_lattice": {
+            "title": "Arbiter Lattice",
+            "text": "Threads of annotated precedent hang like a loom, each knot linking a past dispute about temporary selves to the current amnesty push.",
+            "choices": [
+                {
+                    "text": "Review testimonies until contradictions unravel into clarity.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_precedent",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "(Arbiter) Issue a binding lattice affirming portable identities for the night.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Arbiter"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Root Assembly",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_arbiter_signal",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_precedent",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Forward the reconciled cases to the charter antechamber clerks.",
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "Return to the appraisers' worktables.",
+                    "target": "shed_market_molting_appraisers"
+                }
+            ]
+        },
+        "shed_market_lumenar_refraction": {
+            "title": "Refraction Spines",
+            "text": "Lumenar rods bloom over the stalls, bending light so every shifting face holds steady edges for the clerks watching from above.",
+            "choices": [
+                {
+                    "text": "Hang glow-sashed lanterns to make each metamorph legible.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_quiet_ledger_window"
+                },
+                {
+                    "text": "(Lumenar) Weave a recognition halo that follows every borrowed face.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Lumenar"
+                    },
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_truthlight",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Channel the steady lights toward the Dreamwalker seam.",
+                    "target": "mentor_dreamwalker_intro"
+                },
+                {
+                    "text": "Return to the metamorph stalls below.",
+                    "target": "shed_market_metamorph_stalls"
+                }
+            ]
+        },
+        "shed_market_quiet_ledger_window": {
+            "title": "Quiet Ledger Window",
+            "text": "Clerks observe from a high window, annotating who has proof enough to carry a borrowed self beyond the market.",
+            "choices": [
+                {
+                    "text": "Submit reorganized testimonies for docketing.",
+                    "effects": [
+                        {
+                            "type": "rep_delta",
+                            "faction": "Quiet Ledger",
+                            "value": 1
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_quiet_window_noted",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "(Quiet Ledger 1+) Request an expedited amnesty docket for the night.",
+                    "condition": {
+                        "type": "rep_at_least",
+                        "faction": "Quiet Ledger",
+                        "value": 1
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_identity_verified",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "Relay the pledgers toward the chorus alcove.",
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Return to the identity vault for more records.",
+                    "target": "shed_market_identity_vault"
+                }
+            ]
+        },
+        "shed_market_pledge_chorus": {
+            "title": "Pledge Chorus",
+            "text": "An amphitheater of layered husks resounds with rehearsed introductions, each metamorph practicing their chosen name for the clerks.",
+            "choices": [
+                {
+                    "text": "Rehearse the pledge until every voice steadies on its new name.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_emissary_signatories",
+                            "value": true
+                        },
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_chorus_rehearsed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "(Trickster) Break the tension with quick improv masks.",
+                    "condition": {
+                        "type": "has_tag",
+                        "value": "Trickster"
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_queue_calm",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_pledge_chorus"
+                },
+                {
+                    "text": "Lead the chorus toward the charter antechamber.",
+                    "target": "shed_market_charter_antechamber"
+                },
+                {
+                    "text": "Disperse back through the bazaar to recruit more voices.",
+                    "target": "shed_market_shed_bazaar"
+                }
+            ]
+        },
+        "shed_market_charter_antechamber": {
+            "title": "Charter Antechamber",
+            "text": "Clerks spread the night's petitions across a long table, waiting for proof bundles before forwarding them to the charter workshop.",
+            "choices": [
+                {
+                    "text": "File the reconciled docket with the charter clerks.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_identity_precedent",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_compiled",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Seat the pledge chorus beneath luminous witness marks.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_truthlight",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_illumined",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Sign the amnesty register alongside the pledge chorus.",
+                    "condition": {
+                        "type": "flag_eq",
+                        "flag": "shed_market_emissary_signatories",
+                        "value": true
+                    },
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "shed_market_charter_signed",
+                            "value": true
+                        }
+                    ],
+                    "target": "shed_market_charter_workshop"
+                },
+                {
+                    "text": "Loop back through the pledge chorus to gather more support.",
+                    "target": "shed_market_pledge_chorus"
                 }
             ]
         },
