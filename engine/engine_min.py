@@ -302,24 +302,52 @@ def render_node(node, state):
 def pick_start(world, profile):
     starts = world.get("starts", [])
     unlocked_ids = set(profile.get("unlocked_starts", []))
-    available = []
+    core = []
+    unlocked = []
     for s in starts:
         start_id = s.get("id") or s.get("node")
         if s.get("locked") and start_id not in unlocked_ids:
             continue
-        available.append((start_id, s))
-    if not available:
+        entry = (start_id, s)
+        if s.get("locked"):
+            unlocked.append(entry)
+        else:
+            core.append(entry)
+    if not (core or unlocked):
         return "start", [], None
     print("Choose your origin:")
-    for i, (sid, s) in enumerate(available, start=1):
-        tags = canonicalize_tag_list(s.get("tags", []))
-        print(f"  {i}. {s.get('title','Start')}  -> node '{s['node']}' | tags {tags}")
+    display = []
+    index = 0
+    def show_group(title, entries):
+        nonlocal index
+        if not entries:
+            return
+        print(title)
+        for sid, start in entries:
+            index += 1
+            display.append((sid, start))
+            tags = canonicalize_tag_list(start.get("tags", []))
+            tag_str = ", ".join(tags) if tags else "—"
+            node = start.get("node", "?")
+            print(f"  {index}. {start.get('title','Start')} (Node: {node} | Tags: {tag_str})")
+            blurb = start.get("blurb")
+            if blurb:
+                for line in blurb.splitlines():
+                    print(f"     {line}")
+            else:
+                print("     —")
+        print("")
+
+    show_group("Core Starts (always available):", core)
+    show_group("Unlocked Starts (profile):", unlocked)
+    if not display:
+        return "start", [], None
     while True:
         sel = input("> ").strip().lower()
         if sel.isdigit():
             i = int(sel)
-            if 1 <= i <= len(available):
-                sid, start = available[i-1]
+            if 1 <= i <= len(display):
+                sid, start = display[i-1]
                 tags = canonicalize_tag_list(start.get("tags", []))
                 return start["node"], tags, sid
         print("Pick a valid number.")
