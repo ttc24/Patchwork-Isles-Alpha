@@ -61,7 +61,7 @@
             "locked_title": "Storm Rail Mooring (Locked)",
             "node": "storm_rail_intro",
             "tags": [
-                "Scout",
+                "Cartographer",
                 "Resonant"
             ],
             "locked": true
@@ -2287,6 +2287,17 @@
                     "target": "nexus_moon_eel_reward"
                 },
                 {
+                    "text": "Match your breath to the tide and step through as it ebbs.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "moon_eel_ebbed",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_moon_eel_reward"
+                },
+                {
                     "text": "Let the arch settle and step back toward the compass.",
                     "target": "startways_nexus"
                 }
@@ -2332,15 +2343,26 @@
                     "target": "nexus_storm_reward"
                 },
                 {
-                    "text": "(Scout) Chart the gust vectors and leap when the gale dips.",
+                    "text": "(Cartographer) Plot the gust vectors and stride in their lee.",
                     "condition": {
                         "type": "has_tag",
-                        "value": "Scout"
+                        "value": "Cartographer"
                     },
                     "effects": [
                         {
                             "type": "set_flag",
                             "flag": "storm_rail_mapped",
+                            "value": true
+                        }
+                    ],
+                    "target": "nexus_storm_reward"
+                },
+                {
+                    "text": "Brace against the railing and edge forward between surges.",
+                    "effects": [
+                        {
+                            "type": "set_flag",
+                            "flag": "storm_rail_braced",
                             "value": true
                         }
                     ],
