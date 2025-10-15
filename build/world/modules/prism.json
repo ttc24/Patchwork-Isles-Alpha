@@ -1,0 +1,356 @@
+{
+  "_module_info": {
+    "id": "prism",
+    "name": "Prism Cartel Areas",
+    "description": "Content module for prism area",
+    "dependencies": [],
+    "tags": [
+      "Cartographer",
+      "Emissary",
+      "Resonant",
+      "Tinkerer"
+    ],
+    "factions": [
+      "Prism Cartel",
+      "Root Assembly"
+    ],
+    "node_count": 3,
+    "start_count": 0
+  },
+  "nodes": {
+    "prism_galleria": {
+      "title": "Prism Cartel Galleria",
+      "text": "Mirrored arcades refract the afternoon into ribbons while Cartel stewards trade favors under crystal awnings. Hovering heliostats hum as apprentices tune their beams.",
+      "choices": [
+        {
+          "text": "(Tinkerer) Resequence a cracked heliostat for Cartel credit.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Tinkerer"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Cartel",
+              "value": 1
+            },
+            {
+              "type": "add_item",
+              "value": "prism shard"
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(Cartographer) Plot the shifting aisles into a precise maintenance route.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Cartographer"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "map_galleria",
+              "value": true
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "Sign a Cartel marker pledging future service for elevator access.",
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Cartel",
+              "value": -1
+            },
+            {
+              "type": "set_flag",
+              "flag": "guild_marker",
+              "value": true
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(Light-Step) Balance along the suspension cables to the service lift.",
+          "condition": {
+            "type": "has_trait",
+            "value": "Light-Step"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "lightstep_galleria",
+              "value": true
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(People-Reader) Read the steward's tells to secure a discreet escort.",
+          "condition": {
+            "type": "has_trait",
+            "value": "People-Reader"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Cartel",
+              "value": 1
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(Emissary) Broker a chime-lift lane into the Cloud-Burrow warrens.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Emissary"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Cartel",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "cloud_chime_pass",
+              "value": true
+            }
+          ],
+          "target": "cloud_burrow_threshold"
+        },
+        {
+          "text": "(Emissary) Escort Prism proofs directly to the guest-law chamber.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Emissary"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Root Assembly",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "guestlaw_prism_escort",
+              "value": true
+            }
+          ],
+          "target": "guestlaw_chamber"
+        },
+        {
+          "text": "Spend a color baffle to signal the Saltglass engine's prism pier.",
+          "condition": {
+            "type": "has_item",
+            "value": "color baffle"
+          },
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "color baffle"
+            },
+            {
+              "type": "set_flag",
+              "flag": "saltglass_baffle_route",
+              "value": true
+            }
+          ],
+          "target": "saltglass_expanse"
+        },
+        {
+          "text": "Trade a windbone token for a stewarded lift back to the Startways.",
+          "condition": {
+            "type": "has_item",
+            "value": "windbone token"
+          },
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "windbone token"
+            },
+            {
+              "type": "set_flag",
+              "flag": "startways_chime_escort",
+              "value": true
+            }
+          ],
+          "target": "startways_nexus"
+        },
+        {
+          "text": "(Prism Cartel 1+) Invoke Cartel patronage for a private tram to the grotto.",
+          "condition": {
+            "type": "rep_at_least",
+            "faction": "Prism Cartel",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "cartel_tram_clearance",
+              "value": true
+            }
+          ],
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(Resonant) Harmonize the galleria chimes to open the Cloud-Burrow transfer.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Resonant"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "resonant_cloud_lane",
+              "value": true
+            }
+          ],
+          "target": "cloud_burrow_threshold"
+        },
+        {
+          "text": "Post your maintenance rota as a public cooperative and oversee the shift.",
+          "condition": [
+            {
+              "type": "rep_at_least",
+              "faction": "Prism Cartel",
+              "value": 1
+            },
+            {
+              "type": "flag_eq",
+              "flag": "map_galleria",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Galleria Civic Cooperative"
+            }
+          ],
+          "target": "ending_galleria_steward"
+        },
+        {
+          "text": "Convert your private tram clearance into a shared steward shift and stay on.",
+          "condition": [
+            {
+              "type": "rep_at_least",
+              "faction": "Prism Cartel",
+              "value": 1
+            },
+            {
+              "type": "flag_eq",
+              "flag": "cartel_tram_clearance",
+              "value": true
+            }
+          ],
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Galleria Civic Cooperative"
+            }
+          ],
+          "target": "ending_galleria_steward"
+        },
+        {
+          "text": "Trade your pledge for the night lift roster and settle behind the desk.",
+          "condition": {
+            "type": "flag_eq",
+            "flag": "guild_marker",
+            "value": true
+          },
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Prism Liftkeeper"
+            }
+          ],
+          "target": "ending_prism_liftkeeper"
+        },
+        {
+          "text": "Publish the prism light commons pact linking lifts to guest-law routes.",
+          "condition": [
+            {
+              "type": "flag_eq",
+              "flag": "map_galleria",
+              "value": true
+            },
+            {
+              "type": "flag_eq",
+              "flag": "guestlaw_prism_escort",
+              "value": true
+            },
+            {
+              "type": "rep_at_least",
+              "faction": "Prism Cartel",
+              "value": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Prism Light Commons"
+            }
+          ],
+          "target": "ending_prism_light_commons"
+        },
+        {
+          "text": "Take the maintenance stairs to the upper prism workshops.",
+          "target": "prism_workshop_level"
+        },
+        {
+          "text": "Follow the service corridor toward the central hub.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "prism_workshop_level": {
+      "title": "Prism Workshop Level",
+      "text": "The maintenance stairs lead to a working level where crystal artisans shape prisms and mirrors. The workshops hum with activity as light is bent, focused, and redirected through an intricate network of optical devices.\n\nSeveral passages lead from here to different parts of the Cartel's operations and beyond.",
+      "choices": [
+        {
+          "text": "Visit the main Cartel administrative offices.",
+          "target": "prism_administrative_hub"
+        },
+        {
+          "text": "Follow the light conduits toward the central nexus.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Take the service tunnel toward the Root Assembly areas.",
+          "target": "root_tangle_market"
+        },
+        {
+          "text": "Return to the main galleria below.",
+          "target": "prism_galleria"
+        }
+      ]
+    },
+    "prism_administrative_hub": {
+      "title": "Prism Cartel Administrative Hub",
+      "text": "The administrative center of Prism Cartel operations buzzes with clerks managing trade routes, light allocations, and mirror networks. Maps of the entire archipelago cover the walls, showing the complex web of optical communications that keep the islands connected.\n\nFrom this central hub, you can access many different regions of the archipelago.",
+      "choices": [
+        {
+          "text": "Request transport to the central Startways Nexus.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Join a caravan heading toward the Root Assembly territories.",
+          "target": "root_tangle_market"
+        },
+        {
+          "text": "Take passage on a light-ship to the cloud territories.",
+          "target": "cloud_burrow_threshold"
+        },
+        {
+          "text": "Return to the workshop level.",
+          "target": "prism_workshop_level"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

@@ -1,0 +1,42 @@
+{
+  "_module_info": {
+    "id": "identify",
+    "name": "Identify",
+    "description": "Content module for identify area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "identify_harmonic_sabotage": {
+      "title": "Uncovering Sabotage",
+      "description": "Examining the crystal formations more closely, you discover foreign devices embedded in their structure - tiny resonance disruptors that force the crystals to emit chaotic frequencies. The technology is sophisticated, far beyond what most islanders possess. Someone with advanced knowledge and significant resources is behind this.",
+      "tags": [
+        "Exploration",
+        "Investigation",
+        "Technical"
+      ],
+      "choices": [
+        {
+          "text": "'I need to trace where these devices came from.'",
+          "target": "track_sabotage"
+        },
+        {
+          "text": "'Can these disruptors be safely removed?'",
+          "target": "attempt_harmonic_repair"
+        },
+        {
+          "text": "'This technology suggests connections to other crisis events.'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'I should coordinate with technical teams on the surface.'",
+          "target": "technical_analysis"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

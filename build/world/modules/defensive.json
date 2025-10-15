@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "defensive",
+    "name": "Defensive",
+    "description": "Content module for defensive area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "defensive_measures": {
+      "title": "Securing the Network",
+      "description": "Security Chief Kade spreads out patrol assignments: 'We're posting guards at every major junction and installing surveillance systems at vulnerable points. The problem is resources - protecting everything means we're spread thin. If they hit multiple targets simultaneously, we won't be able to respond to them all.'",
+      "tags": [
+        "Infrastructure",
+        "Security"
+      ],
+      "choices": [
+        {
+          "text": "'Focus protection on the most critical nodes.'",
+          "target": "triage_infrastructure"
+        },
+        {
+          "text": "'We need to find their base of operations and strike first.'",
+          "target": "locate_sabotage_source"
+        },
+        {
+          "text": "'Can we set up decoy targets to draw them out?'",
+          "target": "prepare_counterstrike"
+        },
+        {
+          "text": "'This defensive approach isn't enough - we need intelligence.'",
+          "target": "investigate_inside_threats"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

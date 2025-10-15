@@ -1,0 +1,55 @@
+{
+  "_module_info": {
+    "id": "prepare",
+    "name": "Prepare",
+    "description": "Content module for prepare area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 2,
+    "start_count": 0
+  },
+  "nodes": {
+    "prepare_counterstrike": {
+      "title": "Setting the Trap",
+      "description": "Security Chief Kade outlines the counterstrike plan: 'We'll create fake vulnerability reports and stage false maintenance activities to draw them out. When they move to strike our decoy targets, we'll be waiting. But if we're wrong about their patterns, we could lose real infrastructure while chasing shadows.'",
+      "tags": [
+        "Infrastructure",
+        "Security",
+        "Strategy"
+      ],
+      "choices": [
+        {
+          "text": "'The risk is worth it if we can catch them in the act.'",
+          "target": "execute_counterstrike"
+        },
+        {
+          "text": "'We need better intelligence before risking our infrastructure.'",
+          "target": "investigate_inside_threats"
+        },
+        {
+          "text": "'Can we coordinate this with other crisis response teams?'",
+          "target": "coordinate_crisis_response"
+        },
+        {
+          "text": "'This plan needs approval from central command.'",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "prepare_evidence_campaign": {
+      "id": "prepare_evidence_campaign",
+      "title": "Prepare Evidence Campaign",
+      "text": "[This is an auto-generated placeholder for the missing 'prepare_evidence_campaign' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'plan_security_measures' choice 1"
+    }
+  },
+  "starts": []
+}

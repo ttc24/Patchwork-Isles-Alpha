@@ -1,0 +1,102 @@
+{
+  "_module_info": {
+    "id": "orchard",
+    "name": "Memory Orchards",
+    "description": "Content module for orchard area",
+    "dependencies": [],
+    "tags": [
+      "Cartographer",
+      "Resonant"
+    ],
+    "factions": [
+      "Quiet Ledger"
+    ],
+    "node_count": 2,
+    "start_count": 1
+  },
+  "nodes": {
+    "orchard_keeper_hut": {
+      "title": "Orchard Keeper's Hut",
+      "text": "Meteor-fruit hang from rafters like lanterns, each pulsing with whispers of seasons past. Ledger-boards and grafting tools crowd the hut, inviting you to steward the memories stored here.",
+      "choices": [
+        {
+          "text": "(Resonant) Hum with the rafters until the stored fruit echo your pitch.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Resonant"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Quiet Ledger",
+              "value": 1
+            }
+          ],
+          "target": "starfallen_orchard_resonance_grove"
+        },
+        {
+          "text": "(Cartographer) Study the pinned root-maps to plot the ripest rows.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Cartographer"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "orchard_map_shared",
+              "value": true
+            }
+          ],
+          "target": "starfallen_orchard_cartography_canopy"
+        },
+        {
+          "text": "Step outside into the meteoric grove.",
+          "target": "starfallen_orchard_meteoric_gate"
+        },
+        {
+          "text": "Offer to log today's gleanings for the sharecrop commons.",
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Quiet Ledger",
+              "value": 1
+            }
+          ],
+          "target": "starfallen_orchard_sharecrop_commons"
+        }
+      ]
+    },
+    "orchard_exit_gateway": {
+      "title": "Meteor Trail Gateway",
+      "text": "Ancient meteor trails carved through the orchard create natural pathways leading back toward the main archipelago. The trails pulse with residual cosmic energy, providing clear navigation routes away from the memory groves.\n\nFrom here, multiple paths diverge toward different regions of the islands.",
+      "choices": [
+        {
+          "text": "Follow the bright trail toward the Saltglass Expanse.",
+          "target": "saltglass_expanse"
+        },
+        {
+          "text": "Take the elevated path toward the Startways Nexus.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Return to explore more of the orchard.",
+          "target": "starfallen_orchard_meteoric_gate"
+        }
+      ]
+    }
+  },
+  "starts": [
+    {
+      "id": "orchard_keeper_hut",
+      "title": "Orchard Keeper's Hut",
+      "locked_title": "Orchard Keeper's Hut (Locked)",
+      "node": "orchard_keeper_hut",
+      "tags": [
+        "Resonant",
+        "Cartographer"
+      ],
+      "locked": true,
+      "blurb": "Tend meteor-grown memories in the orchard huts. Cooperative caretaking knits ledgers and lullabies."
+    }
+  ]
+}

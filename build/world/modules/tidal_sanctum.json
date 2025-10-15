@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "tidal_sanctum",
+    "name": "Tidal Sanctum",
+    "description": "Content module for tidal_sanctum area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 1
+  },
+  "nodes": {
+    "tidal_sanctum_novice_pools": {
+      "id": "tidal_sanctum_novice_pools",
+      "title": "Tidal Sanctum Novice Pools",
+      "text": "[This is an auto-generated placeholder for the missing 'tidal_sanctum_novice_pools' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Start 'tide_warden_acolyte'"
+    }
+  },
+  "starts": [
+    {
+      "id": "tide_warden_acolyte",
+      "title": "Tide Warden Acolyte",
+      "locked_title": "Tide Warden Acolyte (Locked)",
+      "node": "tidal_sanctum_novice_pools",
+      "tags": [
+        "Tide-Singer",
+        "Healer"
+      ],
+      "locked": true,
+      "blurb": "Study the sacred tides in temple pools that reflect multiple oceanic realms. Channel tidal forces for healing and prophecy."
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 [tool.black]
 line-length = 100
 target-version = ["py38"]
-include = "\.(py|pyi)$"
+include = "\\.py$"
 
 [tool.ruff]
 line-length = 100
@@ -14,7 +14,7 @@ ignore = ["E203", "E266"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["engine", "tools"]
-profile = "black"
+force-single-line = false
 
 [tool.mypy]
 python_version = "3.8"

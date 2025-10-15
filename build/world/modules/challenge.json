@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "challenge",
+    "name": "Challenge",
+    "description": "Content module for challenge area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "challenge_cartel_ethics": {
+      "title": "Moral Confrontation",
+      "description": "Director Vale's expression doesn't change: 'Families? Communities? These are outdated concepts that inefficiency creates. The Cartel brings order, standardization, and scale. The archipelago needs economic modernization, not sentimental attachment to failing family businesses.' The other executives nod in agreement.",
+      "tags": [
+        "Economic",
+        "Philosophy"
+      ],
+      "choices": [
+        {
+          "text": "'Diversity and independence make the economy stronger, not weaker.'",
+          "target": "defend_economic_diversity"
+        },
+        {
+          "text": "'Show me your books - let's see how 'efficient' you really are.'",
+          "target": "examine_trade_records"
+        },
+        {
+          "text": "'What gives you the right to decide who deserves to exist?'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'I've heard enough. This conversation is over.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

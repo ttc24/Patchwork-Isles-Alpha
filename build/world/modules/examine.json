@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "examine",
+    "name": "Examine",
+    "description": "Content module for examine area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "examine_trade_records": {
+      "title": "The Paper Trail",
+      "description": "Trader Kess hands you ledgers and shipping manifests: 'Look at these prices - they're selling crystals for less than extraction costs! No legitimate business can sustain that. And here,' she points to a communication crystal, 'threats to suppliers who work with independents. This isn't competition, it's economic warfare.'",
+      "tags": [
+        "Economic",
+        "Investigation"
+      ],
+      "choices": [
+        {
+          "text": "'This is clear evidence of illegal practices.'",
+          "target": "confront_cartel_leaders"
+        },
+        {
+          "text": "'We need to present this to the Root Assembly.'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'Help me understand - how are they funding these losses?'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'Let me explore other approaches first.'",
+          "target": "explore_trader_alliance"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

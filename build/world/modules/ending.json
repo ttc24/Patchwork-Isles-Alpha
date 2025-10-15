@@ -1,0 +1,196 @@
+{
+  "_module_info": {
+    "id": "ending",
+    "name": "Story Endings",
+    "description": "Content module for ending area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 33,
+    "start_count": 0
+  },
+  "nodes": {
+    "ending_escape": {
+      "title": "Hidden Canal Flight",
+      "text": "You slip a skiff into the phosphor canals before the patrol lights turn.\nCached crates from a dozen favors keep you ahead of every toll-chain.\nBy dusk, the mist remembers only the wake you chose to leave."
+    },
+    "ending_guestlaw": {
+      "title": "Guest-Law Compact",
+      "text": "You leave the chamber with the guest-law compact signed in four inks.\nDock masters swap updated ledgers, each hub agreeing to shelter travelers in turn.\nNo banner claims credit; the precedent simply hums through every root and rail."
+    },
+    "ending_correction": {
+      "title": "Orrery Caretaker",
+      "text": "You post yourself in the orrery's bronze heart, feeling each pulse through sap-stained gloves.\nSeason after season you tune the correction, synchronizing tides, caravans, and the breath of resting elders.\nTravelers speak of the caretaker, not a name, when they note how the schedule never slips."
+    },
+    "ending_sharecrop_of_stories": {
+      "title": "The Sharecrop of Stories",
+      "text": "You publish the orchard's ledgers, turning every graft into a documented community promise.\nRotating crews tend the memory fruit, logging who watered, who harvested, and who shared.\nStories ripen into public resource rather than private archive."
+    },
+    "ending_amnesty_of_names": {
+      "title": "Amnesty of Names",
+      "text": "Your amnesty charter ripples through the Startways, stamped by every ledger you petitioned.\nTravelers line up to reclaim forgotten names or try on new ones without whispers trailing them.\nRegistrars now simply note the change and pass the quills along."
+    },
+    "ending_unshattered_gale": {
+      "title": "Unshattered Gale",
+      "text": "You stay to recalibrate each gust frame along the Cloud-Burrow warrens.\nWind-mole crews queue for your nod before launching, the updraft braided steady and low.\nThe cooperative posts your rota beside the tool hooks, marking you as the keeper of calm breezes."
+    },
+    "ending_shade_treaty": {
+      "title": "Treaty of Moving Shade",
+      "text": "You settle the Treaty of Moving Shade beneath the caravan council's mirrored canopy.\nWalking cities now align their shadows by shared schedule, cooling routes without tribute demanded.\nMerchants wave the signed prisms, a treaty maintained by habit instead of heroics."
+    },
+    "ending_living_wake": {
+      "title": "The Living Wake",
+      "text": "You turn the amber barges into a standing wake for anyone departing the docks.\nNeighbors bring lanternbread and names to share, weaving every farewell into the tide.\nBy week's end the procession runs itself, held together by the quiet cues you leave behind."
+    },
+    "ending_mooring_mediator": {
+      "title": "Mooring Mediator",
+      "text": "You hang up your envoy sigils and take the Aeol rota seat above the moorings.\nEach dawn you tune stormglass drums so incoming pilots stagger themselves instead of colliding.\nWhen gusts snap cables, wardens call for the mediator, not the traveler you once were."
+    },
+    "ending_galleria_steward": {
+      "title": "Galleria Civic Cooperative",
+      "text": "You convert your maintenance map into a public roster for the Prism galleria lifts.\nVendors sign up for shared upkeep instead of bribed shortcuts, the rota chiming on open display.\nApprentices wave you toward the coordinator's desk you now occupy."
+    },
+    "ending_freehands_regatta": {
+      "title": "Freehands Mist Regatta",
+      "text": "You assemble the Freehands skiffs you cached in the grotto and lead them into the mist.\nRun captains take your signals, ferrying migrants and cargo through lanes you just cleared.\nBy the next tide the regatta charter bears your notes for whoever captains tomorrow."
+    },
+    "ending_cloud_cooperative": {
+      "title": "Cloud-Burrow Balcony Cooperative",
+      "text": "You stay behind on the Cloud-Burrow balconies to organize the coop glideway.\nFamilies rotate watch on the tethered baskets, following the schedule you scribed on wind-proof slate.\nThe updraft mutters your guidelines every time a newcomer clips in."
+    },
+    "ending_saltglass_wayfinder": {
+      "title": "Saltglass Wayfinder",
+      "text": "You lock your dune charts into the Saltglass co-op chest and claim the night shift.\nCaravan captains queue for your mirrored signals, gliding through shade corridors without tribute.\nThe ledger lists you simply as Wayfinder on duty."
+    },
+    "ending_rainchain_hostel": {
+      "title": "Rainchain Hostel Steward",
+      "text": "You catalog bunk chits and hang fresh rainchain towels as ferries roll through.\nTravelers swap tokens for dry hammocks under the steady rhythm you keep.\nThe hostel hums without fuss because you stay to mind the roster."
+    },
+    "ending_root_night_auditor": {
+      "title": "Night Auditor of Roots",
+      "text": "After hearings close you balance the petitions ledger by lanternlight.\nClerks slide you quiet nods while you reconcile favors into open access notes.\nBy dawn, the market trusts your calm sums more than any speech."
+    },
+    "ending_prism_liftkeeper": {
+      "title": "Prism Liftkeeper",
+      "text": "You take the night desk, tuning prism lifts to the cadence of working crews.\nVendors bring you coilbread while you pencil every shared ride onto the public slate.\nThe galleria lights stay even because you keep the rota honest."
+    },
+    "ending_saltglass_waystation": {
+      "title": "Saltglass Waystation Warden",
+      "text": "You chalk mirrored arrows into the dune shelters and listen for caravan bells.\nNight caravans coast in on your signals, trading gossip for cool shade.\nThe waystation ledger bears your initials beside every safe arrival."
+    },
+    "ending_moon_eel_guest": {
+      "title": "Moon-Eel Guest Curator",
+      "text": "You settle in the ribcage hosthouse, annotating tide diaries between potluck shifts.\nResidents drift through to borrow guest marks and leave baskets of brined sweets.\nThe suburb hums with gentle courtesy under your watch."
+    },
+    "ending_wake_candle_warden": {
+      "title": "Wake Candle Warden",
+      "text": "You stand the middle watch of the wake barges, trimming wicks before each procession.\nMourners breathe easier knowing you log who needs a lantern and who can rest.\nThe river glows steady because you keep the candles in quiet rotation."
+    },
+    "ending_bazaar_maskbinder": {
+      "title": "Maskbinder in Residence",
+      "text": "You hang each borrowed face back on its hook and record the stories tied to it.\nVisitors leave new masks with consent slips you seal in lacquer.\nThe gallery becomes a calm exchange because you stay to tend every persona."
+    },
+    "ending_cocoon_host_caretaker": {
+      "title": "Cocoon Hostel Caretaker",
+      "text": "You make tea in the predawn hush and chart who wakes in which cocoon.\nTravelers easing between selves find their blankets warmed and names spelled right.\nThe hostel keeps its gentle rhythm under your steady shift."
+    },
+    "ending_freehands_dispatch": {
+      "title": "Freehands Dispatch Coordinator",
+      "text": "You claim a stool beside the cache ledger, logging every cord and salve that leaves.\nCouriers swing by for your updated lists before sprinting into the dunes.\nRelief routes stay supplied because you keep the dispatch drumbeat."
+    },
+    "ending_canal_common_tide": {
+      "title": "Common Tide Charter",
+      "text": "You draft a tide charter that stitches Aeol departure bells to Freehands relief runs.\nCouriers now launch in alternating waves, sharing canals without jostled hulls.\nThe charter posts on both piers as a plain-signed schedule anyone can keep."
+    },
+    "ending_shared_ledger_loop": {
+      "title": "Shared Ledger Loop",
+      "text": "You merge Root Assembly dispatch notes with Quiet Ledger reimbursements.\nClerks swap tablets through your new loop, cross-crediting aid before disputes can bloom.\nRoutes stay funded because you normalized the cycle."
+    },
+    "ending_balcony_safe_concord": {
+      "title": "Balcony Safety Concord",
+      "text": "You publish a concord that pairs Aeol rosters with balcony stewards on every shift.\nCouriers and residents clip the same safety charms before stepping onto windlines.\nThe burrow's glideways hum with mutual check-ins instead of flinches."
+    },
+    "ending_prism_light_commons": {
+      "title": "Prism Light Commons",
+      "text": "You unlock the prism lifts and post a commons pact linking them to guest-law routes.\nCartel stewards rotate upkeep with visiting advocates, their signatures all on one slate.\nLifts chime open to anyone carrying the new rota token."
+    },
+    "ending_migrant_kithhouse": {
+      "title": "Migrant Kithhouse Accord",
+      "text": "You circulate the kithhouse accord tying rest decks across the hubs to shared care.\nQuiet Ledger stewards and Assembly hosts share pantry tallies on the same board.\nTravelers find a ready bunk anywhere the accord seal hangs."
+    },
+    "ending_orchard_accord": {
+      "title": "The Orchard Accord",
+      "text": "You braid the orchard's memory fruit harvest into a public conduit, the Orchard Accord.\nPrism roots, tidal pumps, and Quiet Ledger grants now feed every hub's archive without gatekeepers.\nFamilies queue beneath the meteor glass to draw shared memories like clean water."
+    },
+    "ending_keeper_of_passways": {
+      "title": "Keeper of Passways",
+      "text": "You accept the steward's ledgers and move into the compass stem that threads every Startways arch.\nTwo factions' runners brief you each shift as you balance their requests against the tide of travelers.\nRoutes now whisper of the Keeper of Passways, a post anyone might inherit if they match your quiet balance."
+    },
+    "ending_crystal_symphony": {
+      "title": "Symphony",
+      "description": "You find yourself in symphony, a location within the Ending Crystal region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "ending_crystal_symphony"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "ending_cavern_city_architect": {
+      "title": "City Architect",
+      "description": "You find yourself in city architect, a location within the Ending Cavern region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "ending_cavern_city_architect"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "ending_crystal_memory_keeper": {
+      "title": "Memory Keeper",
+      "description": "You find yourself in memory keeper, a location within the Ending Crystal region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "ending_crystal_memory_keeper"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "ending_depths_bridge_keeper": {
+      "id": "ending_depths_bridge_keeper",
+      "title": "Ending: Depths Bridge Keeper",
+      "text": "[This is an auto-generated placeholder for the missing 'ending_depths_bridge_keeper' location.] This is an ending node. The conclusion to this story path is still being written.",
+      "choices": [
+        {
+          "text": "Reflect on your journey",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "reached_ending_depths_bridge_keeper",
+              "value": true
+            }
+          ],
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'singing_depths_transformation_choice' choice 0"
+    }
+  },
+  "starts": []
+}

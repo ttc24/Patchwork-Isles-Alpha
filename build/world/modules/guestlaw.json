@@ -1,0 +1,108 @@
+{
+  "_module_info": {
+    "id": "guestlaw",
+    "name": "Guestlaw",
+    "description": "Content module for guestlaw area",
+    "dependencies": [],
+    "tags": [
+      "Arbiter"
+    ],
+    "factions": [
+      "Prism Cartel",
+      "Root Assembly"
+    ],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "guestlaw_chamber": {
+      "title": "Guest-Law Chamber",
+      "text": "Root-braided benches cradle envoys beneath a canopy of verdict sigils. Voices resonate through living wood as the Assembly convenes a pivotal hearing.",
+      "choices": [
+        {
+          "text": "(Arbiter) Ratify the guest-law compact for all hubs.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Arbiter"
+          },
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Guest-Law Compact"
+            }
+          ],
+          "target": "ending_guestlaw"
+        },
+        {
+          "text": "Spend a prism shard to flood the dais with undeniable proof.",
+          "condition": {
+            "type": "has_item",
+            "value": "prism shard"
+          },
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "prism shard"
+            },
+            {
+              "type": "end_game",
+              "value": "Prismatic Proof"
+            }
+          ],
+          "target": "ending_guestlaw"
+        },
+        {
+          "text": "Defer the hearing to rally Prism Cartel support.",
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Prism Cartel",
+              "value": 1
+            }
+          ],
+          "target": "prism_galleria"
+        },
+        {
+          "text": "(People-Reader) Expose a hidden clause tying the Court to the Freehands.",
+          "condition": {
+            "type": "has_trait",
+            "value": "People-Reader"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Root Assembly",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "clause_exposed",
+              "value": true
+            },
+            {
+              "type": "end_game",
+              "value": "Clause Exposed Compact"
+            }
+          ],
+          "target": "ending_guestlaw"
+        },
+        {
+          "text": "(Light-Step) Slip along the balcony to spy on the Prism delegation's exit route.",
+          "condition": {
+            "type": "has_trait",
+            "value": "Light-Step"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "balcony_route",
+              "value": true
+            }
+          ],
+          "target": "luminous_grotto"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

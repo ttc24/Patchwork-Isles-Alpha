@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "negotiate",
+    "name": "Negotiate",
+    "description": "Content module for negotiate area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "negotiate_compromise": {
+      "title": "Terms and Conditions",
+      "description": "Director Vale leans back: 'Compromise? Very well. The Cartel will halt our competitive pricing campaign if the independents agree to operate within designated market segments. They get the small, unprofitable routes - we handle major commerce. Everyone knows their place.' The offer hangs in the air like a trap.",
+      "tags": [
+        "Economic",
+        "Negotiation"
+      ],
+      "choices": [
+        {
+          "text": "'That's not compromise, that's economic segregation.'",
+          "target": "challenge_cartel_ethics"
+        },
+        {
+          "text": "'What guarantees do the traders have that you'll honor this?'",
+          "target": "demand_oversight"
+        },
+        {
+          "text": "'I need to consult with the traders before agreeing.'",
+          "target": "explore_trader_alliance"
+        },
+        {
+          "text": "'This isn't a real solution. I'm looking elsewhere.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

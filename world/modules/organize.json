@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "organize",
+    "name": "Organize",
+    "description": "Content module for organize area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "organize_trader_collective": {
+      "title": "Strength in Unity",
+      "description": "The traders' enthusiasm grows as plans take shape: shared warehouses, coordinated shipping schedules, bulk purchasing agreements. 'We could even establish our own crystal processing facility,' suggests one. 'If we control the supply chain from extraction to delivery, the Cartel loses their leverage.' Hope replaces desperation in their voices.",
+      "tags": [
+        "Economic",
+        "Collective"
+      ],
+      "choices": [
+        {
+          "text": "'You'll need political support to protect this venture.'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'How will you handle Cartel sabotage of your operations?'",
+          "target": "plan_security_measures"
+        },
+        {
+          "text": "'This is the beginning of something bigger than trade.'",
+          "target": "envision_economic_democracy"
+        },
+        {
+          "text": "'Let me check on other crisis situations first.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

@@ -1,0 +1,479 @@
+{
+  "_module_info": {
+    "id": "tutorial",
+    "name": "Tutorial Island",
+    "description": "Content module for tutorial area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 10,
+    "start_count": 1
+  },
+  "nodes": {
+    "tutorial_arrival_beach": {
+      "title": "First-Step Cove",
+      "text": "Chalk lines and gentle lanterns mark a sheltered cove carved out for newcomers. Soft surf mutes the hum of distant hubs while practice arches shimmer within view.",
+      "choices": [
+        {
+          "text": "Follow the chalk-marked path inland.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "tutorial_path_walked",
+              "value": true
+            }
+          ],
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "Test the signal lantern to open the controls overlay.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "[Hint] Movement is just choosing a numbered option or pressing Enter.",
+          "condition": [
+            {
+              "type": "profile_flag_is_false",
+              "flag": "tutorial_hints_disabled"
+            },
+            {
+              "type": "profile_flag_eq",
+              "flag": "tutorial_prompt_movement",
+              "value": null
+            }
+          ],
+          "target": "tutorial_hint_movement"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_arrival_beach"
+        },
+        {
+          "text": "Enable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_true",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": false
+            }
+          ],
+          "target": "tutorial_arrival_beach"
+        },
+        {
+          "text": "Approach the guest-law exit arch.",
+          "condition": {
+            "type": "flag_eq",
+            "flag": "tutorial_upgrade_complete",
+            "value": true
+          },
+          "target": "tutorial_exit_gate"
+        }
+      ]
+    },
+    "tutorial_controls_overlay": {
+      "title": "Controls Overlay",
+      "text": "Movement: press the number beside a choice or hit Enter for the first option.\nInteract: choices marked with tags or resources will note what they spend.\nOverlays: I opens inventory, T shows tags and traits, P pauses, and Q quits to desktop.",
+      "choices": [
+        {
+          "text": "Close the overlay and return to the cove.",
+          "target": "tutorial_arrival_beach"
+        },
+        {
+          "text": "Head inland to practice what you learned.",
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Enable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_true",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": false
+            }
+          ],
+          "target": "tutorial_controls_overlay"
+        }
+      ]
+    },
+    "tutorial_hint_movement": {
+      "title": "Movement Prompt",
+      "text": "Pick numbered options to travel between nodes. The leftmost choice is always 1, and pressing Enter repeats the first option so you can move even without lifting your hand from the keyboard.",
+      "on_enter": [
+        {
+          "type": "set_profile_flag",
+          "flag": "tutorial_prompt_movement",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Got it—return to the cove.",
+          "target": "tutorial_arrival_beach"
+        },
+        {
+          "text": "Open the controls overlay for the full list.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_arrival_beach"
+        }
+      ]
+    },
+    "tutorial_clearing": {
+      "title": "Practice Clearing",
+      "text": "A braided clearing waits inland, stocked with communal supplies and a patient listening stone. Lanterns pulse encouragement toward the workshop and the arch back to the docks.",
+      "choices": [
+        {
+          "text": "Collect the scattered memory seeds.",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "memory seed"
+            },
+            {
+              "type": "set_flag",
+              "flag": "tutorial_resource_collected",
+              "value": true
+            }
+          ],
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "Listen to the responding stone beacon.",
+          "target": "tutorial_listening_stone"
+        },
+        {
+          "text": "Examine the braiding loom under the canopy.",
+          "target": "tutorial_workbench"
+        },
+        {
+          "text": "[Hint] Items you pick up appear in your inventory overlay (press I).",
+          "condition": [
+            {
+              "type": "profile_flag_is_false",
+              "flag": "tutorial_hints_disabled"
+            },
+            {
+              "type": "profile_flag_eq",
+              "flag": "tutorial_prompt_resource",
+              "value": null
+            }
+          ],
+          "target": "tutorial_hint_resource"
+        },
+        {
+          "text": "Walk the loop back toward the landing cove.",
+          "target": "tutorial_arrival_beach"
+        },
+        {
+          "text": "Complete your training and venture into the wider world.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "tutorial_hint_resource": {
+      "title": "Inventory Prompt",
+      "text": "Press I anytime to open your inventory overlay and confirm what you have gathered. Resources listed there feed into choices that ask for items, so you can check before committing.",
+      "on_enter": [
+        {
+          "type": "set_profile_flag",
+          "flag": "tutorial_prompt_resource",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Return to the clearing.",
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "Open the controls overlay for more reminders.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_clearing"
+        }
+      ]
+    },
+    "tutorial_listening_stone": {
+      "title": "Responding Stone",
+      "text": "The stone hums with a gentle chord, lighting sigils whenever you tap it. Each response mirrors how story flags will echo through later hubs.",
+      "on_enter": [
+        {
+          "type": "set_flag",
+          "flag": "tutorial_interact_done",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Match the rhythm and feel the response ripple back.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "tutorial_interact_loop",
+              "value": true
+            }
+          ],
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "[Hint] Flags you set show up under the FLAGS summary (press T).",
+          "condition": [
+            {
+              "type": "profile_flag_is_false",
+              "flag": "tutorial_hints_disabled"
+            },
+            {
+              "type": "profile_flag_eq",
+              "flag": "tutorial_prompt_interact",
+              "value": null
+            }
+          ],
+          "target": "tutorial_hint_interact"
+        },
+        {
+          "text": "Step away from the stone.",
+          "target": "tutorial_clearing"
+        }
+      ]
+    },
+    "tutorial_hint_interact": {
+      "title": "Flag Prompt",
+      "text": "The summary line at the bottom of each screen lists FLAGS you've set so far. Press T to review them in detail and understand how earlier interactions unlocked new choices.",
+      "on_enter": [
+        {
+          "type": "set_profile_flag",
+          "flag": "tutorial_prompt_interact",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Return to the responding stone.",
+          "target": "tutorial_listening_stone"
+        },
+        {
+          "text": "Open the controls overlay.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_listening_stone"
+        }
+      ]
+    },
+    "tutorial_workbench": {
+      "title": "Braiding Loom",
+      "text": "A portable loom waits with diagrams on how to weave gathered seeds into helpful anklets. The pattern promises your first upgrade if you follow it through.",
+      "choices": [
+        {
+          "text": "Weave the memory seed into a Light-Step anklet.",
+          "condition": [
+            {
+              "type": "has_item",
+              "value": "memory seed"
+            },
+            {
+              "type": "flag_eq",
+              "flag": "tutorial_upgrade_complete",
+              "value": null
+            }
+          ],
+          "effects": [
+            {
+              "type": "remove_item",
+              "value": "memory seed"
+            },
+            {
+              "type": "add_trait",
+              "value": "Light-Step"
+            },
+            {
+              "type": "set_flag",
+              "flag": "tutorial_upgrade_complete",
+              "value": true
+            }
+          ],
+          "target": "tutorial_workbench"
+        },
+        {
+          "text": "Test the anklet around the clearing.",
+          "condition": {
+            "type": "flag_eq",
+            "flag": "tutorial_upgrade_complete",
+            "value": true
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "tutorial_upgrade_practiced",
+              "value": true
+            }
+          ],
+          "target": "tutorial_clearing"
+        },
+        {
+          "text": "[Hint] Upgrades live under Tags/Traits (press T).",
+          "condition": [
+            {
+              "type": "profile_flag_is_false",
+              "flag": "tutorial_hints_disabled"
+            },
+            {
+              "type": "profile_flag_eq",
+              "flag": "tutorial_prompt_upgrade",
+              "value": null
+            }
+          ],
+          "target": "tutorial_hint_upgrade"
+        },
+        {
+          "text": "Leave the loom.",
+          "target": "tutorial_clearing"
+        }
+      ]
+    },
+    "tutorial_hint_upgrade": {
+      "title": "Upgrade Prompt",
+      "text": "Press T to review your Tags and Traits. Newly earned upgrades like Light-Step appear there and unlock extra routes in later hubs.",
+      "on_enter": [
+        {
+          "type": "set_profile_flag",
+          "flag": "tutorial_prompt_upgrade",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Return to the loom.",
+          "target": "tutorial_workbench"
+        },
+        {
+          "text": "Open the controls overlay.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Disable tutorial hints.",
+          "condition": {
+            "type": "profile_flag_is_false",
+            "flag": "tutorial_hints_disabled"
+          },
+          "effects": [
+            {
+              "type": "set_profile_flag",
+              "flag": "tutorial_hints_disabled",
+              "value": true
+            }
+          ],
+          "target": "tutorial_workbench"
+        }
+      ]
+    },
+    "tutorial_exit_gate": {
+      "title": "Guest-Law Exit Arch",
+      "text": "A calm arch braided with guest-law sigils waits for travelers who complete the loop. Lanterns confirm your new anklet hum before aligning a path toward the Startways.",
+      "on_enter": [
+        {
+          "type": "set_profile_flag",
+          "flag": "tutorial_complete",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Step through to the Startways Nexus.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Review the controls overlay before leaving.",
+          "target": "tutorial_controls_overlay"
+        },
+        {
+          "text": "Stay on the island for more practice.",
+          "target": "tutorial_clearing"
+        }
+      ]
+    }
+  },
+  "starts": [
+    {
+      "id": "tutorial_first_five",
+      "title": "First Five Minutes (Tutorial Island)",
+      "node": "tutorial_arrival_beach",
+      "tags": [
+        "Scout"
+      ],
+      "blurb": "Step onto the tutorial island and learn how to move, interact, and craft before the wider routes."
+    }
+  ]
+}

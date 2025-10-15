@@ -1,0 +1,42 @@
+{
+  "_module_info": {
+    "id": "defend",
+    "name": "Defend",
+    "description": "Content module for defend area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "defend_economic_diversity": {
+      "title": "Economic Philosophy",
+      "description": "Director Vale's cold smile widens: 'Diversity? Chaos is what you mean. Inefficient redundancy that wastes resources and confuses customers. The archipelago needs strong leadership, not a thousand tiny voices pulling in different directions. Order brings prosperity. The Cartel brings order.'",
+      "tags": [
+        "Economic",
+        "Philosophy",
+        "Confrontation"
+      ],
+      "choices": [
+        {
+          "text": "'Prosperity built on the ruins of others isn't prosperity at all.'",
+          "target": "expose_cartel_ideology"
+        },
+        {
+          "text": "'Let me see your definition of efficiency in your books.'",
+          "target": "examine_trade_records"
+        },
+        {
+          "text": "'The traders will unite against this monopolistic thinking.'",
+          "target": "organize_trader_collective"
+        },
+        {
+          "text": "'I need to expose this to the proper authorities.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

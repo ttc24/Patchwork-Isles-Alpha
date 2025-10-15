@@ -1,0 +1,42 @@
+{
+  "_module_info": {
+    "id": "seek",
+    "name": "Seek",
+    "description": "Content module for seek area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "seek_alliance_funding": {
+      "title": "Capital Concerns",
+      "description": "The traders discuss financing options: 'The Cartel has deep pockets and patient investors,' Kess explains. 'We'll need significant startup capital for warehouses, equipment, and operating expenses. Traditional lenders are scared - the Cartel has influence there too. We might need to look for... alternative sources.'",
+      "tags": [
+        "Economic",
+        "Cooperation",
+        "Challenge"
+      ],
+      "choices": [
+        {
+          "text": "'What about crowdfunding from community members?'",
+          "target": "community_investment"
+        },
+        {
+          "text": "'We could seek political backing and protection.'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'Alternative sources might mean dealing with questionable partners.'",
+          "target": "explore_funding_risks"
+        },
+        {
+          "text": "'Let me explore other solutions first.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

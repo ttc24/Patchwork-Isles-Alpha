@@ -1,0 +1,54 @@
+{
+  "_module_info": {
+    "id": "learn",
+    "name": "Learn",
+    "description": "Content module for learn area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 2,
+    "start_count": 0
+  },
+  "nodes": {
+    "learn_secret_negotiations": {
+      "title": "The Secret Deal",
+      "description": "Acting Speaker Thorn lowers his voice: 'The delegates were negotiating emergency powers—the right to suspend normal trade laws during crisis. The Prism Cartel offered massive infrastructure investments in exchange for regulatory exemptions. But the delegates discovered something disturbing about who was really behind the proposal.'",
+      "tags": [
+        "Political",
+        "Investigation"
+      ],
+      "choices": [
+        {
+          "text": "'Who was really behind the Cartel's proposal?'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'That explains their disappearance. I need to investigate further.'",
+          "target": "investigate_disappearances"
+        },
+        {
+          "text": "'What emergency powers were they actually negotiating?'",
+          "target": "explore_legal_alternatives"
+        },
+        {
+          "text": "'I need to see the full crisis picture first.'",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "learn_architect_identity": {
+      "id": "learn_architect_identity",
+      "title": "Learn Architect Identity",
+      "text": "[This is an auto-generated placeholder for the missing 'learn_architect_identity' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'rescue_trapped_entity' choice 1"
+    }
+  },
+  "starts": []
+}

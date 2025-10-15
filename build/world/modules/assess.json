@@ -1,0 +1,41 @@
+{
+  "_module_info": {
+    "id": "assess",
+    "name": "Assess",
+    "description": "Content module for assess area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 2,
+    "start_count": 0
+  },
+  "nodes": {
+    "assess_vulnerability_gaps": {
+      "id": "assess_vulnerability_gaps",
+      "title": "Assess Vulnerability Gaps",
+      "text": "[This is an auto-generated placeholder for the missing 'assess_vulnerability_gaps' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'implement_emergency_measures' choice 0"
+    },
+    "assess_surveillance_timeline": {
+      "id": "assess_surveillance_timeline",
+      "title": "Assess Surveillance Timeline",
+      "text": "[This is an auto-generated placeholder for the missing 'assess_surveillance_timeline' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'initiate_counterintelligence' choice 0"
+    }
+  },
+  "starts": []
+}

@@ -1,0 +1,307 @@
+{
+  "_module_info": {
+    "id": "nexus",
+    "name": "Nexus",
+    "description": "Content module for nexus area",
+    "dependencies": [],
+    "tags": [
+      "Cartographer",
+      "Dreamwalker",
+      "Healer",
+      "Resonant",
+      "Root-Speaker",
+      "Sneaky",
+      "Storm-Conductor"
+    ],
+    "factions": [
+      "Aeol Nests",
+      "Freehands",
+      "Quiet Ledger",
+      "Root Assembly"
+    ],
+    "node_count": 5,
+    "start_count": 0
+  },
+  "nodes": {
+    "nexus_steward": {
+      "title": "Quiet Ledger Steward",
+      "text": "A Quiet Ledger scribe polishes bronze seed-tokens, charting balances owed for each route. They offer whispered summaries of distant starts.",
+      "choices": [
+        {
+          "text": "(Tides) Ask about the Moon-Eel Suburb's tides.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "moon_eel_hint",
+              "value": true
+            }
+          ],
+          "target": "startways_nexus"
+        },
+        {
+          "text": "(Gales) Ask about the storm-rail moorings above the canyons.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "storm_rail_hint",
+              "value": true
+            }
+          ],
+          "target": "startways_nexus"
+        },
+        {
+          "text": "(Survey) Thank the steward and study the compass again.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "(Freehands 1+) Approve relief manifests and hitch a lift to their cache.",
+          "condition": {
+            "type": "rep_at_least",
+            "faction": "Freehands",
+            "value": 1
+          },
+          "target": "saltglass_freehands_cache"
+        },
+        {
+          "text": "Loop the Root Assembly dispatches into Quiet Ledger circulation for good.",
+          "condition": [
+            {
+              "type": "flag_eq",
+              "flag": "archive_template",
+              "value": true
+            },
+            {
+              "type": "rep_at_least",
+              "faction": "Quiet Ledger",
+              "value": 1
+            },
+            {
+              "type": "rep_at_least",
+              "faction": "Root Assembly",
+              "value": 1
+            }
+          ],
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Shared Ledger Loop"
+            }
+          ],
+          "target": "ending_shared_ledger_loop"
+        },
+        {
+          "text": "(Keeper) Accept the ledgers and become the Keeper of Passways.",
+          "condition": [
+            {
+              "type": "has_advanced_tag"
+            },
+            {
+              "type": "rep_at_least_count",
+              "value": 1,
+              "count": 2
+            }
+          ],
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Keeper of Passways"
+            }
+          ],
+          "target": "ending_keeper_of_passways"
+        }
+      ]
+    },
+    "nexus_moon_eel_trial": {
+      "title": "Moon-Eel Archway",
+      "text": "Pearlescent ribs rise from a suspended tide-pool, the arch breathing with the pulse of a slumbering leviathan. Each swell reveals glimpses of aquatic tenements.",
+      "choices": [
+        {
+          "text": "(Sneaky) Slip between the tidal pulses and trace the hidden current.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Sneaky"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "moon_eel_scouted",
+              "value": true
+            }
+          ],
+          "target": "nexus_moon_eel_reward"
+        },
+        {
+          "text": "(Healer) Hum a tide-mending hymn to soothe the arch's restlessness.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Healer"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "moon_eel_soothed",
+              "value": true
+            }
+          ],
+          "target": "nexus_moon_eel_reward"
+        },
+        {
+          "text": "(Calm) Match your breath to the tide and step through as it ebbs.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "moon_eel_ebbed",
+              "value": true
+            }
+          ],
+          "target": "nexus_moon_eel_reward"
+        },
+        {
+          "text": "(Retreat) Let the arch settle and step back toward the compass.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "nexus_moon_eel_reward": {
+      "title": "Moon-Eel Suburb Echo",
+      "text": "Cool brine spirals up your arms as ribcage homes ignite with lanterns. Canal-keepers beckon from within the leviathan's bones, promising sanctuary for the subtle and the gentle.",
+      "on_enter": [
+        {
+          "type": "unlock_start",
+          "value": "moon_eel_suburb"
+        },
+        {
+          "type": "grant_legacy_tag",
+          "value": "Tide-Singer"
+        }
+      ],
+      "choices": [
+        {
+          "text": "(Mark) Let the vision fade and note the route for later.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Accept canal hospitality and linger among the ribcage homes.",
+          "target": "moon_eel_intro"
+        },
+        {
+          "text": "Carry their sanctuary tidings back through the luminous grotto.",
+          "target": "luminous_grotto"
+        },
+        {
+          "text": "(Root-Speaker) Listen through the rib-boughs for orchard callings.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Root-Speaker"
+          },
+          "target": "starfallen_orchard_meteoric_gate"
+        },
+        {
+          "text": "(Dreamwalker) Drift with the eel's memory tide toward the cocoons.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Dreamwalker"
+          },
+          "target": "shed_market_cocoon_hostel"
+        }
+      ]
+    },
+    "nexus_storm_trial": {
+      "title": "Storm-Rail Dais",
+      "text": "A skeletal platform spins in captured gale-force winds. Rails flare with static as canyon drafts scream through stormglass vanes.",
+      "choices": [
+        {
+          "text": "(Resonant) Sing a countercurrent to anchor the rail's frequency.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Resonant"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Aeol Nests",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "storm_rail_tuned",
+              "value": true
+            }
+          ],
+          "target": "nexus_storm_reward"
+        },
+        {
+          "text": "(Cartographer) Plot the gust vectors and stride in their lee.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Cartographer"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "storm_rail_mapped",
+              "value": true
+            }
+          ],
+          "target": "nexus_storm_reward"
+        },
+        {
+          "text": "(Steady) Brace against the railing and edge forward between surges.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "storm_rail_braced",
+              "value": true
+            }
+          ],
+          "target": "nexus_storm_reward"
+        },
+        {
+          "text": "(Retreat) Descend before the winds wrench the dais apart.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "nexus_storm_reward": {
+      "title": "Storm Rail Vista",
+      "text": "You feel the thin air bite as mooring-spires arc above roaring canyons. Wind-rail sailors salute you, neon pennants snapping while storm engines glow.",
+      "on_enter": [
+        {
+          "type": "unlock_start",
+          "value": "storm_rail"
+        },
+        {
+          "type": "grant_legacy_tag",
+          "value": "Storm-Conductor"
+        }
+      ],
+      "choices": [
+        {
+          "text": "(Chart) Record the path and let the winds calm.",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Ride the wind-rail onward to the storm rail moorings.",
+          "target": "storm_rail_intro"
+        },
+        {
+          "text": "Signal an escort glide back toward the Sky-Spliced Docks.",
+          "target": "sky_docks"
+        },
+        {
+          "text": "Send the mapped gusts toward Saltglass outriders preparing a convoy.",
+          "target": "saltglass_expanse"
+        },
+        {
+          "text": "(Storm-Conductor) Tune the captured gale toward the Cloud-Burrow stormloom.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Storm-Conductor"
+          },
+          "target": "cloud_burrow_stormloom"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

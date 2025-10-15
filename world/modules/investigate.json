@@ -1,0 +1,68 @@
+{
+  "_module_info": {
+    "id": "investigate",
+    "name": "Investigate",
+    "description": "Content module for investigate area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 2,
+    "start_count": 0
+  },
+  "nodes": {
+    "investigate_disappearances": {
+      "title": "The Delegates' Last Stand",
+      "description": "Delegate Willow's office shows signs of a hurried departure—papers scattered, a half-finished letter about 'concerning Cartel proposals,' and a window left open. Her aide whispers: 'She was frightened about something in the negotiations. Said the Cartel was offering deals that were too good to be true.'",
+      "tags": [
+        "Political",
+        "Investigation"
+      ],
+      "choices": [
+        {
+          "text": "'What exactly were these Cartel proposals?'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'Let me examine those scattered papers.'",
+          "target": "analyze_delegate_notes"
+        },
+        {
+          "text": "'I need to speak with the other delegates' aides.'",
+          "target": "interview_witnesses"
+        },
+        {
+          "text": "'Return to the Assembly with this information.'",
+          "target": "report_initial_findings"
+        }
+      ]
+    },
+    "investigate_inside_threats": {
+      "title": "Internal Security Breach",
+      "description": "Security Chief Kade reviews personnel records with growing concern: 'Three engineers have access to the navigation algorithms, five contractors worked on the Depths monitoring systems, and dozens of people knew the transport schedules. But here's what's suspicious - seven people accessed secure systems right before each major failure. Someone's been passing inside information.'",
+      "tags": [
+        "Infrastructure",
+        "Security",
+        "Investigation"
+      ],
+      "choices": [
+        {
+          "text": "'Show me those seven names and their access patterns.'",
+          "target": "analyze_suspect_patterns"
+        },
+        {
+          "text": "'We need to set up surveillance on the suspects.'",
+          "target": "initiate_counterintelligence"
+        },
+        {
+          "text": "'This inside help might connect to the other crisis situations.'",
+          "target": "uncover_cartel_conspiracy"
+        },
+        {
+          "text": "'Let me coordinate this investigation with other crisis teams.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

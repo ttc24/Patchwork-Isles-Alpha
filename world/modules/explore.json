@@ -1,0 +1,80 @@
+{
+  "_module_info": {
+    "id": "explore",
+    "name": "Explore",
+    "description": "Content module for explore area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 3,
+    "start_count": 0
+  },
+  "nodes": {
+    "explore_legal_alternatives": {
+      "title": "Emergency Legal Protocols",
+      "description": "The Assembly's legal clerk reveals dusty emergency protocols: 'In theory, emergency powers can be granted without the missing delegates—but only if we can prove their disappearance was directly related to the crisis. And the evidence suggests all these problems—trade wars, transport failures, harmonic disruptions—are coordinated attacks on our infrastructure.'",
+      "tags": [
+        "Political",
+        "Legal"
+      ],
+      "choices": [
+        {
+          "text": "'Then we need proof these crises are connected.'",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "'I'll investigate the delegates to get that proof.'",
+          "target": "investigate_disappearances"
+        },
+        {
+          "text": "'What powers exactly would this unlock?'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'I need to coordinate with other crisis response teams.'",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "explore_trader_alliance": {
+      "title": "Seeds of Cooperation",
+      "description": "You gather the independent traders in a circle. Kess speaks up: 'We've been competing with each other while they destroy us. But together? We have expertise they lack - personal relationships, flexibility, local knowledge. If we coordinate our resources and share routes, we might survive this.'",
+      "tags": [
+        "Economic",
+        "Cooperation"
+      ],
+      "choices": [
+        {
+          "text": "'What resources could you pool together?'",
+          "target": "organize_trader_collective"
+        },
+        {
+          "text": "'You'll need legal protection from Cartel retaliation.'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'This could work, but you'll need startup capital.'",
+          "target": "seek_alliance_funding"
+        },
+        {
+          "text": "'Let me consider all options before committing.'",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "explore_funding_risks": {
+      "id": "explore_funding_risks",
+      "title": "Explore Funding Risks",
+      "text": "[This is an auto-generated placeholder for the missing 'explore_funding_risks' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'seek_alliance_funding' choice 2"
+    }
+  },
+  "starts": []
+}

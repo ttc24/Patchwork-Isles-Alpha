@@ -1,0 +1,47 @@
+{
+  "_module_info": {
+    "id": "political",
+    "name": "Political",
+    "description": "Content module for political area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "political_crisis_start": {
+      "title": "Emergency Assembly Session",
+      "description": "The Root Assembly chamber buzzes with panic. Acting Speaker Thorn addresses a half-empty room: 'Delegates Willow, Sage, and Ember disappeared three days ago during closed negotiations about trade route rights. Without them, we cannot ratify the Seasonal Compact. The legal framework holding our communities together hangs by a thread.'",
+      "tags": [
+        "Political"
+      ],
+      "choices": [
+        {
+          "text": "'I'll investigate their last known locations.'",
+          "target": "investigate_disappearances",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "investigating_delegates",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "'What were they negotiating that was so sensitive?'",
+          "target": "learn_secret_negotiations"
+        },
+        {
+          "text": "'Can the Compact be ratified without them?'",
+          "target": "explore_legal_alternatives"
+        },
+        {
+          "text": "'I need more information before committing.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

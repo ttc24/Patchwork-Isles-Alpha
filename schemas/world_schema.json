@@ -1,0 +1,222 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Patchwork Isles World Schema",
+  "description": "Schema for validating world.json structure in Patchwork Isles",
+  "type": "object",
+  "required": ["title", "factions", "advanced_tags", "starts"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the world/scenario"
+    },
+    "factions": {
+      "type": "array",
+      "description": "List of faction names",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "advanced_tags": {
+      "type": "array",
+      "description": "List of advanced tags available in the world",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "starts": {
+      "type": "array",
+      "description": "List of starting scenarios",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "node", "tags", "blurb"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this start"
+          },
+          "title": {
+            "type": "string",
+            "description": "Display title for this start"
+          },
+          "locked_title": {
+            "type": "string",
+            "description": "Title shown when start is locked"
+          },
+          "node": {
+            "type": "string",
+            "description": "Target node ID for this start"
+          },
+          "tags": {
+            "type": "array",
+            "description": "Starting tags for this character",
+            "items": {
+              "type": "string"
+            }
+          },
+          "locked": {
+            "type": "boolean",
+            "description": "Whether this start is initially locked"
+          },
+          "blurb": {
+            "type": "string",
+            "description": "Description of this starting scenario"
+          }
+        }
+      }
+    },
+    "nodes": {
+      "type": "object",
+      "description": "Story nodes keyed by node ID",
+      "patternProperties": {
+        "^[a-zA-Z_][a-zA-Z0-9_]*$": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Node identifier (should match key)"
+            },
+            "text": {
+              "type": "string",
+              "description": "Narrative text for this node"
+            },
+            "choices": {
+              "type": "array",
+              "description": "Available choices at this node",
+              "items": {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "Choice display text"
+                  },
+                  "target": {
+                    "type": "string",
+                    "description": "Target node ID"
+                  },
+                  "condition": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "description": "Single condition",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "enum": ["flag_eq", "has_advanced_tag", "has_item", "has_tag", "has_trait", "missing_item", "profile_flag_eq", "profile_flag_is_false", "profile_flag_is_true", "rep_at_least", "rep_at_least_count"]
+                          },
+                          "value": {
+                            "oneOf": [
+                              {"type": "string"},
+                              {"type": "array", "items": {"type": "string"}},
+                              {"type": "integer"},
+                              {"type": "boolean"},
+                              {"type": "null"}
+                            ]
+                          },
+                          "flag": {
+                            "type": "string",
+                            "description": "Flag name for flag-based conditions"
+                          },
+                          "faction": {
+                            "type": "string",
+                            "description": "Faction name for reputation checks"
+                          }
+                        },
+                        "required": ["type"]
+                      },
+                      {
+                        "type": "array",
+                        "description": "Compound condition (multiple conditions)",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "type": {
+                              "type": "string",
+                              "enum": ["flag_eq", "has_advanced_tag", "has_item", "has_tag", "has_trait", "missing_item", "profile_flag_eq", "profile_flag_is_false", "profile_flag_is_true", "rep_at_least", "rep_at_least_count"]
+                            },
+                            "value": {
+                              "oneOf": [
+                                {"type": "string"},
+                                {"type": "array", "items": {"type": "string"}},
+                                {"type": "integer"},
+                                {"type": "boolean"},
+                                {"type": "null"}
+                              ]
+                            },
+                            "flag": {
+                              "type": "string",
+                              "description": "Flag name for flag-based conditions"
+                            },
+                            "faction": {
+                              "type": "string",
+                              "description": "Faction name for reputation checks"
+                            }
+                          },
+                          "required": ["type"]
+                        }
+                      }
+                    ]
+                  },
+                  "effects": {
+                    "type": "array",
+                    "description": "Effects triggered by choosing this option",
+                    "items": {
+                      "type": "object",
+                      "required": ["type", "value"],
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "enum": ["add_item", "add_tag", "add_trait", "end_game", "grant_legacy_tag", "hp_delta", "remove_item", "rep_delta", "set_flag", "set_profile_flag", "unlock_start"]
+                        },
+                        "value": {
+                          "oneOf": [
+                            {"type": "string"},
+                            {"type": "integer"},
+                            {"type": "boolean"}
+                          ]
+                        },
+                        "faction": {
+                          "type": "string",
+                          "description": "Faction name for reputation effects"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "on_enter": {
+              "type": "array",
+              "description": "Effects triggered when entering this node",
+              "items": {
+                "type": "object",
+                "required": ["type", "value"],
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": ["add_item", "add_tag", "add_trait", "end_game", "grant_legacy_tag", "hp_delta", "remove_item", "rep_delta", "set_flag", "set_profile_flag", "unlock_start"]
+                  },
+                  "value": {
+                    "oneOf": [
+                      {"type": "string"},
+                      {"type": "integer"},
+                      {"type": "boolean"}
+                    ]
+                  },
+                  "faction": {
+                    "type": "string",
+                    "description": "Faction name for reputation effects"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

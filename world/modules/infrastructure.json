@@ -1,0 +1,47 @@
+{
+  "_module_info": {
+    "id": "infrastructure",
+    "name": "Infrastructure",
+    "description": "Content module for infrastructure area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "infrastructure_crisis_start": {
+      "title": "Network Operations Center",
+      "description": "Chief Engineer Maya stands before a control board lit with warning signals: 'Fifteen percent of the storm-rail network is down, and it's spreading. The failures aren't random—someone or something is systematically targeting key junction points. If we lose the main trunk lines, half the archipelago will be cut off within days.'",
+      "tags": [
+        "Infrastructure"
+      ],
+      "choices": [
+        {
+          "text": "'Show me the failure pattern—I'll investigate the sabotage.'",
+          "target": "track_sabotage",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "investigating_sabotage",
+              "value": true
+            }
+          ]
+        },
+        {
+          "text": "'Can we reroute through backup systems?'",
+          "target": "emergency_rerouting"
+        },
+        {
+          "text": "'We need to secure the remaining functional lines.'",
+          "target": "defensive_measures"
+        },
+        {
+          "text": "'Let me review all crisis reports before choosing a path.'",
+          "target": "startways_nexus"
+        }
+      ]
+    }
+  },
+  "starts": []
+}

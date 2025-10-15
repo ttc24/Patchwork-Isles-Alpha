@@ -1,5 +1,11 @@
 {
   "unlocked_starts": [],
   "legacy_tags": [],
-  "seen_endings": []
+  "seen_endings": [],
+  "flags": {
+    "tutorial_hints_disabled": false,
+    "tutorial_prompt_upgrade": true,
+    "tutorial_complete": true,
+    "tutorial_prompt_movement": true
+  }
 }

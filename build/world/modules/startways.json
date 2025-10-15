@@ -1,0 +1,42 @@
+{
+  "_module_info": {
+    "id": "startways",
+    "name": "Startways",
+    "description": "Content module for startways area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "startways_nexus": {
+      "title": "Startways Nexus - Central Command",
+      "description": "The colossal seed-compass has been reconfigured as a mission center. Four major crisis paths pulse with urgent light, each requiring your immediate attention. The route steward presents you with critical briefings as trade routes collapse and diplomats vanish.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "[POLITICAL CRISIS] Investigate the missing Root Assembly delegates",
+          "target": "political_crisis_start",
+          "details": "Current objective: Three key delegates have vanished during crucial guest-law negotiations. Their disappearance threatens to destabilize the entire archipelago's legal framework."
+        },
+        {
+          "text": "[TRADE DISRUPTION] Address the escalating cartel price wars",
+          "target": "economic_crisis_start",
+          "details": "Current objective: The Prism Cartel's market manipulation is bankrupting smaller traders. Communities are being cut off from essential supplies."
+        },
+        {
+          "text": "[DEPTHS DISTURBANCE] Investigate the harmonic disruptions",
+          "target": "exploration_crisis_start",
+          "details": "Current objective: Strange resonances from the Singing Depths are interfering with navigation systems. Several transport routes have failed catastrophically."
+        },
+        {
+          "text": "[NETWORK COLLAPSE] Repair the failing transport grid",
+          "target": "infrastructure_crisis_start",
+          "details": "Current objective: The storm-rail network is experiencing systematic failures. Remote communities are becoming isolated and desperate."
+        }
+      ]
+    }
+  },
+  "starts": []
+}

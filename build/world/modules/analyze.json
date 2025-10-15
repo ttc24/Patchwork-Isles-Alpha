@@ -1,0 +1,55 @@
+{
+  "_module_info": {
+    "id": "analyze",
+    "name": "Analyze",
+    "description": "Content module for analyze area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 2,
+    "start_count": 0
+  },
+  "nodes": {
+    "analyze_delegate_notes": {
+      "title": "The Smoking Gun",
+      "description": "The scattered papers reveal a horrifying pattern: coded messages coordinating simultaneous attacks on all major infrastructure. The harmonic disruptions in the Singing Depths, the transport sabotage, the trade manipulation - it's all connected. One name appears repeatedly in the communications: 'The Architect.' And worse - there's a timeline. The final phase of their plan launches in just days.",
+      "tags": [
+        "Political",
+        "Investigation",
+        "Urgent"
+      ],
+      "choices": [
+        {
+          "text": "'I need to take this evidence to every crisis team immediately.'",
+          "target": "startways_nexus"
+        },
+        {
+          "text": "'Who is this Architect? We need to find them.'",
+          "target": "interview_witnesses"
+        },
+        {
+          "text": "⏰ 'We're running out of time - what's the final phase?'",
+          "target": "political_crisis_start"
+        },
+        {
+          "text": "'We need to stop their other operations before they connect.'",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "analyze_suspect_patterns": {
+      "id": "analyze_suspect_patterns",
+      "title": "Analyze Suspect Patterns",
+      "text": "[This is an auto-generated placeholder for the missing 'analyze_suspect_patterns' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'investigate_inside_threats' choice 0"
+    }
+  },
+  "starts": []
+}

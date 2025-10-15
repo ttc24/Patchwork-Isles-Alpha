@@ -1,0 +1,28 @@
+{
+  "_module_info": {
+    "id": "expose",
+    "name": "Expose",
+    "description": "Content module for expose area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "expose_cartel_ideology": {
+      "id": "expose_cartel_ideology",
+      "title": "Expose Cartel Ideology",
+      "text": "[This is an auto-generated placeholder for the missing 'expose_cartel_ideology' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'defend_economic_diversity' choice 0"
+    }
+  },
+  "starts": []
+}

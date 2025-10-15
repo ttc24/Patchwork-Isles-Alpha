@@ -1,0 +1,82 @@
+{
+  "_module_info": {
+    "id": "amber_barge",
+    "name": "Amber Barge Routes",
+    "description": "Content module for amber_barge area",
+    "dependencies": [],
+    "tags": [
+      "Archivist",
+      "Healer"
+    ],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 1
+  },
+  "nodes": {
+    "amber_barge_quarters": {
+      "title": "Amber Barge Quarters",
+      "text": "Amber-paneled cabins cradle fresh codices while tide clergy host travelers preparing for wakebound journeys.",
+      "choices": [
+        {
+          "text": "(Archivist) Arrange the new codex alcove for visiting crews.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Archivist"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "amber_berth_catalogued",
+              "value": true
+            }
+          ],
+          "target": "amber_tides_current_court"
+        },
+        {
+          "text": "(Healer) Guide mourners through steadying breath before embarkation.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Healer"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "amber_quarters_soothed",
+              "value": true
+            }
+          ],
+          "target": "amber_tides_mnemonic_harbor"
+        },
+        {
+          "text": "Invite barge crews to rehearse the Living Wake procession.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "living_wake_procession_supplied",
+              "value": true
+            }
+          ],
+          "target": "amber_tides_wake_processional"
+        },
+        {
+          "text": "Return to the Lantern Lock.",
+          "target": "amber_tides_lantern_lock"
+        }
+      ]
+    }
+  },
+  "starts": [
+    {
+      "id": "amber_barge_quarters",
+      "title": "Amber Barge Quarters",
+      "locked_title": "Amber Barge Quarters (Locked)",
+      "node": "amber_barge_quarters",
+      "tags": [
+        "Healer",
+        "Archivist"
+      ],
+      "locked": true,
+      "blurb": "Serve aboard memorial barges on the amber tides. Healing rites and archives soothe mourners."
+    }
+  ]
+}

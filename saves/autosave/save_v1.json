@@ -1,0 +1,334 @@
+{
+  "version": 1,
+  "metadata": {
+    "schema": "save_v1",
+    "version": 1,
+    "save_slot": "autosave",
+    "saved_at": "2025-10-14T12:53:19.044606+00:00",
+    "world_title": "Patchwork Isles \u2014 Guest-Law Prelude",
+    "world_seed": 3624173118,
+    "active_area": "Patchwork Isles \u2014 Guest-Law Prelude",
+    "player_name": "fese"
+  },
+  "state": {
+    "current_node": "ending_sharecrop_of_stories",
+    "history": [
+      {
+        "from": "cloud_burrow_loft",
+        "to": "cloud_burrow_inverted_plaza",
+        "choice": "Glide down to the inverted plaza."
+      },
+      {
+        "from": "cloud_burrow_inverted_plaza",
+        "to": "cloud_burrow_chime_market",
+        "choice": "Barter for gust sweets and gossip about burrow routes."
+      },
+      {
+        "from": "cloud_burrow_chime_market",
+        "to": "cloud_burrow_resonant_wells",
+        "choice": "(Resonant) Sign along with the market chorus to steady the inverted stalls."
+      },
+      {
+        "from": "cloud_burrow_resonant_wells",
+        "to": "cloud_burrow_updraft_well",
+        "choice": "(Resonant) Shape the chord until the updraft recognizes your cadence."
+      },
+      {
+        "from": "cloud_burrow_updraft_well",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Step back before the gale peaks."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "mentor_storm_conductor_intro",
+        "choice": "(Resonant) Ring the chimes in time with the gale and request mentorship."
+      },
+      {
+        "from": "mentor_storm_conductor_intro",
+        "to": "mentor_storm_conductor_trial",
+        "choice": "Ask for guidance in balancing the gust ledger."
+      },
+      {
+        "from": "mentor_storm_conductor_trial",
+        "to": "mentor_storm_conductor_award",
+        "choice": "(Healer) Steady the apprentices as the gale surges."
+      },
+      {
+        "from": "mentor_storm_conductor_award",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Thank the mentor and return to the gallery."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "mentor_storm_conductor_intro",
+        "choice": "(Resonant) Ring the chimes in time with the gale and request mentorship."
+      },
+      {
+        "from": "mentor_storm_conductor_intro",
+        "to": "mentor_storm_conductor_trial",
+        "choice": "(Resonant) Echo the mentor's baton patterns in song."
+      },
+      {
+        "from": "mentor_storm_conductor_trial",
+        "to": "mentor_storm_conductor_award",
+        "choice": "(Resonant) Sing counterwinds that stitch the gale together."
+      },
+      {
+        "from": "mentor_storm_conductor_award",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Thank the mentor and return to the gallery."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "amber_tides_lantern_lock",
+        "choice": "Accept a tide-clergy invitation down to the Amber Tides Necropolis."
+      },
+      {
+        "from": "amber_tides_lantern_lock",
+        "to": "amber_tides_funeral_armada",
+        "choice": "Step aboard a funeral-library barge before it drifts into the undertow."
+      },
+      {
+        "from": "amber_tides_funeral_armada",
+        "to": "amber_tides_lantern_lock",
+        "choice": "Disembark back to the Lantern Lock."
+      },
+      {
+        "from": "amber_tides_lantern_lock",
+        "to": "amber_tides_tide_cloister",
+        "choice": "(Healer) Ease the brine-chapped novices preparing the next wake."
+      },
+      {
+        "from": "amber_tides_tide_cloister",
+        "to": "amber_tides_amber_bindery",
+        "choice": "(Healer) Soothe tide-sick novices and accept a phial of amber blessing."
+      },
+      {
+        "from": "amber_tides_amber_bindery",
+        "to": "amber_tides_mnemonic_harbor",
+        "choice": "Review amber formulas for resonance-ready wakes."
+      },
+      {
+        "from": "amber_tides_mnemonic_harbor",
+        "to": "amber_tides_tide_cloister",
+        "choice": "(Healer) Ease memory-bent travelers soaking in the brine baths."
+      },
+      {
+        "from": "amber_tides_tide_cloister",
+        "to": "mentor_tide_singer_intro",
+        "choice": "(Resonant+Healer) Harmonize the tide hymn to invite the deep mentor."
+      },
+      {
+        "from": "mentor_tide_singer_intro",
+        "to": "mentor_rift_skipper_intro",
+        "choice": "Share the skip-map insights with the rift-skipper mentor."
+      },
+      {
+        "from": "mentor_rift_skipper_intro",
+        "to": "cloud_burrow_hidden_cache",
+        "choice": "Discuss the skip map's context back at the hidden cache."
+      },
+      {
+        "from": "cloud_burrow_hidden_cache",
+        "to": "mentor_rift_skipper_intro",
+        "choice": "Decode the skip-trajectory and seek the mentor who drafted it."
+      },
+      {
+        "from": "mentor_rift_skipper_intro",
+        "to": "cloud_burrow_inverted_plaza",
+        "choice": "Study the anchors from afar and slip back to the plaza."
+      },
+      {
+        "from": "cloud_burrow_inverted_plaza",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Climb the spiral gantry toward the storm gallery."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "cloud_burrow_inverted_plaza",
+        "choice": "Return to the inverted plaza."
+      },
+      {
+        "from": "cloud_burrow_inverted_plaza",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Climb the spiral gantry toward the storm gallery."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "cloud_burrow_resonant_wells",
+        "choice": "Observe the apprentices adjusting each gust vane."
+      },
+      {
+        "from": "cloud_burrow_resonant_wells",
+        "to": "cloud_burrow_signway_balcony",
+        "choice": "(Resonant) Sign the wind-hand cant with the well tenders and plan a silent relay."
+      },
+      {
+        "from": "cloud_burrow_signway_balcony",
+        "to": "cloud_burrow_signway_forum",
+        "choice": "Borrow a gust-slate to sketch your reply for the interpreters."
+      },
+      {
+        "from": "cloud_burrow_signway_forum",
+        "to": "cloud_burrow_signway_well",
+        "choice": "Take notes on a ribbon-slate and pass them between the negotiators."
+      },
+      {
+        "from": "cloud_burrow_signway_well",
+        "to": "cloud_burrow_updraft_well",
+        "choice": "Hang lantern cues so anyone can follow the new silent counts."
+      },
+      {
+        "from": "cloud_burrow_updraft_well",
+        "to": "cloud_burrow_storm_gallery",
+        "choice": "Step back before the gale peaks."
+      },
+      {
+        "from": "cloud_burrow_storm_gallery",
+        "to": "amber_tides_lantern_lock",
+        "choice": "Accept a tide-clergy invitation down to the Amber Tides Necropolis."
+      },
+      {
+        "from": "amber_tides_lantern_lock",
+        "to": "cloud_burrow_threshold",
+        "choice": "Climb back toward the Cloud-Burrow threshold."
+      },
+      {
+        "from": "cloud_burrow_threshold",
+        "to": "saltglass_expanse",
+        "choice": "Ride the dunes' return current back to the Saltglass Expanse."
+      },
+      {
+        "from": "saltglass_expanse",
+        "to": "cloud_burrow_threshold",
+        "choice": "(Resonant) Harmonize dune song with Aeol lifts and glide into the Cloud-Burrow."
+      },
+      {
+        "from": "cloud_burrow_threshold",
+        "to": "cloud_burrow_balcony_warrens",
+        "choice": "Accept a tethered basket up toward the burrow balconies."
+      },
+      {
+        "from": "cloud_burrow_balcony_warrens",
+        "to": "cloud_burrow_guest_ledger",
+        "choice": "(Healer) Tend the kits' wind-burned paws and earn the family's trust."
+      },
+      {
+        "from": "cloud_burrow_guest_ledger",
+        "to": "cloud_burrow_loft",
+        "choice": "Follow the steward up toward the loft hammocks."
+      },
+      {
+        "from": "cloud_burrow_loft",
+        "to": "cloud_burrow_resonant_wells",
+        "choice": "(Resonant) Sign-chime harmonies with the wind-mole chorus."
+      },
+      {
+        "from": "cloud_burrow_resonant_wells",
+        "to": "cloud_burrow_embassy",
+        "choice": "(Healer) Ease the wind-tenders' ringing ears with cooling salves."
+      },
+      {
+        "from": "cloud_burrow_embassy",
+        "to": "saltglass_expanse",
+        "choice": "Request a tether back toward the Saltglass Expanse."
+      },
+      {
+        "from": "saltglass_expanse",
+        "to": "starfallen_orchard_meteoric_gate",
+        "choice": "Trail the memory-laden caravan toward the Starfallen Orchard."
+      },
+      {
+        "from": "starfallen_orchard_meteoric_gate",
+        "to": "starfallen_orchard_resonance_grove",
+        "choice": "(Resonant) Trade chords with the gatekeeper to align the grove's pulse."
+      },
+      {
+        "from": "starfallen_orchard_resonance_grove",
+        "to": "starfallen_orchard_story_graft",
+        "choice": "(Resonant) Thread your chord through the grove's chorus."
+      },
+      {
+        "from": "starfallen_orchard_story_graft",
+        "to": "starfallen_orchard_memory_rows",
+        "choice": "Step away before the branch can claim you."
+      },
+      {
+        "from": "starfallen_orchard_memory_rows",
+        "to": "starfallen_orchard_resonance_grove",
+        "choice": "(Resonant) Lead a lullaby to settle the most burdened branches."
+      },
+      {
+        "from": "starfallen_orchard_resonance_grove",
+        "to": "starfallen_orchard_healer_bower",
+        "choice": "(Healer) Sync breath with the tenders to steady their pulse."
+      },
+      {
+        "from": "starfallen_orchard_healer_bower",
+        "to": "starfallen_orchard_memory_rows",
+        "choice": "Take a restorative draught and rejoin the rows."
+      },
+      {
+        "from": "starfallen_orchard_memory_rows",
+        "to": "starfallen_orchard_meteor_cradle",
+        "choice": "Follow the furrow toward the meteor cradle."
+      },
+      {
+        "from": "starfallen_orchard_meteor_cradle",
+        "to": "starfallen_orchard_healer_bower",
+        "choice": "(Healer) Draw the meteor warmth to ease orchardists' joints."
+      },
+      {
+        "from": "starfallen_orchard_healer_bower",
+        "to": "starfallen_orchard_story_graft",
+        "choice": "(Healer) Distill balm that keeps grafts from scarring."
+      },
+      {
+        "from": "starfallen_orchard_story_graft",
+        "to": "starfallen_orchard_memory_rows",
+        "choice": "Step away before the branch can claim you."
+      },
+      {
+        "from": "starfallen_orchard_memory_rows",
+        "to": "starfallen_orchard_sharecrop_commons",
+        "choice": "Gather shared fruit for the coming commons."
+      },
+      {
+        "from": "starfallen_orchard_sharecrop_commons",
+        "to": "ending_sharecrop_of_stories",
+        "choice": "(Resonant) Lead a broadcast so every graft echoes the invitation."
+      }
+    ],
+    "start_id": "cloud_burrow_loft",
+    "player": {
+      "name": "fese",
+      "hp": 10,
+      "tags": [
+        "Resonant",
+        "Healer",
+        "Tide-Singer",
+        "Storm-Conductor"
+      ],
+      "traits": [],
+      "inventory": [],
+      "resources": {},
+      "flags": {},
+      "rep": {
+        "Aeol Nests": 0,
+        "Root Assembly": 0,
+        "Prism Cartel": 0,
+        "Freehands": 0,
+        "Quiet Ledger": 0,
+        "Tide Wardens": 0,
+        "Crystal Singers": 0,
+        "Shadow Merchants": 0,
+        "Void Shepherds": 0,
+        "Floating Academies": 0,
+        "Temporal Gardeners": 0,
+        "Deep Resonance": 0
+      }
+    },
+    "active_area": "Patchwork Isles \u2014 Guest-Law Prelude",
+    "world_seed": 3624173118
+  }
+}

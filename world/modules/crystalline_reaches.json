@@ -1,0 +1,693 @@
+{
+  "_module_info": {
+    "id": "crystalline_reaches",
+    "name": "Crystalline Reaches",
+    "description": "Content module for crystalline_reaches area",
+    "dependencies": [],
+    "tags": [
+      "Ancient-Scholar",
+      "Crystal-Attuned",
+      "Crystal-Shaper",
+      "Light-Bender",
+      "Master-Crystal-Shaper",
+      "Memory-Keeper",
+      "Scout",
+      "Tinkerer"
+    ],
+    "factions": [
+      "Crystal Singers"
+    ],
+    "node_count": 24,
+    "start_count": 1
+  },
+  "nodes": {
+    "crystalline_reaches_edge": {
+      "title": "Crystal Threshold",
+      "text": "Standing stones of living crystal hum with power at the entrance to an ever-shifting maze. The formations grow visibly, creating new pathways while sealing others with melodic chimes.",
+      "choices": [
+        {
+          "text": "(Crystal-Shaper) Shape an opening through the crystal barrier.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 1
+            },
+            {
+              "type": "add_tag",
+              "value": "Crystal-Attuned"
+            }
+          ],
+          "target": "crystalline_reaches_central_plaza"
+        },
+        {
+          "text": "(Scout) Find a natural passage between the formations.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Scout"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "crystal_path_map"
+            }
+          ],
+          "target": "crystalline_reaches_hidden_grove"
+        },
+        {
+          "text": "Study the patterns of crystal growth.",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "growth_pattern_notes"
+            }
+          ],
+          "target": "crystalline_reaches_observatory"
+        },
+        {
+          "text": "Wait and watch for the crystals to naturally shift.",
+          "target": "crystalline_reaches_waiting_grove"
+        },
+        {
+          "text": "Return to the Startways Nexus.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_central_plaza": {
+      "title": "Plaza of Singing Stones",
+      "text": "A circular clearing where towering crystal spires resonate in harmony. The ground is inlaid with crystalline paths that pulse with different colored lights, each leading to different districts of the reaches.",
+      "choices": [
+        {
+          "text": "(Crystal-Shaper) Conduct the crystal symphony to reveal hidden paths.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "crystal_symphony_conducted",
+              "value": true
+            }
+          ],
+          "target": "crystalline_reaches_harmonic_chambers"
+        },
+        {
+          "text": "Follow the blue crystal path to the memory vaults.",
+          "target": "crystalline_reaches_memory_vaults"
+        },
+        {
+          "text": "Follow the red crystal path to the forges.",
+          "target": "crystalline_reaches_crystal_forges"
+        },
+        {
+          "text": "Follow the green crystal path to the living gardens.",
+          "target": "crystalline_reaches_living_gardens"
+        },
+        {
+          "text": "Follow the gold crystal path to the treasury.",
+          "target": "crystalline_reaches_treasure_vault"
+        },
+        {
+          "text": "Approach the central spire to speak with the Crystal Singers.",
+          "target": "crystalline_reaches_singer_council"
+        }
+      ]
+    },
+    "crystalline_reaches_memory_vaults": {
+      "title": "Crystal Memory Vaults",
+      "text": "Vast chambers filled with memory crystals that store experiences, knowledge, and emotions. Each crystal glows with stored life moments, creating a library of living experiences.",
+      "choices": [
+        {
+          "text": "(Crystal-Shaper) Shape a new memory crystal to store your experiences.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "personal_memory_crystal"
+            },
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 1
+            }
+          ],
+          "target": "crystalline_reaches_crystal_workshop"
+        },
+        {
+          "text": "Study the ancient memory crystals for historical knowledge.",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "ancient_knowledge"
+            },
+            {
+              "type": "add_tag",
+              "value": "Ancient-Scholar"
+            }
+          ],
+          "target": "crystalline_reaches_archive_chamber"
+        },
+        {
+          "text": "(Memory-Keeper) Organize and catalog the memory crystals.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Memory-Keeper"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "memory_vault_organized",
+              "value": true
+            }
+          ],
+          "target": "crystalline_reaches_master_archive"
+        },
+        {
+          "text": "Touch a crystal to experience a stored memory.",
+          "effects": [
+            {
+              "type": "add_trait",
+              "value": "Memory-Touched"
+            }
+          ],
+          "target": "crystalline_reaches_memory_chamber"
+        }
+      ]
+    },
+    "crystalline_reaches_crystal_forges": {
+      "title": "Living Crystal Forges",
+      "text": "Workshops where Crystal Singers shape raw crystal into tools, weapons, and artifacts. The forges themselves are living crystals that respond to the crafter's intent and emotion.",
+      "choices": [
+        {
+          "text": "(Crystal-Shaper) Learn advanced crystal shaping techniques.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          },
+          "effects": [
+            {
+              "type": "add_tag",
+              "value": "Master-Crystal-Shaper"
+            },
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 2
+            }
+          ],
+          "target": "crystalline_reaches_master_forge"
+        },
+        {
+          "text": "(Tinkerer) Design crystal-powered mechanisms.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Tinkerer"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "crystal_mechanism"
+            }
+          ],
+          "target": "crystalline_reaches_invention_lab"
+        },
+        {
+          "text": "Forge a crystal tool for your journey.",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "crystal_tool"
+            }
+          ],
+          "target": "crystalline_reaches_apprentice_forge"
+        },
+        {
+          "text": "Study the singing properties of shaped crystals.",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "resonance_theory_notes"
+            }
+          ],
+          "target": "crystalline_reaches_acoustic_lab"
+        }
+      ]
+    },
+    "crystalline_reaches_living_gardens": {
+      "title": "Gardens of Growing Light",
+      "text": "Crystalline trees and plants that photosynthesize light itself, creating a garden where crystal flowers bloom with captured starlight and crystal fruits store pure illumination.",
+      "choices": [
+        {
+          "text": "(Crystal-Shaper) Encourage new crystal plant growth.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          },
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "crystal_seed"
+            },
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 1
+            }
+          ],
+          "target": "crystalline_reaches_nursery"
+        },
+        {
+          "text": "Harvest light fruit for sustenance.",
+          "effects": [
+            {
+              "type": "hp_delta",
+              "value": 2
+            },
+            {
+              "type": "add_item",
+              "value": "light_fruit"
+            }
+          ],
+          "target": "crystalline_reaches_harvest_grove"
+        },
+        {
+          "text": "(Light-Bender) Focus sunlight to accelerate crystal plant growth.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Light-Bender"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Crystal Singers",
+              "value": 2
+            },
+            {
+              "type": "set_flag",
+              "flag": "garden_expansion_complete",
+              "value": true
+            }
+          ],
+          "target": "crystalline_reaches_solar_chamber"
+        },
+        {
+          "text": "Rest in the peaceful glow of the crystal gardens.",
+          "effects": [
+            {
+              "type": "hp_delta",
+              "value": 1
+            },
+            {
+              "type": "add_trait",
+              "value": "Crystal-Blessed"
+            }
+          ],
+          "target": "crystalline_reaches_meditation_grove"
+        }
+      ]
+    },
+    "crystalline_reaches_hidden_grove": {
+      "title": "Secret Crystal Garden",
+      "text": "Your scouting skills reveal a passage between two massive crystal formations, leading to a hidden grove where wild crystals grow in their natural state. Unlike the cultivated formations elsewhere, these crystals pulse with uncontrolled power, their songs discordant yet hauntingly beautiful.\n\nAmong the wild growths, you discover the remains of an ancient crystal-shaper's workshop. Tools of impossible delicacy lie scattered among formations that defy conventional understanding. Clearly, someone once experimented with techniques far beyond current knowledge.",
+      "on_enter": [
+        {
+          "type": "add_tag",
+          "value": "Crystal-Finder"
+        }
+      ],
+      "choices": [
+        {
+          "text": "Study the ancient tools to learn lost techniques.",
+          "target": "crystalline_reaches_master_forge",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "ancient crystal tool"
+            }
+          ]
+        },
+        {
+          "text": "Attempt to harmonize with the wild crystal songs.",
+          "target": "crystalline_reaches_harmonic_chambers",
+          "condition": {
+            "type": "has_tag",
+            "value": "Crystal-Shaper"
+          }
+        },
+        {
+          "text": "Carefully harvest some of the wild crystal for research.",
+          "target": "crystalline_reaches_invention_lab",
+          "effects": [
+            {
+              "type": "add_item",
+              "value": "wild crystal shard"
+            }
+          ]
+        },
+        {
+          "text": "Map this location for future expeditions.",
+          "target": "crystalline_reaches_observatory"
+        }
+      ]
+    },
+    "crystalline_reaches_harmonic_chambers": {
+      "title": "The Crystal Symphony",
+      "text": "As you begin conducting the harmonies within the crystal formations, their individual songs begin to synchronize. The entire grove transforms into a massive musical instrument, with each crystal formation contributing its voice to an ever-growing symphony.\n\nThe music reveals hidden pathways between the formations and causes new crystals to emerge from the ground. You realize you've awakened something ancient—a living composition that has been waiting centuries for someone with the skill to conduct it properly.\n\nThe symphony builds to a crescendo that opens a passage deeper into the crystal maze.",
+      "on_enter": [
+        {
+          "type": "add_trait",
+          "value": "Crystal-Conductor"
+        },
+        {
+          "type": "rep_delta",
+          "faction": "Crystal Singers",
+          "value": 2
+        }
+      ],
+      "choices": [
+        {
+          "text": "Follow the newly opened passage to its destination.",
+          "target": "crystalline_reaches_master_archive"
+        },
+        {
+          "text": "Try to record the complete symphony for preservation.",
+          "target": "crystalline_reaches_archive_chamber"
+        },
+        {
+          "text": "Use the awakened formations to create a teaching facility.",
+          "target": "crystalline_reaches_crystal_workshop"
+        }
+      ]
+    },
+    "crystalline_reaches_master_archive": {
+      "title": "Heart of Crystal Memory",
+      "text": "The passage leads to a vast chamber where thousands of memory crystals float in perfect formation, each one containing the experiences and knowledge of ancient crystal-shapers. As you approach, they begin to resonate in response to your presence, offering to share their accumulated wisdom.\n\nYou realize this is the true treasure of the Crystalline Reaches—not just the crystals themselves, but the living library of everyone who ever mastered their secrets. The crystals seem eager to find a new keeper worthy of preserving their knowledge for future generations.",
+      "on_enter": [
+        {
+          "type": "add_tag",
+          "value": "Memory-Keeper"
+        },
+        {
+          "type": "set_flag",
+          "flag": "master_archive_discovered",
+          "value": true
+        }
+      ],
+      "choices": [
+        {
+          "text": "Accept the role of Archive Keeper and dedicate your life to this knowledge.",
+          "target": "ending_crystal_memory_keeper",
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Guardian of Crystal Wisdom"
+            }
+          ]
+        },
+        {
+          "text": "Learn what you can and return to share it with others.",
+          "target": "crystalline_reaches_crystal_workshop",
+          "effects": [
+            {
+              "type": "add_trait",
+              "value": "Crystal Master"
+            }
+          ]
+        },
+        {
+          "text": "Search for knowledge about crystal healing techniques.",
+          "target": "crystalline_reaches_medical_archive"
+        }
+      ]
+    },
+    "crystalline_reaches_solar_chamber": {
+      "title": "Solar Chamber",
+      "description": "You find yourself in solar chamber, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_solar_chamber"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_harvest_grove": {
+      "title": "Harvest Grove",
+      "description": "You find yourself in harvest grove, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_harvest_grove"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_singer_council": {
+      "title": "Singer Council",
+      "description": "You find yourself in singer council, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_singer_council"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_meditation_grove": {
+      "title": "Meditation Grove",
+      "description": "You find yourself in meditation grove, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_meditation_grove"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_invention_lab": {
+      "title": "Invention Lab",
+      "description": "You find yourself in invention lab, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_invention_lab"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_apprentice_forge": {
+      "title": "Apprentice Forge",
+      "description": "You find yourself in apprentice forge, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_apprentice_forge"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_memory_chamber": {
+      "title": "Memory Chamber",
+      "description": "You find yourself in memory chamber, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_memory_chamber"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_treasure_vault": {
+      "title": "Treasure Vault",
+      "description": "You find yourself in treasure vault, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_treasure_vault"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_master_forge": {
+      "title": "Master Forge",
+      "description": "You find yourself in master forge, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_master_forge"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_crystal_workshop": {
+      "title": "Crystal Workshop",
+      "description": "You find yourself in crystal workshop, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_crystal_workshop"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_acoustic_lab": {
+      "title": "Acoustic Lab",
+      "description": "You find yourself in acoustic lab, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_acoustic_lab"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_archive_chamber": {
+      "title": "Archive Chamber",
+      "description": "You find yourself in archive chamber, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_archive_chamber"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_medical_archive": {
+      "title": "Medical Archive",
+      "description": "You find yourself in medical archive, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_medical_archive"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_nursery": {
+      "title": "Nursery",
+      "description": "You find yourself in nursery, a location within the Crystalline Reaches region. The path forward remains unclear, but you sense this area holds significance.",
+      "tags": [],
+      "choices": [
+        {
+          "text": "Explore this area further.",
+          "target": "crystalline_reaches_nursery"
+        },
+        {
+          "text": "Return to the main pathways.",
+          "target": "startways_nexus"
+        }
+      ]
+    },
+    "crystalline_reaches_observatory": {
+      "id": "crystalline_reaches_observatory",
+      "title": "Crystalline Reaches Observatory",
+      "text": "[This is an auto-generated placeholder for the missing 'crystalline_reaches_observatory' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'crystalline_reaches_edge' choice 2, Node 'crystalline_reaches_hidden_grove' choice 3"
+    },
+    "crystalline_reaches_waiting_grove": {
+      "id": "crystalline_reaches_waiting_grove",
+      "title": "Crystalline Reaches Waiting Grove",
+      "text": "[This is an auto-generated placeholder for the missing 'crystalline_reaches_waiting_grove' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'crystalline_reaches_edge' choice 3"
+    }
+  },
+  "starts": [
+    {
+      "id": "crystalline_reaches_scout",
+      "title": "Crystalline Reaches Scout",
+      "locked_title": "Crystalline Reaches Scout (Locked)",
+      "node": "crystalline_reaches_edge",
+      "tags": [
+        "Crystal-Shaper",
+        "Scout"
+      ],
+      "locked": true,
+      "blurb": "Navigate the ever-shifting crystal maze where gems grow into new configurations. Shape crystal pathways and harvest singing shards."
+    }
+  ]
+}

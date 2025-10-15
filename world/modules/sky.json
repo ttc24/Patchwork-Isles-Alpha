@@ -1,0 +1,180 @@
+{
+  "_module_info": {
+    "id": "sky",
+    "name": "Sky",
+    "description": "Content module for sky area",
+    "dependencies": [],
+    "tags": [
+      "Emissary",
+      "Sneaky"
+    ],
+    "factions": [
+      "Aeol Nests",
+      "Root Assembly"
+    ],
+    "node_count": 1,
+    "start_count": 3
+  },
+  "nodes": {
+    "sky_docks": {
+      "title": "Sky-Spliced Docks",
+      "text": "Stormglass piers sway above the mist; signal-kites rattle as Aeol Nests wardens chant the day's winds. Prism Cartel runners hustle cargo while seed-compass couriers flash Startways sigils.",
+      "choices": [
+        {
+          "text": "(Emissary) Flash envoy seals to the Aeol warden for priority clearance.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Emissary"
+          },
+          "effects": [
+            {
+              "type": "rep_delta",
+              "faction": "Aeol Nests",
+              "value": 1
+            },
+            {
+              "type": "set_flag",
+              "flag": "docks_clearance",
+              "value": true
+            }
+          ],
+          "target": "root_tangle_market"
+        },
+        {
+          "text": "(Sneaky) Ride a cargo hoist between patrol sweeps.",
+          "condition": {
+            "type": "has_tag",
+            "value": "Sneaky"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "cargo_entry",
+              "value": true
+            }
+          ],
+          "target": "prism_galleria"
+        },
+        {
+          "text": "Volunteer as a docket runner until your name is called.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "runner_chit",
+              "value": true
+            },
+            {
+              "type": "rep_delta",
+              "faction": "Root Assembly",
+              "value": 1
+            }
+          ],
+          "target": "root_tangle_market"
+        },
+        {
+          "text": "(Light-Step) Skip along taut mooring cables to the maintenance lift.",
+          "condition": {
+            "type": "has_trait",
+            "value": "Light-Step"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "lightstep_docks",
+              "value": true
+            }
+          ],
+          "target": "prism_galleria"
+        },
+        {
+          "text": "(People-Reader) Mirror the warden's gestures to slide ahead quietly.",
+          "condition": {
+            "type": "has_trait",
+            "value": "People-Reader"
+          },
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "runner_chit",
+              "value": true
+            }
+          ],
+          "target": "root_tangle_market"
+        },
+        {
+          "text": "Follow a seed-compass courier toward the Startways Nexus.",
+          "effects": [
+            {
+              "type": "set_flag",
+              "flag": "startways_access",
+              "value": true
+            }
+          ],
+          "target": "startways_nexus"
+        },
+        {
+          "text": "Accept the Aeol rota posting and settle into the mooring office.",
+          "condition": {
+            "type": "rep_at_least",
+            "faction": "Aeol Nests",
+            "value": 1
+          },
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Mooring Mediator"
+            }
+          ],
+          "target": "ending_mooring_mediator"
+        },
+        {
+          "text": "Sign on as the rainchain hostel steward and keep the bunks humming.",
+          "effects": [
+            {
+              "type": "end_game",
+              "value": "Rainchain Hostel Steward"
+            }
+          ],
+          "target": "ending_rainchain_hostel"
+        },
+        {
+          "text": "[URGENT] Report to Startways Central Command about the crisis",
+          "target": "startways_nexus",
+          "details": "Emergency sirens are sounding - something major is happening across the archipelago."
+        }
+      ]
+    }
+  },
+  "starts": [
+    {
+      "id": "aeol_envoy",
+      "title": "Aeol Envoy",
+      "node": "sky_docks",
+      "tags": [
+        "Emissary",
+        "Resonant"
+      ],
+      "blurb": "Carry Aeol dispatch seals to broker storm routes. Diplomacy and gust control keep flights on time."
+    },
+    {
+      "id": "freehands_skyrunner",
+      "title": "Freehands Skyrunner",
+      "node": "sky_docks",
+      "tags": [
+        "Sneaky",
+        "Scout"
+      ],
+      "blurb": "Leap between rigging to supply stranded crews. Fast mutual-aid runs earn Freehands trust."
+    },
+    {
+      "id": "root_scribe",
+      "title": "Root Assembly Scribe",
+      "node": "sky_docks",
+      "tags": [
+        "Archivist",
+        "Weaver"
+      ],
+      "blurb": "Keep meticulous ledgers for the Root Assembly. Paperwork and hearings bend guest-law your way."
+    }
+  ]
+}

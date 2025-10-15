@@ -1,0 +1,28 @@
+{
+  "_module_info": {
+    "id": "calculate",
+    "name": "Calculate",
+    "description": "Content module for calculate area",
+    "dependencies": [],
+    "tags": [],
+    "factions": [],
+    "node_count": 1,
+    "start_count": 0
+  },
+  "nodes": {
+    "calculate_sustainability": {
+      "id": "calculate_sustainability",
+      "title": "Calculate Sustainability",
+      "text": "[This is an auto-generated placeholder for the missing 'calculate_sustainability' location.] This location exists in the story but its content hasn't been written yet.",
+      "choices": [
+        {
+          "text": "Continue the story (return to a safe location)",
+          "target": "tutorial_arrival_beach"
+        }
+      ],
+      "_auto_generated": true,
+      "_generation_reason": "Missing node referenced by: Node 'implement_emergency_measures' choice 1"
+    }
+  },
+  "starts": []
+}
