@@ -28,20 +28,10 @@ class Settings:
     window_mode: str = "windowed"
     vsync: bool = True
     ui_scale: float = 1.0
-    
-    # Accessibility options
-    text_speed: float = 1.0  # Text display speed multiplier
-    high_contrast: bool = False  # High contrast mode
-    large_text: bool = False  # Large text mode
-    pause_after_text: bool = False  # Pause after each text block
-    
-    # Choice display options
-    show_locked_choices: bool = True  # Show locked choices with requirements
-    show_visited_choices: bool = True  # Show previously made choices (greyed out)
 
     _WINDOW_MODES = {"windowed", "fullscreen"}
 
-    def clamp(self) -> Settings:
+    def clamp(self) -> "Settings":
         self.audio_master = _clamp(float(self.audio_master), 0.0, 1.0)
         self.audio_music = _clamp(float(self.audio_music), 0.0, 1.0)
         self.audio_sfx = _clamp(float(self.audio_sfx), 0.0, 1.0)
@@ -53,26 +43,16 @@ class Settings:
 
         self.vsync = bool(self.vsync)
         self.ui_scale = _clamp(float(self.ui_scale), 0.5, 2.0)
-        
-        # Clamp accessibility options
-        self.text_speed = _clamp(float(self.text_speed), 0.1, 3.0)
-        self.high_contrast = bool(self.high_contrast)
-        self.large_text = bool(self.large_text) 
-        self.pause_after_text = bool(self.pause_after_text)
-        
-        # Clamp choice display options
-        self.show_locked_choices = bool(self.show_locked_choices)
-        self.show_visited_choices = bool(self.show_visited_choices)
         return self
 
-    def copy(self) -> Settings:
+    def copy(self) -> "Settings":
         return Settings.from_dict(self.to_dict())
 
     def to_dict(self) -> Dict[str, Any]:
         return asdict(self)
 
     @classmethod
-    def from_dict(cls, data: Dict[str, Any] | None) -> Settings:
+    def from_dict(cls, data: Dict[str, Any] | None) -> "Settings":
         if not isinstance(data, dict):
             return cls()
 
@@ -101,12 +81,6 @@ class Settings:
             window_mode=str(data.get("window_mode", "windowed")),
             vsync=_as_bool("vsync", True),
             ui_scale=_as_float("ui_scale", 1.0),
-            text_speed=_as_float("text_speed", 1.0),
-            high_contrast=_as_bool("high_contrast", False),
-            large_text=_as_bool("large_text", False),
-            pause_after_text=_as_bool("pause_after_text", False),
-            show_locked_choices=_as_bool("show_locked_choices", True),
-            show_visited_choices=_as_bool("show_visited_choices", True),
         )
         return settings.clamp()
 

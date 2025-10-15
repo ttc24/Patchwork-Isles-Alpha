@@ -10,16 +10,6 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Mapping, MutableMapping, Sequence
 
-# Add engine path for schema validator import
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-
-try:
-    from engine.schema_validator import WorldValidator
-    SCHEMA_VALIDATION_AVAILABLE = True
-except ImportError:
-    SCHEMA_VALIDATION_AVAILABLE = False
-    print("Warning: Schema validation not available. Run 'pip install jsonschema' to enable.")
-
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_WORLD = REPO_ROOT / "world" / "world.json"
 
@@ -302,16 +292,6 @@ def validate_choice(
 
 def validate_world(world: Mapping[str, Any]) -> List[str]:
     ctx = ValidationContext()
-    
-    # Run schema validation first if available
-    if SCHEMA_VALIDATION_AVAILABLE:
-        try:
-            validator = WorldValidator()
-            schema_valid, schema_errors = validator.full_validation(dict(world))
-            if not schema_valid:
-                ctx.extend(schema_errors)
-        except Exception as e:
-            ctx.add(f"Schema validation failed: {e}")
 
     require("nodes" in world, "World data must include a 'nodes' section.", ctx)
     endings = world.get("endings")

@@ -202,7 +202,7 @@ class SaveManager:
 
     def _read_payload(self, path: Path) -> Dict:
         try:
-            with open(path, encoding="utf-8") as handle:
+            with open(path, "r", encoding="utf-8") as handle:
                 payload = json.load(handle)
         except FileNotFoundError as exc:
             raise SaveError("Save file missing.") from exc

@@ -1,30 +1,16 @@
 # Patchwork Isles
 
-**A tag/trait-driven interactive fiction game where your choices shape an entire archipelago**
+**Tag/Trait-driven narrative engine for weaving political intrigue across a living archipelago.**
 
-[![CI Status](https://github.com/your-org/Patchwork-Isles/workflows/CI/badge.svg)](https://github.com/your-org/Patchwork-Isles/actions)
-[![Release](https://img.shields.io/github/v/release/your-org/Patchwork-Isles)](https://github.com/your-org/Patchwork-Isles/releases)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+> _Gameplay screenshot coming soon._
 
-> **🎮 [Download for Windows](https://github.com/your-org/Patchwork-Isles/releases/latest)** | **📚 [Player Guide](docs/PLAYER_GUIDE.md)** | **🐛 [Report Issues](https://github.com/your-org/Patchwork-Isles/issues)**
-
-![Screenshot of gameplay showing character profile selection with multiple storylines and achievements](https://via.placeholder.com/800x500/2E4057/FFFFFF?text=Patchwork+Isles+%7C+Multi-Profile+Character+System+%7C+Coming+Soon)
-
-## What Makes Patchwork Isles Special?
-
-🏝️ **Living World**: Your reputation with five major factions affects every conversation and opportunity  
-🎭 **Multi-Profile System**: Create multiple characters, each with unique story paths and unlockable origins  
-🧩 **No Wrong Choices**: Every decision leads to interesting consequences, never dead ends  
-🎯 **Tag-Driven Gameplay**: Build your character through gameplay, not character sheets  
-♿ **Accessibility First**: Full keyboard navigation, text scaling, high contrast mode, and more  
-🔄 **Legacy Progression**: Achievements carry between playthroughs, unlocking new storylines
+## Controls at a Glance
+- Type the number or letter shown next to a choice and press <kbd>Enter</kbd> to advance the story.
+- Enter `i` at any prompt to view your current tags, traits, inventory, and faction reputation.
+- Enter `o` to open the Options screen for audio, display, and UI scale settings.
+- Enter `h` to review the last few story beats, or `q` to quit to the title screen and optionally save.
 
 ## Quick Start
-
-### 👥 For Players
-**Just want to play?** → **[See the Player Guide](docs/PLAYER_GUIDE.md)** for installation and gameplay instructions.
-
-### 🛠️ For Developers
 1. **Install Python 3.8 or newer.** The engine is pure Python with no third-party dependencies required for runtime.
 2. **Clone the repo and enter the folder.**
    ```bash
@@ -60,22 +46,18 @@
 | `playtests/` | Session transcripts and QA notes. |
 | `profile.json` | Local save data storing unlocked starts and seen endings. |
 
-## 🎆 What's New in v1.0
+## Roadmap (toward v0.9 Beta)
+- [ ] Standalone quickstart world tailored for first-time players.
+- [ ] Faction reputation UI polish and readable summaries.
+- [ ] World authoring guidelines synced with in-game terminology.
+- [ ] Automated content linting with CI (validate, ruff, mypy).
+- [ ] Save-slot manager supporting multiple profiles.
+- [ ] Balance pass on unlockable starts and faction rewards.
+- [ ] Playtest feedback incorporation loop with tracked issues.
+- [ ] Audio/visual dressing for key beats (accessibility friendly).
+- [ ] Localization-ready strings and tooling.
 
-- ✅ **Multi-Profile Character System**: Create and manage multiple characters with progress tracking
-- ✅ **Enhanced Accessibility**: Text speed, high contrast, large text, and pause-after-text options
-- ✅ **Improved Session History**: Paginated story review with search and navigation
-- ✅ **Automated CI/CD**: Continuous integration with content validation, linting, and automated releases
-- ✅ **Executable Packaging**: One-click Windows executable with PyInstaller
-- ✅ **Structured Feedback System**: Issue templates for bugs and playtest feedback
-- ✅ **Performance Optimizations**: Memory management for long sessions and large save files
-- ✅ **Enhanced Error Handling**: User-friendly error messages and graceful recovery
-
-### 🔮 Coming Next
-- 🔍 **Expanded Content**: Additional storylines and faction interactions
-- 🎼 **Audio System**: Music and sound effects with accessibility considerations  
-- 🌍 **Localization**: Multi-language support framework
-- 🔧 **Mod Support**: Enhanced tools for community content creation
+See [`docs/planning/v0.9-beta-backlog.md`](docs/planning/v0.9-beta-backlog.md) for the full milestone issue list.
 
 ## Authoring Quick Reference
 - **Gate a choice by Tag:**

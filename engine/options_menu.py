@@ -18,12 +18,6 @@ _ENTRY_SPEC = (
     ("window_mode", "Window Mode", "window"),
     ("vsync", "VSync", "toggle"),
     ("ui_scale", "UI Scale", "scale"),
-    ("text_speed", "Text Speed", "speed"),
-    ("high_contrast", "High Contrast", "toggle"),
-    ("large_text", "Large Text", "toggle"),
-    ("pause_after_text", "Pause After Text", "toggle"),
-    ("show_locked_choices", "Show Locked Choices", "toggle"),
-    ("show_visited_choices", "Show Visited Choices", "toggle"),
 )
 
 
@@ -116,8 +110,6 @@ def _format_value(value, entry_type: str) -> str:
         return str(value).title()
     if entry_type == "scale":
         return f"{float(value):.2f}x"
-    if entry_type == "speed":
-        return f"{float(value):.1f}x"
     return str(value)
 
 
@@ -129,10 +121,6 @@ def _adjust_entry(settings: Settings, field: str, entry_type: str, direction: in
     elif entry_type == "scale":
         step = 0.1 * direction
         setattr(settings, field, _clamp_scale(previous + step))
-    elif entry_type == "speed":
-        step = 0.1 * direction
-        new_value = max(0.1, min(3.0, previous + step))
-        setattr(settings, field, new_value)
     elif entry_type in {"toggle", "window"}:
         _toggle_entry(settings, field, entry_type)
     else:
@@ -150,15 +138,10 @@ def _activate_entry(
 ) -> bool:
     if entry_type == "volume":
         prompt = "Enter volume (0-100, blank to cancel): "
-        return _prompt_float(
-            settings, field, prompt, 0.0, 1.0, input_func, print_func, divisor=100.0
-        )
+        return _prompt_float(settings, field, prompt, 0.0, 1.0, input_func, print_func, divisor=100.0)
     if entry_type == "scale":
         prompt = "Enter UI scale (0.5-2.0, blank to cancel): "
         return _prompt_float(settings, field, prompt, 0.5, 2.0, input_func, print_func)
-    if entry_type == "speed":
-        prompt = "Enter text speed (0.1-3.0, blank to cancel): "
-        return _prompt_float(settings, field, prompt, 0.1, 3.0, input_func, print_func)
     if entry_type in {"toggle", "window"}:
         before = getattr(settings, field)
         _toggle_entry(settings, field, entry_type)
