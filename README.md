@@ -27,11 +27,15 @@
    python -m pip install -r requirements-dev.txt
    ```
    > If you only want to play, you can skip installing dev tools.
-5. **Run the engine.**
+5. **Create a local save profile.**
+   ```bash
+   cp profile.sample.json profile.json
+   ```
+6. **Run the engine.**
    ```bash
    python engine/engine_min.py world/world.json
    ```
-6. **Validate content before committing changes.**
+7. **Validate content before committing changes.**
    ```bash
    python tools/validate.py
    ```
@@ -44,7 +48,7 @@
 | `docs/` | Lore bible, prompts, planning notes, and other supporting reference material. |
 | `tools/` | Authoring utilities (`validate.py`, `list_unreachable.py`, `merge_modules.py`, etc.). |
 | `playtests/` | Session transcripts and QA notes. |
-| `profile.json` | Local save data storing unlocked starts and seen endings. |
+| `profile.sample.json` | Template local save data storing unlocked starts and seen endings. |
 
 ## Roadmap (toward v0.9 Beta)
 - [ ] Standalone quickstart world tailored for first-time players.
